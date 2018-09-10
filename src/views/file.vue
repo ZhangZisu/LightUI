@@ -25,7 +25,9 @@
                             </v-list-tile-action>
                         </v-list-tile>
                     </v-list>
-                    <v-pagination v-model="page" :length="allPages"></v-pagination>
+                    <v-card-actions>
+                        <v-pagination v-model="page" :length="allPages"></v-pagination>
+                    </v-card-actions>
                 </v-card-text>
             </v-card>
             <v-dialog v-model="dialog" max-width="640">

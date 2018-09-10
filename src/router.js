@@ -4,6 +4,7 @@ import homeView from "./views/home.vue";
 import errorView from "./views/error.vue";
 import loginView from "./views/login.vue";
 import fileView from "./views/file.vue";
+import problemView from "./views/problem.vue";
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: "/file",
       name: "file",
       component: fileView
+    },
+    {
+      path: "/problem",
+      name: "problem",
+      component: problemView
     },
     {
       path: "*",
