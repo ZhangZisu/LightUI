@@ -18,6 +18,14 @@
             <v-list-tile-title v-text="$t('file')"/>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile to="/problem">
+          <v-list-tile-action>
+            <v-icon>folder</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="$t('problem')"/>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile to="/login">
           <v-list-tile-action>
             <v-icon>account_circle</v-icon>
@@ -36,8 +44,8 @@
     <v-content>
       <router-view :key="$route.fullPath"/>
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+    <v-footer app fixed>
+      <span>&nbsp;{{$t('log')}}:&nbsp;{{log}}</span>
     </v-footer>
   </v-app>
 </template>
@@ -47,20 +55,19 @@ export default {
   name: "App",
   data() {
     return {
-      clipped: false,
       drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: "bubble_chart",
-          title: "Inspire"
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js"
+      log: ""
     };
+  },
+  computed: {
+    title: function() {
+      return this.$store.state.title;
+    }
+  },
+  watch: {
+    "$store.state.error": function(val) {
+      this.log = val;
+    }
   }
 };
 </script>

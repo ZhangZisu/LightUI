@@ -49,10 +49,12 @@ export const get = async url => {
     const res = await axios.get(url);
     if (res.data.status === "success") {
       return res.data.payload;
+    } else {
+      throw new Error(res.data.payload);
     }
-    throw new Error(res.payload);
   } catch (e) {
-    throw e;
+    store.commit("updateError", e.message);
+    return null;
   }
 };
 
@@ -61,9 +63,11 @@ export const post = async (url, data) => {
     const res = await axios.post(url, data);
     if (res.data.status === "success") {
       return res.data.payload;
+    } else {
+      throw new Error(res.data.payload);
     }
-    throw new Error(res.payload);
   } catch (e) {
-    throw e;
+    store.commit("updateError", e.message);
+    return null;
   }
 };

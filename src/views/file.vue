@@ -60,6 +60,7 @@
 import { getURL, getPURL, get } from "../httphelper";
 import username from "../components/username";
 import axios from "axios";
+const itemPerPage = 25;
 
 export default {
   name: "fileView",
@@ -88,21 +89,12 @@ export default {
     };
   },
   async created() {
-    const countURL = getURL("/api/file/count", {
-      owner: this.owner,
-      search: this.search,
-      type: this.type
-    });
-    const result = await get(countURL);
-    const itemPerPage = 25;
-    const allPages = Math.floor((result + itemPerPage - 1) / itemPerPage);
+    const query = { owner: this.owner, search: this.search, type: this.type };
+    const countURL = getURL("/api/file/count", query);
+    const count = await get(countURL);
+    const allPages = Math.floor((count + itemPerPage - 1) / itemPerPage);
     this.allPages = allPages;
-    const fetchURL = getPURL(
-      "/api/file/list",
-      { owner: this.owner, search: this.search, type: this.type },
-      itemPerPage,
-      1
-    );
+    const fetchURL = getPURL("/api/file/list", query, itemPerPage, 1);
     const files = await get(fetchURL);
     this.files = files;
   },
@@ -123,6 +115,14 @@ export default {
         this.$el.appendChild(link);
         link.click();
       });
+    }
+  },
+  watch: {
+    page: async function(page) {
+      const query = { owner: this.owner, search: this.search, type: this.type };
+      const fetchURL = getPURL("/api/file/list", query, itemPerPage, page);
+      const files = await get(fetchURL);
+      this.files = files;
     }
   }
 };

@@ -7,7 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     clientID: "",
-    accessToken: ""
+    accessToken: "",
+    title: "",
+    error: ""
   },
   mutations: {
     init(state) {
@@ -20,6 +22,9 @@ export default new Vuex.Store({
     },
     setAccessToken(store, at) {
       store.accessToken = at;
+    },
+    updateError(store, error) {
+      store.error = error;
     }
   },
   actions: {}
