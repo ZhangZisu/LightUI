@@ -57,14 +57,14 @@
 </template>
 
 <script>
-import { getURL, getPURL,get } from "../httphelper";
+import { getURL, getPURL, get } from "../httphelper";
 import username from "../components/username";
 import axios from "axios";
 
 export default {
   name: "fileView",
-  components:{
-      username
+  components: {
+    username
   },
   props: {
     owner: String,
@@ -76,13 +76,13 @@ export default {
       page: 1,
       allPages: 1,
       files: [],
-      selectedFile:{
-          _id: "",
-          hash:"",
-          owner:"",
-          description:"",
-          type:"",
-          created:""
+      selectedFile: {
+        _id: "",
+        hash: "",
+        owner: "",
+        description: "",
+        type: "",
+        created: ""
       },
       dialog: false
     };
@@ -113,16 +113,16 @@ export default {
       this.selectedFile = file;
       this.dialog = true;
     },
-    downloadFile(fileID, type){
-        const downloadURL = getURL(`/api/file/${fileID}`, {});
-        axios.get(downloadURL, {responseType:"blob"}).then(response => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', fileID+type);
-            this.$el.appendChild(link);
-            link.click();
-        });
+    downloadFile(fileID, type) {
+      const downloadURL = getURL(`/api/file/${fileID}`, {});
+      axios.get(downloadURL, { responseType: "blob" }).then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileID + type);
+        this.$el.appendChild(link);
+        link.click();
+      });
     }
   }
 };

@@ -15,17 +15,17 @@
 
 <script>
 export default {
-    name: "problemView",
-    data(){
-        return {
-            //
-        }
-    },
-    async created(){
-        //
-    },
-    methods: {
-        //
-    }
-}
+  name: "problemView",
+  data() {
+    return {
+      //
+    };
+  },
+  async created() {
+    //
+  },
+  methods: {
+    //
+  }
+};
 </script>
