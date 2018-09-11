@@ -6,7 +6,7 @@
 import { getURL, get } from "../httphelper";
 
 export default {
-  name: "username",
+  name: "user",
   props: {
     id: String
   },

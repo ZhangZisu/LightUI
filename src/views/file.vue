@@ -15,7 +15,7 @@
                                 <v-list-tile-title v-text="file._id"/>
                                 <v-list-tile-sub-title v-text="$t('filetype', [file.type])"/>
                                 <v-list-tile-sub-title>
-                                    {{$t('createdat', [file.created])}} by <username :id="file.owner"/>
+                                    {{$t('createdat', [file.created])}} by <user :id="file.owner"/>
                                 </v-list-tile-sub-title>
                             </v-list-tile-content>
                             <v-list-tile-action>
@@ -45,7 +45,7 @@
                         <v-text-field v-model="selectedFile.created" readonly :label="$t('created')"/>
                     </v-card-text>
                     <v-card-actions>
-                        <username :id="selectedFile.owner" v-if="selectedFile._id" :key="selectedFile._id"/>
+                        <user :id="selectedFile.owner" v-if="selectedFile._id" :key="selectedFile._id"/>
                         <v-spacer/>
                         <v-btn flat v-text="$t('download')" @click="downloadFile(selectedFile._id, '.'+selectedFile.type)"/>
                         <v-btn flat v-text="$t('cancel')" @click="dialog = false"/>
@@ -58,14 +58,14 @@
 
 <script>
 import { getURL, getPURL, get } from "../httphelper";
-import username from "../components/username";
+import user from "../components/user";
 import axios from "axios";
 const itemPerPage = 25;
 
 export default {
   name: "fileView",
   components: {
-    username
+    user
   },
   props: {
     owner: String,

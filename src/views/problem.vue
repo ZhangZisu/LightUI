@@ -10,7 +10,7 @@
                                 <v-list-tile-title v-text="problem.title"/>
                                 <v-list-tile-sub-title v-text="problem._id"/>
                                 <v-list-tile-sub-title>
-                                    {{$t('createdat', [problem.created])}} by <username :id="problem.owner"/>
+                                    {{$t('createdat', [problem.created])}} by <user :id="problem.owner"/>
                                 </v-list-tile-sub-title>
                             </v-list-tile-content>
                             <v-list-tile-action>
@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import username from "../components/username";
+import user from "../components/user";
 import { getURL, get, getPURL } from "../httphelper";
 const itemPerPage = 25;
 
 export default {
   name: "problemView",
 components: {
-    username
+    user
   },
   props: {
     owner: String,
