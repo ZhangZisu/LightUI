@@ -18,7 +18,7 @@ export default {
     };
   },
   async created() {
-    this.user.user = this.id;
+    this.user.username = this.id;
     const url = getURL(`/api/user/${this.id}/summary`, {});
     const user = await get(url);
     this.user = user;
