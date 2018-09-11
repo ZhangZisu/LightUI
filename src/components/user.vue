@@ -18,12 +18,12 @@ export default {
     };
   },
   async created() {
-    if(this.id){
+    if (this.id) {
       this.user.username = this.id;
       const url = getURL(`/api/user/${this.id}/summary`, {});
       const user = await get(url);
       this.user = user;
-    }else{
+    } else {
       this.user.username = "null";
     }
   }

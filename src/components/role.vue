@@ -3,29 +3,29 @@
 </template>
 
 <script>
-import { getURL, get } from '../httphelper';
+import { getURL, get } from "../httphelper";
 
 export default {
-    name: "role",
-    props: {
-        id: String
-    },
-    data(){
-        return {
-            role: {
-                rolename: ""
-            }
-        };
-    },
-    async created(){
-        if(this.id){
-        this.role.rolename = this.id;
-        const url = getURL(`/api/role/${this.id}/summary`, {});
-        const role = await get(url);
-        this.role = role;
-        }else{
-            this.role.rolename = "null";
-        }
+  name: "role",
+  props: {
+    id: String
+  },
+  data() {
+    return {
+      role: {
+        rolename: ""
+      }
+    };
+  },
+  async created() {
+    if (this.id) {
+      this.role.rolename = this.id;
+      const url = getURL(`/api/role/${this.id}/summary`, {});
+      const role = await get(url);
+      this.role = role;
+    } else {
+      this.role.rolename = "null";
     }
-}
+  }
+};
 </script>

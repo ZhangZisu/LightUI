@@ -36,7 +36,7 @@ const itemPerPage = 25;
 
 export default {
   name: "problemView",
-components: {
+  components: {
     user
   },
   props: {

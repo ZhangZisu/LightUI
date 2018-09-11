@@ -20,37 +20,37 @@
 
 <script>
 import user from "../components/user";
-import { getURL, get } from '../httphelper';
+import { getURL, get } from "../httphelper";
 
 export default {
-    name: "problemDetailsView",
-    components: {
+  name: "problemDetailsView",
+  components: {
     user
   },
-    props:{
-        id:{
-            type: String,
-            required: true
-        }
-    },
-    data(){
-        return{
-        problem: {
-            content: "",
-            tags: [],
-            data: {},
-            title: "",
-            owner: "",
-            created: ""
-        },
-        loaded: false
-        };
-    },
-    async created(){
-        const url = getURL(`/api/problem/${this.id}`);
-        const problem = await get(url);
-        this.problem = problem;
-        this.loaded = true;
+  props: {
+    id: {
+      type: String,
+      required: true
     }
-}
+  },
+  data() {
+    return {
+      problem: {
+        content: "",
+        tags: [],
+        data: {},
+        title: "",
+        owner: "",
+        created: ""
+      },
+      loaded: false
+    };
+  },
+  async created() {
+    const url = getURL(`/api/problem/${this.id}`);
+    const problem = await get(url);
+    this.problem = problem;
+    this.loaded = true;
+  }
+};
 </script>
