@@ -10,7 +10,7 @@
 export default {
   name: "error",
   data: function() {
-    //
+    return {};
   }
 };
 </script>

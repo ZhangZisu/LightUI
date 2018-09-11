@@ -33,7 +33,8 @@ export default new Router({
       path: "/problem/show/:id",
       name: "showProblem",
       component: () =>
-        import(/* webpackChunkName: "problem" */ "./views/problemDetails.vue")
+        import(/* webpackChunkName: "problem" */ "./views/problemDetails.vue"),
+      props: (route) => ({id: route.params.id})
     },
     {
       path: "*",

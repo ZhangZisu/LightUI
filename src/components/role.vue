@@ -18,10 +18,14 @@ export default {
         };
     },
     async created(){
+        if(this.id){
         this.role.rolename = this.id;
         const url = getURL(`/api/role/${this.id}/summary`, {});
         const role = await get(url);
         this.role = role;
+        }else{
+            this.role.rolename = "null";
+        }
     }
 }
 </script>
