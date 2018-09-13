@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-flex>
-            <v-card>
+            <v-card flat>
                 <v-card-text class="headline" v-text="$t('problems')"/>
                 <v-card-text>
                     <v-list three-line>
@@ -23,6 +23,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-pagination v-model="page" :length="allPages"></v-pagination>
+                    <v-spacer/>
+                    <v-btn flat v-text="$t('new')" to="/problem/new"/>
                 </v-card-actions>
             </v-card>
         </v-flex>

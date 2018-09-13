@@ -26,7 +26,15 @@
             <v-list-tile-title v-text="$t('problem')"/>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/login">
+        <v-list-tile to="/logout" v-if="loggedin">
+          <v-list-tile-action>
+            <v-icon>account_circle</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="$t('logout')"/>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/login" v-else>
           <v-list-tile-action>
             <v-icon>account_circle</v-icon>
           </v-list-tile-action>
@@ -62,6 +70,9 @@ export default {
   computed: {
     title: function() {
       return this.$store.state.title;
+    },
+    loggedin: function(){
+      return !!this.$store.state.accessToken;
     }
   },
   watch: {

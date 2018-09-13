@@ -3,6 +3,7 @@ import Router from "vue-router";
 import homeView from "./views/home.vue";
 import errorView from "./views/error.vue";
 import loginView from "./views/login.vue";
+import store from "./store";
 
 Vue.use(Router);
 
@@ -35,6 +36,14 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "problem" */ "./views/problemDetails.vue"),
       props: route => ({ id: route.params.id })
+    },
+    {
+      path: "/logout",
+      name: "logout",
+      beforeEnter(to, from, next){
+        store.commit("resetAccessToken");
+        next("/");
+      }
     },
     {
       path: "*",

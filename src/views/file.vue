@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-flex>
-            <v-card>
+            <v-card flat>
                 <v-card-title>
                     <div class="headline" v-text="$t('files')"/>
                 </v-card-title>
@@ -27,6 +27,8 @@
                     </v-list>
                     <v-card-actions>
                         <v-pagination v-model="page" :length="allPages"></v-pagination>
+                        <v-spacer/>
+                        <v-btn flat to="/file/upload" v-text="$t('upload')"/>
                     </v-card-actions>
                 </v-card-text>
             </v-card>

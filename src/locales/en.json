@@ -1,4 +1,26 @@
 {
+  "cancel": "Cancel",
+  "chooseRole": "Choose Role",
+  "continue": "Continue",
   "createdat": "Created at {0}",
-  "filetype": "{0} file"
+  "download": "Download",
+  "enterPassword": "Enter password",
+  "enterUsername": "Enter username",
+  "file": "File",
+  "file_details": "File details",
+  "files": "Files",
+  "filetype": "{0} file",
+  "home": "Home",
+  "log": "Log",
+  "login": "Login",
+  "logout": "Logout",
+  "more_info": "More Information",
+  "new": "New",
+  "password": "Password",
+  "problem": "Problem",
+  "problems": "Problems",
+  "select_a_role": "Select a role",
+  "submit_problem": "Submit problem",
+  "upload": "Upload",
+  "username": "Username"
 }
