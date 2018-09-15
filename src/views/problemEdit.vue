@@ -8,7 +8,7 @@
             <div class="headline" v-text="$t('edit_problem')"/>
           </div>
         </v-card-title>
-        <v-card-text>
+        <v-card-text v-if="loaded">
           <v-text-field :label="$t('title')" v-model="problem.title"/>
           <v-textarea :label="$t('content')" v-model="problem.content"/>
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>

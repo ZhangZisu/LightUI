@@ -22,7 +22,7 @@
       </v-card>
     </v-flex>
     <v-dialog v-model="dialog" max-width="640">
-      <v-card>
+      <v-card v-if="loaded">
         <v-card-title>
           <div>
             <div class="headline" v-text="$t('problem_information')"/>
@@ -31,7 +31,7 @@
         </v-card-title>
         <v-card-text>
           <div class="subheading" v-text="$t('data_config')"/>
-          <json-viewer :value="problem.data" :show-copy="true" icon-prefix="ion" :show-bigger="true"/>
+          <JsonEditor :objData="problem.data" :key="dialog"/>
           <div class="subheading" v-text="$t('tags')"/>
           <v-chip label v-for="(tag, i) in problem.tags" :key="i" v-text="tag"/>
         </v-card-text>
