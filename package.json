@@ -15,6 +15,8 @@
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-i18n": "^8.0.0",
+    "vue-json-edit": "ZhangZisu/vue-json-edit",
+    "vue-json-viewer": "^1.0.4",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.19",
     "vuex": "^3.0.1"
@@ -26,6 +28,8 @@
     "@vue/cli-plugin-pwa": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "@vue/eslint-config-prettier": "^3.0.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-i18n": "^0.5.0",

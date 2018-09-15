@@ -15,40 +15,44 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn flat v-text="$t('more_info')"/>
-          <v-btn flat color="primary" v-text="$t('submit')" @click="dialog = true"/>
+          <v-btn flat v-text="$t('more_info')" @click="dialog = true"/>
+          <v-btn flat color="primary" v-text="$t('submit')" :to="'/solution/new?id=' + problem._id"/>
         </v-card-actions>
       </v-card>
     </v-flex>
-        <v-dialog v-model="dialog" max-width="640">
-        <v-card>
-          <v-card-title>
-            <div>
-                <div class="headline" v-text="$t('submit_problem')"/>
-                <div class="subheading" v-text="problem._id"/>
-            </div>
-          </v-card-title>
-          <v-card-text>
-            <!--  -->
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer/>
-            <v-btn flat v-text="$t('submit')" @click="submit"/>
-            <v-btn flat v-text="$t('cancel')" @click="dialog = false"/>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </v-container>
+    <v-dialog v-model="dialog" max-width="640">
+      <v-card>
+        <v-card-title>
+          <div>
+            <div class="headline" v-text="$t('problem_information')"/>
+            <div class="subheading" v-text="problem._id"/>
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <div class="subheading" v-text="$t('data_config')"/>
+          <json-viewer :value="problem.data" :show-copy="true" icon-prefix="ion" :show-bigger="true"/>
+          <div class="subheading" v-text="$t('tags')"/>
+          <v-chip label v-for="(tag, i) in problem.tags" :key="i" v-text="tag"/>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn flat :to="'/problem/edit/' + problem._id" v-text="$t('edit')"/>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-container>
 </template>
 
 <script>
 import user from "../components/user";
 import { getURL, get } from "../httphelper";
+import jsonViewer from "vue-json-viewer";
 
 export default {
   name: "problemDetailsView",
   components: {
-    user
+    user,
+    jsonViewer
   },
   props: {
     id: {

@@ -20,10 +20,18 @@
         </v-list-tile>
         <v-list-tile to="/problem">
           <v-list-tile-action>
-            <v-icon>folder</v-icon>
+            <v-icon>notes</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title v-text="$t('problem')"/>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/solution">
+          <v-list-tile-action>
+            <v-icon>assignment_turned_in</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="$t('solution')"/>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile to="/logout" v-if="loggedin">
@@ -71,7 +79,7 @@ export default {
     title: function() {
       return this.$store.state.title;
     },
-    loggedin: function(){
+    loggedin: function() {
       return !!this.$store.state.accessToken;
     }
   },

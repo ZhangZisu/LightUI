@@ -25,6 +25,12 @@ export default new Router({
       component: () => import(/* webpackChunkName: "file" */ "./views/file.vue")
     },
     {
+      path: "/file/upload",
+      name: "uploadFile",
+      component: () =>
+        import(/* webpackChunkName: "file" */ "./views/fileUpload.vue")
+    },
+    {
       path: "/problem",
       name: "problem",
       component: () =>
@@ -38,9 +44,42 @@ export default new Router({
       props: route => ({ id: route.params.id })
     },
     {
+      path: "/problem/edit/:id",
+      name: "editProblem",
+      component: () =>
+        import(/* webpackChunkName: "problem" */ "./views/problemEdit.vue"),
+      props: route => ({ id: route.params.id })
+    },
+    {
+      path: "/problem/new",
+      name: "newProblem",
+      component: () =>
+        import(/* webpackChunkName: "problem" */ "./views/problemEdit.vue")
+    },
+    {
+      path: "/solution",
+      name: "solution",
+      component: () =>
+        import(/* webpackChunkName: "solution" */ "./views/solution.vue")
+    },
+    {
+      path: "/solution/show/:id",
+      name: "showSolution",
+      component: () =>
+        import(/* webpackChunkName: "solution" */ "./views/solutionDetails.vue"),
+      props: route => ({ id: route.params.id })
+    },
+    {
+      path: "/solution/new",
+      name: "newSolution",
+      component: () =>
+        import(/* webpackChunkName: "solution" */ "./views/solutionNew.vue"),
+      props: route => ({ problemID: route.query.id })
+    },
+    {
       path: "/logout",
       name: "logout",
-      beforeEnter(to, from, next){
+      beforeEnter(to, from, next) {
         store.commit("resetAccessToken");
         next("/");
       }
