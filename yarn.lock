@@ -7155,9 +7155,9 @@ vue-json-edit@ZhangZisu/vue-json-edit:
   dependencies:
     vue "^2.2.2"
 
-vue-json-viewer@^1.0.4:
+vue-json-viewer@ZhangZisu/vue-json-viewer:
   version "1.0.4"
-  resolved "https://registry.yarnpkg.com/vue-json-viewer/-/vue-json-viewer-1.0.4.tgz#b5ff53213bba35e98dbb9454ada31916dce6c948"
+  resolved "https://codeload.github.com/ZhangZisu/vue-json-viewer/tar.gz/a33910098a560f790e998330bb2464cbb7887034"
   dependencies:
     clipboard "^1.7.1"
     vue "^2.5.2"
