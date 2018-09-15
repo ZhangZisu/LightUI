@@ -2,6 +2,7 @@
   <v-container>
     <v-flex>
       <v-card v-if="loaded">
+        <v-progress-linear v-if="showProgressBar" indeterminate/>
         <v-card-title>
           <div>
             <div class="headline" v-text="problem.title"/>
@@ -71,7 +72,8 @@ export default {
         created: ""
       },
       loaded: false,
-      dialog: false
+      dialog: false,
+      showProgressBar: true
     };
   },
   async created() {
@@ -79,6 +81,7 @@ export default {
     const problem = await get(url);
     this.problem = problem;
     this.loaded = true;
+    this.showProgressBar = false;
   },
   methods: {
     async submit() {

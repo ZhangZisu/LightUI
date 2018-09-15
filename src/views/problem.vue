@@ -2,6 +2,7 @@
   <v-container>
     <v-flex>
       <v-card flat>
+        <v-progress-linear v-if="showProgressBar" indeterminate/>
         <v-card-text class="headline" v-text="$t('problems')"/>
         <v-card-text>
           <v-list three-line>
@@ -50,7 +51,8 @@ export default {
     return {
       page: 1,
       allPages: 1,
-      problems: []
+      problems: [],
+      showProgressBar: true
     };
   },
   async created() {
@@ -62,6 +64,7 @@ export default {
     const fetchURL = getPURL("/api/problem/list", query, itemPerPage, 1);
     const problems = await get(fetchURL);
     this.problems = problems;
+    this.showProgressBar = false;
   },
   methods: {
     //
