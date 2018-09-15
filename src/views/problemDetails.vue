@@ -47,13 +47,11 @@
 <script>
 import user from "../components/user";
 import { getURL, get } from "../httphelper";
-import jsonViewer from "vue-json-viewer";
 
 export default {
   name: "problemDetailsView",
   components: {
-    user,
-    jsonViewer
+    user
   },
   props: {
     id: {
