@@ -9,13 +9,13 @@
             <div class="subheading" v-text="solution._id"/>
           </div>
         </v-card-title>
-        <v-card-text>
+        <v-card-text v-if="loaded">
           <h4 style="color: grey" v-text="$t('status')"/>
           <pre>{{ solution.status }}</pre>
           <h4 style="color: grey" v-text="$t('result')"/>
-          <json-viewer :value="solution.result" :show-copy="true" icon-prefix="ion" :show-bigger="true"/>
+          <JsonEditor :objData="solution.result" :key="showSnackbar"/>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions v-if="loaded">
           <v-spacer/>
           <v-btn depressed v-text="$t('rejudge')" @click="rejudge"/>
           <v-btn depressed color="primary" v-text="$t('refesh')" @click="fetch"/>
@@ -29,14 +29,10 @@
 </template>
 
 <script>
-import { getURL, get, post } from '../httphelper';
-import jsonViewer from "vue-json-viewer";
+import { getURL, get, post } from "../httphelper";
 
 export default {
   name: "solutionDetails",
-  components: {
-    jsonViewer
-  },
   props: {
     id: {
       type: String,
@@ -67,17 +63,17 @@ export default {
     this.showProgressBar = false;
   },
   methods: {
-    async fetch(){
+    async fetch() {
       this.showProgressBar = true;
       this.showSnackbar = true;
-      this.snackbarText = this.$t('fetching');
+      this.snackbarText = this.$t("fetching");
       const fetchURL = getURL(`/api/solution/${this.id}`);
       this.solution = await get(fetchURL);
       this.showSnackbar = true;
-      this.snackbarText = this.$t('fetched');
+      this.snackbarText = this.$t("fetched");
       this.showProgressBar = false;
     },
-    async rejudge(){
+    async rejudge() {
       this.showProgressBar = true;
       const rejudgeURL = getURL(`/api/solution/${this.id}/rejudge`);
       await post(rejudgeURL);
