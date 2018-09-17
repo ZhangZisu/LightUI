@@ -7,9 +7,7 @@ import store from "./store";
 import "./registerServiceWorker";
 import i18n from "./i18n";
 import axios from "axios";
-import JsonEditor from "vue-json-edit";
 
-Vue.use(JsonEditor);
 axios.defaults.baseURL = "http://127.0.0.1:3000";
 Vue.config.productionTip = false;
 

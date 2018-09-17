@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-flex>
-      <v-card flat>
+      <v-card flat :key="reversion">
         <v-progress-linear v-if="showProgressBar" indeterminate/>
         <v-card-title v-if="loaded">
           <div>
@@ -13,7 +13,7 @@
           <h4 style="color: grey" v-text="$t('status')"/>
           <pre>{{ solution.status }}</pre>
           <h4 style="color: grey" v-text="$t('result')"/>
-          <JsonEditor :objData="solution.result" :key="showSnackbar"/>
+          <json-editor v-model="solution.result" :readonly="true"/>
         </v-card-text>
         <v-card-actions v-if="loaded">
           <v-spacer/>
@@ -30,14 +30,19 @@
 
 <script>
 import { getURL, get, post } from "../httphelper";
+import jsonEditor from "../components/jsonEditor.vue";
 
 export default {
   name: "solutionDetails",
+  components:{
+    jsonEditor
+  },
   props: {
     id: {
       type: String,
       required: true
-    }
+    },
+    reversion: 0
   },
   data() {
     return {
@@ -72,6 +77,7 @@ export default {
       this.showSnackbar = true;
       this.snackbarText = this.$t("fetched");
       this.showProgressBar = false;
+      this.reversion++;
     },
     async rejudge() {
       this.showProgressBar = true;

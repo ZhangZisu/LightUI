@@ -14,10 +14,10 @@
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
           <h4 style="color: grey" v-text="$t('data_config')"/>
-          <JsonEditor :objData="problem.data" v-model="problem.data"/>
+          <json-editor v-model="problem.data"/>
           <v-divider/>
           <h4 style="color: grey" v-text="$t('meta')"/>
-          <JsonEditor :objData="problem.meta" v-model="problem.meta"/>
+          <json-editor v-model="problem.meta"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -33,9 +33,13 @@
 
 <script>
 import { getURL, post, get } from "../httphelper";
+import jsonEditor from "../components/jsonEditor.vue";
 
 export default {
   name: "problemEdit",
+  components:{
+    jsonEditor
+  },
   props: {
     id: String
   },

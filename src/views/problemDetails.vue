@@ -31,7 +31,7 @@
         </v-card-title>
         <v-card-text>
           <div class="subheading" v-text="$t('data_config')"/>
-          <JsonEditor :objData="problem.data" :key="dialog"/>
+          <json-editor :objData="problem.data" :readonly="true"/>
           <div class="subheading" v-text="$t('tags')"/>
           <v-chip label v-for="(tag, i) in problem.tags" :key="i" v-text="tag"/>
         </v-card-text>
@@ -47,11 +47,13 @@
 <script>
 import user from "../components/user";
 import { getURL, get } from "../httphelper";
+import jsonEditor from "../components/jsonEditor.vue";
 
 export default {
   name: "problemDetailsView",
   components: {
-    user
+    user,
+    jsonEditor
   },
   props: {
     id: {
