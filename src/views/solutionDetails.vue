@@ -12,8 +12,10 @@
         <v-card-text v-if="loaded">
           <h4 style="color: grey" v-text="$t('status')"/>
           <pre>{{ solution.status }}</pre>
-          <h4 style="color: grey" v-text="$t('result')"/>
-          <json-editor v-model="solution.result" :readonly="true"/>
+          <template v-if="loadedResult">
+            <h4 style="color: grey" v-text="$t('result')"/>
+            <json-editor v-model="solution.result" :readonly="true"/>
+          </template>
         </v-card-text>
         <v-card-actions v-if="loaded">
           <v-spacer/>
@@ -52,12 +54,17 @@ export default {
         status: "",
         result: {},
         meta: {},
-        created: ""
+        created: "",
+        allowedRead: [],
+        allowedReadResult: [],
+        allowedRejudge: [],
+        allowedModify: []
       },
       showProgressBar: true,
       showSnackbar: false,
       snackbarText: "",
       loaded: false,
+      loadedResult: false,
       reversion: 0
     };
   },
@@ -65,6 +72,9 @@ export default {
     const fetchURL = getURL(`/api/solution/${this.id}`);
     this.solution = await get(fetchURL);
     this.loaded = true;
+    const resultURL = getURL(`/api/solution/${this.id}/result`);
+    this.solution.result = await get(resultURL);
+    this.loadedResult = true;
     this.showProgressBar = false;
   },
   methods: {
