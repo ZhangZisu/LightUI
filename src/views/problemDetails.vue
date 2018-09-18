@@ -33,7 +33,22 @@
           <div class="subheading" v-text="$t('data_config')"/>
           <json-editor v-model="problem.data" :readonly="true"/>
           <div class="subheading" v-text="$t('tags')"/>
-          <v-chip label v-for="(tag, i) in problem.tags" :key="i" v-text="tag"/>
+          <v-chip label v-for="tag in problem.tags" :key="tag" v-text="tag"/>
+          <v-divider/>
+          <div class="subheading" v-text="$t('can_read')"/>
+          <v-chip label v-for="role in problem.allowedRead" :key="`ar_${role}`">
+            <role :id="role"/>
+          </v-chip>
+          <v-divider/>
+          <div class="subheading" v-text="$t('can_modify')"/>
+          <v-chip label v-for="role in problem.allowedModify" :key="`am_${role}`">
+            <role :id="role"/>
+          </v-chip>
+          <v-divider/>
+          <div class="subheading" v-text="$t('can_submit')"/>
+          <v-chip label v-for="role in problem.allowedSubmit" :key="`as_${role}`">
+            <role :id="role"/>
+          </v-chip>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -46,6 +61,7 @@
 
 <script>
 import user from "../components/user";
+import role from "../components/role";
 import { getURL, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
 
@@ -53,6 +69,7 @@ export default {
   name: "problemDetailsView",
   components: {
     user,
+    role,
     jsonEditor
   },
   props: {
@@ -69,7 +86,10 @@ export default {
         data: {},
         title: "",
         owner: "",
-        created: ""
+        created: "",
+        allowedRead: [],
+        allowedModify: [],
+        allowedSubmit: []
       },
       loaded: false,
       dialog: false,

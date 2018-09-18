@@ -46,6 +46,15 @@
             <v-textarea v-model="selectedFile.description" readonly :label="$t('description')"/>
             <v-text-field v-model="selectedFile.hash" readonly :label="$t('hash')"/>
             <v-text-field v-model="selectedFile.created" readonly :label="$t('created')"/>
+            <div class="subheading" v-text="$t('can_read')"/>
+            <v-chip label v-for="role in selectedFile.allowedRead" :key="`ar_${role}`">
+              <role :id="role"/>
+            </v-chip>
+            <v-divider/>
+            <div class="subheading" v-text="$t('can_modify')"/>
+            <v-chip label v-for="role in selectedFile.allowedModify" :key="`am_${role}`">
+              <role :id="role"/>
+            </v-chip>
           </v-card-text>
           <v-card-actions>
             <user :id="selectedFile.owner" v-if="selectedFile._id" :key="selectedFile._id"/>
@@ -62,13 +71,15 @@
 <script>
 import { getURL, getPURL, get } from "../httphelper";
 import user from "../components/user";
+import role from "../components/role";
 import axios from "axios";
 const itemPerPage = 25;
 
 export default {
   name: "fileView",
   components: {
-    user
+    user,
+    role
   },
   props: {
     owner: String,
@@ -86,13 +97,15 @@ export default {
         owner: "",
         description: "",
         type: "",
-        created: ""
+        created: "",
+        allowedRead: [],
+        allowedModify: []
       },
       dialog: false,
       showProgressBar: true
     };
   },
-  async created() {
+  async mounted() {
     const query = { owner: this.owner, search: this.search, type: this.type };
     const countURL = getURL("/api/file/count", query);
     const count = await get(countURL);
@@ -105,9 +118,11 @@ export default {
   },
   methods: {
     async openFileDialog(fileID) {
+      this.showProgressBar = true;
       const fetchURL = getURL(`/api/file/${fileID}`, {});
       const file = await get(fetchURL);
       this.selectedFile = file;
+      this.showProgressBar = false;
       this.dialog = true;
     },
     downloadFile(fileID, type) {

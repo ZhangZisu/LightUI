@@ -54,7 +54,7 @@ export const get = async url => {
     }
   } catch (e) {
     store.commit("updateError", e.message);
-    return null;
+    throw e;
   }
 };
 
@@ -68,6 +68,6 @@ export const post = async (url, data) => {
     }
   } catch (e) {
     store.commit("updateError", e.message);
-    return null;
+    throw e;
   }
 };
