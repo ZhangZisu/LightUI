@@ -6,9 +6,8 @@
         <v-card-title class="headline" v-text="$t('new_solution')"/>
         <v-card-text>
           <v-text-field :label="$t('problem_id')" v-model="problemID" readonly/>
-          <v-text-field v-for="(file, i) in files" :key="i" :label="$t('file_id')" v-model="files[i]"/>
+          <v-text-field v-for="(file, i) in files" :key="i" :label="$t('file_id')" v-model="files[i]" append-icon="delete" :append-icon-cb="() => removeFile(i)"/>
           <v-btn flat color="primary" @click="files.push('')" v-text="$t('add_file')"/>
-          {{ JSON.stringify(files) }}
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -51,6 +50,9 @@ export default {
       this.showSnackbar = true;
       this.snackbarText = this.$t("solution_created");
       this.$router.push(`/solution/show/${solutionID}`);
+    },
+    removeFile(index){
+      this.files.splice(index, 1);
     }
   }
 };

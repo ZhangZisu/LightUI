@@ -31,7 +31,7 @@
         </v-card-title>
         <v-card-text>
           <div class="subheading" v-text="$t('data_config')"/>
-          <json-editor :objData="problem.data" :readonly="true"/>
+          <json-editor v-model="problem.data" :readonly="true"/>
           <div class="subheading" v-text="$t('tags')"/>
           <v-chip label v-for="(tag, i) in problem.tags" :key="i" v-text="tag"/>
         </v-card-text>

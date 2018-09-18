@@ -42,7 +42,6 @@ export default {
       type: String,
       required: true
     },
-    reversion: 0
   },
   data() {
     return {
@@ -58,7 +57,8 @@ export default {
       showProgressBar: true,
       showSnackbar: false,
       snackbarText: "",
-      loaded: false
+      loaded: false,
+      reversion: 0
     };
   },
   async created() {

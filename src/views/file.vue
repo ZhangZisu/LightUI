@@ -105,13 +105,13 @@ export default {
   },
   methods: {
     async openFileDialog(fileID) {
-      const fetchURL = getURL(`/api/file/${fileID}/meta`, {});
+      const fetchURL = getURL(`/api/file/${fileID}`, {});
       const file = await get(fetchURL);
       this.selectedFile = file;
       this.dialog = true;
     },
     downloadFile(fileID, type) {
-      const downloadURL = getURL(`/api/file/${fileID}`, {});
+      const downloadURL = getURL(`/api/file/${fileID}/raw`, {});
       axios.get(downloadURL, { responseType: "blob" }).then(response => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
