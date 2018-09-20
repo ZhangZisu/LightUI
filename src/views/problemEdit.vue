@@ -13,11 +13,33 @@
           <v-textarea :label="$t('content')" v-model="problem.content"/>
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
-          <h4 style="color: grey" v-text="$t('data')"/>
+          <div class="headline" v-text="$t('data')"/>
           <json-editor v-model="problem.data" :valid.sync="dataValid"/>
           <v-divider/>
-          <h4 style="color: grey" v-text="$t('meta')"/>
+          <div class="headline" v-text="$t('meta')"/>
           <json-editor v-model="problem.meta" :valid.sync="metaValid"/>
+          <!-- Access Control -->
+          <div class="headline" v-text="$t('can_read')"/>
+          <v-divider/>
+          <template v-for="(role, i) in problem.allowedRead">
+            <v-input append-icon="delete" @click:append="problem.allowedRead.splice(i, 1)" :messages="[role]" :key="`ar${role}`">
+              <role :id="role"/>
+            </v-input>
+          </template>
+          <div class="headline" v-text="$t('can_modify')"/>
+          <v-divider/>
+          <template v-for="(role, i) in problem.allowedModify">
+            <v-input append-icon="delete" @click:append="problem.allowedModify.splice(i, 1)" :messages="[role]" :key="`am${role}`">
+              <role :id="role"/>
+            </v-input>
+          </template>
+          <div class="headline" v-text="$t('can_submit')"/>
+          <v-divider/>
+          <template v-for="(role, i) in problem.allowedSubmit">
+            <v-input append-icon="delete" @click:append="problem.allowedSubmit.splice(i, 1)" :messages="[role]" :key="`as${role}`">
+              <role :id="role"/>
+            </v-input>
+          </template>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -34,11 +56,13 @@
 <script>
 import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
+import role from "../components/role.vue";
 
 export default {
   name: "problemEdit",
   components: {
-    jsonEditor
+    jsonEditor,
+    role
   },
   props: {
     id: String
@@ -54,7 +78,10 @@ export default {
         meta: {
           version: "1.0"
         },
-        tags: []
+        tags: [],
+        allowedRead: [],
+        allowedModify: [],
+        allowedSubmit: []
       },
       showProgressBar: false,
       loaded: false,

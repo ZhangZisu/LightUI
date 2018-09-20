@@ -21,7 +21,7 @@
         </v-card-actions>
       </v-card>
     </v-flex>
-    <v-dialog v-model="dialog" max-width="640">
+    <v-dialog v-model="dialog" max-width="80%">
       <v-card v-if="loaded">
         <v-card-title>
           <div>

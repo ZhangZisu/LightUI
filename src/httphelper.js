@@ -3,29 +3,11 @@ import { stringify } from "querystring";
 import { pbkdf2Sync } from "crypto-browserify";
 import axios from "axios";
 
-const getFuzzyTime = () => {
-  const date = new Date();
-  return `${date.getUTCFullYear()}-${date.getUTCMonth()}-${date.getUTCDate()}-${date.getUTCHours()}`;
-};
-
-const getVerificationCode = (accessToken, clientID) => {
-  return pbkdf2Sync(
-    `${accessToken}.${getFuzzyTime()}`,
-    clientID,
-    1000,
-    64,
-    "sha512"
-  ).toString("hex");
-};
-
 export const getURL = (base, query) => {
   if (!(query instanceof Object)) query = {};
   for (let name in query) if (query[name] === null) delete query[name];
   if (store.state.accessToken) {
-    query.v = getVerificationCode(
-      store.state.accessToken,
-      store.state.clientID
-    );
+    query.c = store.state.clientID;
     query.a = store.state.accessToken;
   }
   return base + "?" + stringify(query);

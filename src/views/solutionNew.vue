@@ -6,8 +6,7 @@
         <v-card-title class="headline" v-text="$t('new_solution')"/>
         <v-card-text>
           <v-text-field :label="$t('problem_id')" v-model="problemID" readonly/>
-          <v-text-field v-for="(file, i) in files" :key="i" :label="$t('file_id')" v-model="files[i]" append-icon="delete" @click:append="removeFile(i)"/>
-          <v-btn flat color="primary" @click="files.push('')" v-text="$t('add_file')"/>
+          <z-array-editor v-model="files" textProp="filename" :hint="$t('filename')" queryURL="/api/file/list"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -22,10 +21,16 @@
 </template>
 
 <script>
-import { getURL, post } from "../httphelper";
+import { getURL, post, get, getPURL } from "../httphelper";
+import file from "../components/file.vue";
+import zArrayEditor from "../components/zArrayEditor.vue";
 
 export default {
   name: "solutionNew",
+  components: {
+    file,
+    zArrayEditor
+  },
   props: {
     problemID: {
       type: String,
@@ -38,7 +43,7 @@ export default {
       showProgressBar: false,
       loaded: false,
       showSnackbar: false,
-      snackbarText: ""
+      snackbarText: "",
     };
   },
   methods: {
@@ -50,9 +55,6 @@ export default {
       this.showSnackbar = true;
       this.snackbarText = this.$t("solution_created");
       this.$router.push(`/solution/show/${solutionID}`);
-    },
-    removeFile(index) {
-      this.files.splice(index, 1);
     }
   }
 };
