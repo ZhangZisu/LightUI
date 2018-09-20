@@ -20,15 +20,17 @@ export default {
   async created() {
     if (this.id) {
       this.role.rolename = this.id;
-      try{
+      try {
         const url = getURL(`/api/role/${this.id}/summary`, {});
         const role = await get(url);
         this.role = role;
-      }catch(e){
-        this.role.rolename = "Error";
+      } catch (e) {
+        this.role.rolename = this.$t("error");
+        this.$emit("update:valid", false);
       }
     } else {
-      this.role.rolename = "null";
+      this.role.rolename = this.$t("error");
+      this.$emit("update:valid", false);
     }
   }
 };

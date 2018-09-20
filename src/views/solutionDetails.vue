@@ -57,7 +57,7 @@ import role from "../components/role";
 
 export default {
   name: "solutionDetails",
-  components:{
+  components: {
     jsonEditor,
     role
   },
@@ -65,7 +65,7 @@ export default {
     id: {
       type: String,
       required: true
-    },
+    }
   },
   data() {
     return {

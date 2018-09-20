@@ -51,7 +51,7 @@ export default {
       this.snackbarText = this.$t("solution_created");
       this.$router.push(`/solution/show/${solutionID}`);
     },
-    removeFile(index){
+    removeFile(index) {
       this.files.splice(index, 1);
     }
   }

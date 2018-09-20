@@ -20,11 +20,17 @@ export default {
   async created() {
     if (this.id) {
       this.user.username = this.id;
-      const url = getURL(`/api/user/${this.id}/summary`, {});
-      const user = await get(url);
-      this.user = user;
+      try {
+        const url = getURL(`/api/user/${this.id}/summary`, {});
+        const user = await get(url);
+        this.user = user;
+      } catch (e) {
+        this.user.username = this.$t("error");
+        this.$emit("update:valid", false);
+      }
     } else {
-      this.user.username = "null";
+      this.user.username = this.$t("error");
+      this.$emit("update:valid", false);
     }
   }
 };

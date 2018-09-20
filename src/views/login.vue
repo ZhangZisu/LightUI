@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { getURL, get, post } from "../httphelper";
+import { post } from "../httphelper";
 
 export default {
   name: "login-view",
   data() {
     return {
       username: "",
-      password: "",
+      password: ""
     };
   },
   methods: {

@@ -20,11 +20,17 @@ export default {
   async created() {
     if (this.id) {
       this.problem.title = this.id;
-      const url = getURL(`/api/problem/${this.id}/summary`, {});
-      const problem = await get(url);
-      this.problem = problem;
+      try {
+        const url = getURL(`/api/problem/${this.id}/summary`, {});
+        const problem = await get(url);
+        this.problem = problem;
+      } catch (e) {
+        this.problem.title = this.$t("error");
+        this.$emit("update:valid", false);
+      }
     } else {
-      this.problem.title = "null";
+      this.problem.title = this.$t("error");
+      this.$emit("update:valid", false);
     }
   }
 };

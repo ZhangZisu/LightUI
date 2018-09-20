@@ -13,11 +13,11 @@
           <v-textarea :label="$t('content')" v-model="problem.content"/>
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
-          <h4 style="color: grey" v-text="$t('data_config')"/>
-          <json-editor v-model="problem.data"/>
+          <h4 style="color: grey" v-text="$t('data')"/>
+          <json-editor v-model="problem.data" :valid.sync="dataValid"/>
           <v-divider/>
           <h4 style="color: grey" v-text="$t('meta')"/>
-          <json-editor v-model="problem.meta"/>
+          <json-editor v-model="problem.meta" :valid.sync="metaValid"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -37,7 +37,7 @@ import jsonEditor from "../components/jsonEditor.vue";
 
 export default {
   name: "problemEdit",
-  components:{
+  components: {
     jsonEditor
   },
   props: {
@@ -59,7 +59,9 @@ export default {
       showProgressBar: false,
       loaded: false,
       showSnackbar: false,
-      snackbarText: ""
+      snackbarText: "",
+      dataValid: true,
+      metaValid: true
     };
   },
   async created() {
@@ -71,6 +73,16 @@ export default {
   },
   methods: {
     async save() {
+      if (!this.dataValid) {
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("invalid", [this.$t("data")]);
+        return;
+      }
+      if (!this.metaValid) {
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("invalid", [this.$t("meta")]);
+        return;
+      }
       this.showProgressBar = true;
       let updateURL = null;
       if (this.id) {
