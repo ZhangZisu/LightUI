@@ -58,5 +58,6 @@
   "type": "Type",
   "upload": "Upload",
   "upload_file": "Upload file",
+  "upload_finished": "Upload finished",
   "username": "Username"
 }

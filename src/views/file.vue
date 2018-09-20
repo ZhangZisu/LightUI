@@ -13,8 +13,8 @@
                 <v-icon>folder</v-icon>
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title v-text="file._id"/>
-                <v-list-tile-sub-title v-text="$t('filetype', [file.type])"/>
+                <v-list-tile-title v-text="file.filename"/>
+                <v-list-tile-sub-title v-text="file._id"/>
                 <v-list-tile-sub-title>
                   {{$t('createdat', [file.created])}} by <user :id="file.owner"/>
                 </v-list-tile-sub-title>
@@ -38,13 +38,14 @@
           <v-card-title>
             <div>
               <div class="headline" v-text="$t('file_details')"/>
-              <div class="subheading" v-text="selectedFile._id"/>
+              <div class="subheading" v-text="selectedFile.filename"/>
             </div>
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="selectedFile.type" readonly :label="$t('type')"/>
+            <v-text-field v-model="selectedFile._id" readonly :label="$t('id')"/>
             <v-textarea v-model="selectedFile.description" readonly :label="$t('description')"/>
             <v-text-field v-model="selectedFile.hash" readonly :label="$t('hash')"/>
+            <v-text-field v-model="selectedFile.size" readonly :label="$t('size')"/>
             <v-text-field v-model="selectedFile.created" readonly :label="$t('created')"/>
             <div class="subheading" v-text="$t('can_read')"/>
             <v-chip label v-for="role in selectedFile.allowedRead" :key="`ar_${role}`">
@@ -94,9 +95,10 @@ export default {
       selectedFile: {
         _id: "",
         hash: "",
+        size: 0,
         owner: "",
         description: "",
-        type: "",
+        filename: "",
         created: "",
         allowedRead: [],
         allowedModify: []

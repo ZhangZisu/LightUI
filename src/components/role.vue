@@ -17,7 +17,7 @@ export default {
       }
     };
   },
-  async created() {
+  async mounted() {
     if (this.id) {
       this.role.rolename = this.id;
       try {
