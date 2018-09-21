@@ -3,6 +3,7 @@ import Router from "vue-router";
 import homeView from "./views/home.vue";
 import errorView from "./views/error.vue";
 import loginView from "./views/login.vue";
+import registerView from "./views/register.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -18,6 +19,11 @@ export default new Router({
       path: "/login",
       name: "login",
       component: loginView
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: registerView
     },
     {
       path: "/file",

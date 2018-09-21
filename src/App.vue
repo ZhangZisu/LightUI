@@ -61,8 +61,11 @@
       <router-view :key="$route.fullPath"/>
     </v-content>
     <v-footer app fixed>
-      <span>&nbsp;{{$t('log')}}:&nbsp;{{log}}</span>
+      <span>&copy;ZhangZisu 2018</span>
     </v-footer>
+    <v-snackbar v-model="snackbar">
+      {{ snackbarText }}
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -72,7 +75,8 @@ export default {
   data() {
     return {
       drawer: true,
-      log: ""
+      snackbar: false,
+      snackbarText: ""
     };
   },
   computed: {
@@ -85,7 +89,8 @@ export default {
   },
   watch: {
     "$store.state.error": function(val) {
-      this.log = val;
+      this.snackbar = true;
+      this.snackbarText = val;
     }
   }
 };

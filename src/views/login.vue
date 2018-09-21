@@ -8,8 +8,12 @@
         <v-card-text>
           <v-text-field v-model="username" :label="$t('username')"/>
           <v-text-field v-model="password" :label="$t('password')" type="password"/>
-          <v-btn color="primary" @click="submit" v-text="$t('submit')"/>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn color="primary" @click="submit" v-text="$t('submit')"/>
+          <v-btn to="/register" v-text="$t('register')"/>
+        </v-card-actions>
       </v-card>
     </v-flex>
   </v-container>

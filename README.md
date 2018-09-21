@@ -1,21 +1,10 @@
 # LightUI
 
-## Project setup
-```
-yarn install
-```
+Frontend for `LightOnlineJudge`
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
+todos:
+1. User List
+2. User Profile
+3. User Editor
+4. Role List/Editor
+5. Add search to every list view
