@@ -21,25 +21,25 @@
           <!-- Access Control -->
           <div class="headline" v-text="$t('can_read')"/>
           <v-divider/>
-          <template v-for="(role, i) in problem.allowedRead">
-            <v-input append-icon="delete" @click:append="problem.allowedRead.splice(i, 1)" :messages="[role]" :key="`ar${role}`">
-              <role :id="role"/>
-            </v-input>
-          </template>
+          <z-array-editor v-model="problem.allowedRead" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
+            <template slot="items" slot-scope="data">
+              <role :id="data.value"/>
+            </template>
+          </z-array-editor>
           <div class="headline" v-text="$t('can_modify')"/>
           <v-divider/>
-          <template v-for="(role, i) in problem.allowedModify">
-            <v-input append-icon="delete" @click:append="problem.allowedModify.splice(i, 1)" :messages="[role]" :key="`am${role}`">
-              <role :id="role"/>
-            </v-input>
-          </template>
+          <z-array-editor v-model="problem.allowedModify" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
+            <template slot="items" slot-scope="data">
+              <role :id="data.value"/>
+            </template>
+          </z-array-editor>
           <div class="headline" v-text="$t('can_submit')"/>
           <v-divider/>
-          <template v-for="(role, i) in problem.allowedSubmit">
-            <v-input append-icon="delete" @click:append="problem.allowedSubmit.splice(i, 1)" :messages="[role]" :key="`as${role}`">
-              <role :id="role"/>
-            </v-input>
-          </template>
+          <z-array-editor v-model="problem.allowedSubmit" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
+            <template slot="items" slot-scope="data">
+              <role :id="data.value"/>
+            </template>
+          </z-array-editor>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -57,12 +57,14 @@
 import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
 import role from "../components/role.vue";
+import zArrayEditor from "../components/zArrayEditor.vue";
 
 export default {
   name: "problemEdit",
   components: {
     jsonEditor,
-    role
+    role,
+    zArrayEditor
   },
   props: {
     id: String

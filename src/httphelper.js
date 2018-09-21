@@ -1,6 +1,5 @@
 import store from "./store";
 import { stringify } from "querystring";
-import { pbkdf2Sync } from "crypto-browserify";
 import axios from "axios";
 
 export const getURL = (base, query) => {

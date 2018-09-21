@@ -6,7 +6,11 @@
         <v-card-title class="headline" v-text="$t('new_solution')"/>
         <v-card-text>
           <v-text-field :label="$t('problem_id')" v-model="problemID" readonly/>
-          <z-array-editor v-model="files" textProp="filename" :hint="$t('filename')" queryURL="/api/file/list"/>
+          <z-array-editor v-model="files" textProp="filename" :hint="$t('filename')" queryURL="/api/file/list">
+            <template slot="items" slot-scope="data">
+              <file :id="data.value"/>
+            </template>
+          </z-array-editor>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-import { getURL, post, get, getPURL } from "../httphelper";
+import { getURL, post } from "../httphelper";
 import file from "../components/file.vue";
 import zArrayEditor from "../components/zArrayEditor.vue";
 
@@ -43,7 +47,7 @@ export default {
       showProgressBar: false,
       loaded: false,
       showSnackbar: false,
-      snackbarText: "",
+      snackbarText: ""
     };
   },
   methods: {

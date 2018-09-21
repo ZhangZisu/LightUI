@@ -794,8 +794,8 @@
     vue-template-es2015-compiler "^1.6.0"
 
 "@vue/eslint-config-prettier@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@vue/eslint-config-prettier/-/eslint-config-prettier-3.0.1.tgz#28c1543b29646814c148d8dea0cd5102a7874fce"
+  version "3.0.3"
+  resolved "http://registry.npm.taobao.org/@vue/eslint-config-prettier/download/@vue/eslint-config-prettier-3.0.3.tgz#b1e43da08b4d2137db9cb974f56990015c0ac2b2"
   dependencies:
     eslint-config-prettier "^2.9.0"
     eslint-plugin-prettier "^2.6.2"
@@ -2041,7 +2041,7 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crypto-browserify@^3.11.0, crypto-browserify@^3.12.0:
+crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"
   dependencies:
@@ -2605,7 +2605,7 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
 
 eslint-config-prettier@^2.9.0:
   version "2.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.10.0.tgz#ec07bc1d01f87d09f61d3840d112dc8a9791e30b"
+  resolved "http://registry.npm.taobao.org/eslint-config-prettier/download/eslint-config-prettier-2.10.0.tgz#ec07bc1d01f87d09f61d3840d112dc8a9791e30b"
   dependencies:
     get-stdin "^5.0.1"
 
@@ -2621,7 +2621,7 @@ eslint-loader@^2.0.0:
 
 eslint-plugin-prettier@^2.6.2:
   version "2.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.6.2.tgz#71998c60aedfa2141f7bfcbf9d1c459bf98b4fad"
+  resolved "http://registry.npm.taobao.org/eslint-plugin-prettier/download/eslint-plugin-prettier-2.6.2.tgz#71998c60aedfa2141f7bfcbf9d1c459bf98b4fad"
   dependencies:
     fast-diff "^1.1.1"
     jest-docblock "^21.0.0"
@@ -2905,7 +2905,7 @@ fast-deep-equal@^2.0.1:
 
 fast-diff@^1.1.1:
   version "1.1.2"
-  resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.1.2.tgz#4b62c42b8e03de3f848460b639079920695d0154"
+  resolved "http://registry.npm.taobao.org/fast-diff/download/fast-diff-1.1.2.tgz#4b62c42b8e03de3f848460b639079920695d0154"
 
 fast-glob@^2.0.2:
   version "2.2.2"
@@ -3231,7 +3231,7 @@ get-stdin@^4.0.1:
 
 get-stdin@^5.0.1:
   version "5.0.1"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
+  resolved "http://registry.npm.taobao.org/get-stdin/download/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
 
 get-stream@^3.0.0:
   version "3.0.0"
@@ -4049,7 +4049,7 @@ javascript-stringify@^1.6.0:
 
 jest-docblock@^21.0.0:
   version "21.2.0"
-  resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
+  resolved "http://registry.npm.taobao.org/jest-docblock/download/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
 
 jmespath@0.15.0:
   version "0.15.0"
@@ -5622,8 +5622,8 @@ prettier@1.13.7:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
 
 prettier@^1.12.1:
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
+  version "1.14.3"
+  resolved "http://registry.npm.taobao.org/prettier/download/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -7152,9 +7152,9 @@ vue-cli-plugin-i18n@^0.5.0:
     vue "^2.5.16"
     vue-i18n "^8.0.0"
 
-vue-cli-plugin-vuetify@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-0.1.6.tgz#915a47c5d4f9d4fee44c826f5cf9e9596badb52d"
+vue-cli-plugin-vuetify@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/vue-cli-plugin-vuetify/download/vue-cli-plugin-vuetify-0.2.0.tgz#f66aa544264ad0a17f70c056359151bcd4dc2e73"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
@@ -7212,8 +7212,8 @@ vue@^2.5.16, vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 
 vuetify@^1.0.19:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.2.3.tgz#519bab56c31420892912c0c7dbd23e790c9287bb"
+  version "1.2.4"
+  resolved "http://registry.npm.taobao.org/vuetify/download/vuetify-1.2.4.tgz#b03a634791b1627e7aab89ed4651a5cd1ea2f211"
 
 vuex@^3.0.1:
   version "3.0.1"
