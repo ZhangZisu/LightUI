@@ -83,6 +83,24 @@ export default new Router({
       props: route => ({ problemID: route.query.id })
     },
     {
+      path: "/role",
+      name: "role",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/role.vue")
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/user.vue")
+    },
+    {
+      path: "/user/show/:id",
+      name: "showUser",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/userDetails.vue")
+    },
+    {
       path: "/logout",
       name: "logout",
       beforeEnter(to, from, next) {

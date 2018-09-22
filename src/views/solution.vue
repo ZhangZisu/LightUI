@@ -37,7 +37,7 @@
 import user from "../components/user";
 import problem from "../components/problem";
 import { getURL, get, getPURL } from "../httphelper";
-const itemPerPage = 25;
+const itemsPerPage = 25;
 
 export default {
   name: "solutionView",
@@ -66,8 +66,8 @@ export default {
     };
     const countURL = getURL("/api/solution/count", query);
     const count = await get(countURL);
-    this.allPages = Math.floor((count + itemPerPage - 1) / itemPerPage);
-    const fetchURL = getPURL("/api/solution/list", query, itemPerPage, 1);
+    this.allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
+    const fetchURL = getPURL("/api/solution/list", query, itemsPerPage, 1);
     this.solutions = await get(fetchURL);
     this.showProgressBar = false;
   },
@@ -78,7 +78,7 @@ export default {
         problemID: this.problemID,
         status: this.status
       };
-      const fetchURL = getPURL("/api/solution/list", query, itemPerPage, page);
+      const fetchURL = getPURL("/api/solution/list", query, itemsPerPage, page);
       this.solutions = await get(fetchURL);
     }
   }

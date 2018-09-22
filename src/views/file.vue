@@ -3,9 +3,7 @@
     <v-flex>
       <v-card flat>
         <v-progress-linear v-if="showProgressBar" indeterminate/>
-        <v-card-title>
-          <div class="headline" v-text="$t('files')"/>
-        </v-card-title>
+        <v-card-title class="headline" v-text="$t('files')"/>
         <v-card-text>
           <v-list three-line>
             <v-list-tile v-for="(file, i) in files" :key="i" avatar>
@@ -74,7 +72,7 @@ import { getURL, getPURL, get } from "../httphelper";
 import user from "../components/user";
 import role from "../components/role";
 import axios from "axios";
-const itemPerPage = 25;
+const itemsPerPage = 25;
 
 export default {
   name: "fileView",
@@ -111,9 +109,9 @@ export default {
     const query = { owner: this.owner, search: this.search, type: this.type };
     const countURL = getURL("/api/file/count", query);
     const count = await get(countURL);
-    const allPages = Math.floor((count + itemPerPage - 1) / itemPerPage);
+    const allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
     this.allPages = allPages;
-    const fetchURL = getPURL("/api/file/list", query, itemPerPage, 1);
+    const fetchURL = getPURL("/api/file/list", query, itemsPerPage, 1);
     const files = await get(fetchURL);
     this.files = files;
     this.showProgressBar = false;
@@ -142,7 +140,7 @@ export default {
   watch: {
     page: async function(page) {
       const query = { owner: this.owner, search: this.search, type: this.type };
-      const fetchURL = getPURL("/api/file/list", query, itemPerPage, page);
+      const fetchURL = getPURL("/api/file/list", query, itemsPerPage, page);
       const files = await get(fetchURL);
       this.files = files;
     }

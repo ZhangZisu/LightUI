@@ -13,7 +13,7 @@
           <v-textarea :label="$t('content')" v-model="problem.content"/>
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
-          <div class="headline" v-text="$t('data')"/>
+          <div class="headline" v-text="$t('data_config')"/>
           <json-editor v-model="problem.data" :valid.sync="dataValid"/>
           <v-divider/>
           <div class="headline" v-text="$t('meta')"/>

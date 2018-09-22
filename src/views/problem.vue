@@ -35,7 +35,7 @@
 <script>
 import user from "../components/user";
 import { getURL, get, getPURL } from "../httphelper";
-const itemPerPage = 25;
+const itemsPerPage = 25;
 
 export default {
   name: "problemView",
@@ -59,9 +59,9 @@ export default {
     const query = { owner: this.owner, search: this.search, type: this.type };
     const countURL = getURL("/api/problem/count", query);
     const count = await get(countURL);
-    const allPages = Math.floor((count + itemPerPage - 1) / itemPerPage);
+    const allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
     this.allPages = allPages;
-    const fetchURL = getPURL("/api/problem/list", query, itemPerPage, 1);
+    const fetchURL = getPURL("/api/problem/list", query, itemsPerPage, 1);
     const problems = await get(fetchURL);
     this.problems = problems;
     this.showProgressBar = false;
@@ -72,7 +72,7 @@ export default {
   watch: {
     page: async function(page) {
       const query = { owner: this.owner, search: this.search, type: this.type };
-      const fetchURL = getPURL("/api/problem/list", query, itemPerPage, page);
+      const fetchURL = getPURL("/api/problem/list", query, itemsPerPage, page);
       const problems = await get(fetchURL);
       this.problems = problems;
     }
