@@ -106,6 +106,8 @@ export default {
       this.snackbarText = this.$t("fetching");
       const fetchURL = getURL(`/api/solution/${this.id}`);
       this.solution = await get(fetchURL);
+      const resultURL = getURL(`/api/solution/${this.id}/result`);
+      this.solution.result = await get(resultURL);
       this.showSnackbar = true;
       this.snackbarText = this.$t("fetched");
       this.showProgressBar = false;

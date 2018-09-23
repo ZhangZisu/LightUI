@@ -22,6 +22,11 @@
             </v-list-tile>
           </v-list>
         </v-card-text>
+        <v-card-actions>
+          <v-pagination v-model="page" :length="allPages"/>
+          <v-spacer/>
+          <v-btn color="primary" depressed v-text="$t('new')"/>
+        </v-card-actions>
       </v-card>
     </v-flex>
   </v-container>
