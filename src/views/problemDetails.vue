@@ -36,18 +36,18 @@
           <v-chip label v-for="tag in problem.tags" :key="tag" v-text="tag"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_read')"/>
-          <v-chip label v-for="role in problem.allowedRead" :key="`ar_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in problem.allowedRead" :key="`ar_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
           <v-divider/>
           <div class="subheading" v-text="$t('can_modify')"/>
-          <v-chip label v-for="role in problem.allowedModify" :key="`am_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in problem.allowedModify" :key="`am_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
           <v-divider/>
           <div class="subheading" v-text="$t('can_submit')"/>
-          <v-chip label v-for="role in problem.allowedSubmit" :key="`as_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in problem.allowedSubmit" :key="`as_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
         </v-card-text>
         <v-card-actions>
@@ -60,16 +60,16 @@
 </template>
 
 <script>
-import user from "../components/user";
-import role from "../components/role";
-import { getURL, get } from "../httphelper";
+import user from "../components/user.vue";
+import ace from "../components/ace.vue";
 import jsonEditor from "../components/jsonEditor.vue";
+import { getURL, get } from "../httphelper";
 
 export default {
   name: "problemDetailsView",
   components: {
     user,
-    role,
+    ace,
     jsonEditor
   },
   props: {

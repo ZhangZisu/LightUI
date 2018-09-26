@@ -21,25 +21,13 @@
           <!-- Access Control -->
           <div class="headline" v-text="$t('can_read')"/>
           <v-divider/>
-          <z-array-editor v-model="problem.allowedRead" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
-            <template slot="items" slot-scope="data">
-              <role :id="data.value"/>
-            </template>
-          </z-array-editor>
+          <z-access-control-editor v-model="problem.allowedRead"/>
           <div class="headline" v-text="$t('can_modify')"/>
           <v-divider/>
-          <z-array-editor v-model="problem.allowedModify" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
-            <template slot="items" slot-scope="data">
-              <role :id="data.value"/>
-            </template>
-          </z-array-editor>
+          <z-access-control-editor v-model="problem.allowedModify"/>
           <div class="headline" v-text="$t('can_submit')"/>
           <v-divider/>
-          <z-array-editor v-model="problem.allowedSubmit" textProp="rolename" :hint="$t('rolename')" queryURL="/api/role/list">
-            <template slot="items" slot-scope="data">
-              <role :id="data.value"/>
-            </template>
-          </z-array-editor>
+          <z-access-control-editor v-model="problem.allowedSubmit"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -56,15 +44,13 @@
 <script>
 import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
-import role from "../components/role.vue";
-import zArrayEditor from "../components/zArrayEditor.vue";
+import zAccessControlEditor from "../components/zAccessControlEditor.vue";
 
 export default {
   name: "problemEdit",
   components: {
     jsonEditor,
-    role,
-    zArrayEditor
+    zAccessControlEditor
   },
   props: {
     id: String

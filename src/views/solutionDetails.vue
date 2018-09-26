@@ -18,23 +18,23 @@
             <json-editor v-model="solution.result" :readonly="true"/>
           </template>
           <div class="subheading" v-text="$t('can_read')"/>
-          <v-chip label v-for="role in solution.allowedRead" :key="`ar_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in solution.allowedRead" :key="`ar_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
           <v-divider/>
           <div class="subheading" v-text="$t('can_read_result')"/>
-          <v-chip label v-for="role in solution.allowedReadResult" :key="`ars_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in solution.allowedReadResult" :key="`ars_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
           <v-divider/>
           <div class="subheading" v-text="$t('can_modify')"/>
-          <v-chip label v-for="role in solution.allowedModify" :key="`am_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in solution.allowedModify" :key="`am_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
           <v-divider/>
           <div class="subheading" v-text="$t('can_rejudge')"/>
-          <v-chip label v-for="role in solution.allowedRejudge" :key="`arj_${role}`">
-            <role :id="role"/>
+          <v-chip label v-for="ace in solution.allowedRejudge" :key="`arj_${ace}`">
+            <ace :id="ace"/>
           </v-chip>
         </v-card-text>
         <v-card-actions v-if="loaded">
@@ -53,13 +53,13 @@
 <script>
 import { getURL, get, post } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
-import role from "../components/role";
+import ace from "../components/ace";
 
 export default {
   name: "solutionDetails",
   components: {
     jsonEditor,
-    role
+    ace
   },
   props: {
     id: {

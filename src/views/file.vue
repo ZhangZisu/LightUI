@@ -46,13 +46,13 @@
             <v-text-field v-model="selectedFile.size" readonly :label="$t('size')"/>
             <v-text-field v-model="selectedFile.created" readonly :label="$t('created')"/>
             <div class="subheading" v-text="$t('can_read')"/>
-            <v-chip label v-for="role in selectedFile.allowedRead" :key="`ar_${role}`">
-              <role :id="role"/>
+            <v-chip label v-for="ace in selectedFile.allowedRead" :key="`ar_${ace}`">
+              <ace :id="ace"/>
             </v-chip>
             <v-divider/>
             <div class="subheading" v-text="$t('can_modify')"/>
-            <v-chip label v-for="role in selectedFile.allowedModify" :key="`am_${role}`">
-              <role :id="role"/>
+            <v-chip label v-for="ace in selectedFile.allowedModify" :key="`am_${ace}`">
+              <ace :id="ace"/>
             </v-chip>
           </v-card-text>
           <v-card-actions>
@@ -70,7 +70,7 @@
 <script>
 import { getURL, getPURL, get } from "../httphelper";
 import user from "../components/user";
-import role from "../components/role";
+import ace from "../components/ace";
 import axios from "axios";
 const itemsPerPage = 25;
 
@@ -78,7 +78,7 @@ export default {
   name: "fileView",
   components: {
     user,
-    role
+    ace
   },
   props: {
     owner: String,
