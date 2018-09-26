@@ -16,7 +16,7 @@
           </v-list-tile-content>
         </template>
       </v-autocomplete>
-      <v-btn flat color="primary" @click="values.push(newItem)" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
+      <v-btn flat color="primary" @click="values.push(newItem), showAddForm = false" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
       <v-btn flat @click="showAddForm = false" v-text="$t('cancel')"/>
       {{ $t('selected', [newItem]) }}
     </template>

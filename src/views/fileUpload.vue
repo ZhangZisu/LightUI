@@ -26,7 +26,7 @@ import { getURL } from "../httphelper";
 import axios from "axios";
 
 export default {
-  name: "fileUpload",
+  name: "fileUploadView",
   data() {
     return {
       showProgressBar: false,

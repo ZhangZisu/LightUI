@@ -6,7 +6,7 @@
         <v-card-title class="headline" v-text="$t('new_solution')"/>
         <v-card-text>
           <v-text-field :label="$t('problem_id')" v-model="problemID" readonly/>
-          <z-array-editor v-model="files" textProp="filename" :hint="$t('filename')" queryURL="/api/file/list">
+          <z-array-editor v-model="files" textProp="filename" :hint="$t('input_filename')" queryURL="/api/file/list">
             <template slot="items" slot-scope="data">
               <file :id="data.value"/>
             </template>
@@ -30,7 +30,7 @@ import file from "../components/file.vue";
 import zArrayEditor from "../components/zArrayEditor.vue";
 
 export default {
-  name: "solutionNew",
+  name: "solutionNewView",
   components: {
     file,
     zArrayEditor

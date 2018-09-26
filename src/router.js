@@ -37,6 +37,20 @@ export default new Router({
         import(/* webpackChunkName: "file" */ "./views/fileUpload.vue")
     },
     {
+      path: "/file/show/:id",
+      name: "showFile",
+      component: () =>
+        import(/* webpackChunkName: "file" */ "./views/fileDetails.vue"),
+      props: route => ({ fileID: route.params.id })
+    },
+    {
+      path: "/file/edit/:id",
+      name: "editFile",
+      component: () =>
+        import(/* webpackChunkName: "file" */ "./views/fileEdit.vue"),
+      props: route => ({ fileID: route.params.id })
+    },
+    {
       path: "/problem",
       name: "problem",
       component: () =>
@@ -89,6 +103,20 @@ export default new Router({
         import(/* webpackChunkName: "admin" */ "./views/role.vue")
     },
     {
+      path: "/role/show/:id",
+      name: "showRole",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/roleDetails.vue"),
+      props: route => ({ roleID: route.params.id })
+    },
+    {
+      path: "/role/edit/:id",
+      name: "editRole",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/roleEdit.vue"),
+      props: route => ({ roleID: route.params.id })
+    },
+    {
       path: "/user",
       name: "user",
       component: () =>
@@ -99,6 +127,13 @@ export default new Router({
       name: "showUser",
       component: () =>
         import(/* webpackChunkName: "admin" */ "./views/userDetails.vue"),
+      props: route => ({ userID: route.params.id })
+    },
+    {
+      path: "/user/edit/:id",
+      name: "editUser",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/userEdit.vue"),
       props: route => ({ userID: route.params.id })
     },
     {

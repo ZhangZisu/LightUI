@@ -2,12 +2,8 @@
   <v-container>
     <v-flex>
       <v-card flat>
-        <v-progress-linear indeterminate v-if="showProgressBar"/>
-        <v-card-title v-if="loaded">
-          <div>
-            <div class="headline" v-text="$t('edit_problem')"/>
-          </div>
-        </v-card-title>
+        <v-progress-linear indeterminate query v-if="showProgressBar"/>
+        <v-card-title class="headline" v-text="$t('edit_problem')"/>
         <v-card-text v-if="loaded">
           <v-text-field :label="$t('title')" v-model="problem.title"/>
           <v-textarea :label="$t('content')" v-model="problem.content"/>
@@ -47,7 +43,7 @@ import jsonEditor from "../components/jsonEditor.vue";
 import zAccessControlEditor from "../components/zAccessControlEditor.vue";
 
 export default {
-  name: "problemEdit",
+  name: "problemEditView",
   components: {
     jsonEditor,
     zAccessControlEditor

@@ -32,7 +32,7 @@
             <role v-for="(role, i) in user.roles" :key="i" :id="role"/>
             <div class="subheading" v-text="$t('access_control')"/>
             <v-divider/>
-            <json-editor v-model="user.config" v-if="!loading"/>
+            <json-editor v-model="user.config" v-if="!loading" :readonly="true"/>
           </v-list>
         </v-card-text>
         <v-card-actions>

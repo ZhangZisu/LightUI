@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "error",
+  name: "errorView",
   data: function() {
     return {};
   }

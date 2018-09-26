@@ -78,7 +78,7 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>
-      <router-view :key="$route.fullPath"/>
+      <router-view :key="$router.fullPath"/>
     </v-content>
     <v-footer app fixed>
       <span>&copy;ZhangZisu 2018</span>

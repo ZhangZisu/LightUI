@@ -48,7 +48,7 @@ import jsonEditor from "../components/jsonEditor.vue";
 import ace from "../components/ace";
 
 export default {
-  name: "solutionDetails",
+  name: "solutionDetailsView",
   components: {
     jsonEditor,
     ace

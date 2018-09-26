@@ -23,7 +23,7 @@
 import { post } from "../httphelper";
 
 export default {
-  name: "login-view",
+  name: "loginView",
   data() {
     return {
       username: "",
