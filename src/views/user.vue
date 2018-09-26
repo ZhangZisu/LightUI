@@ -14,9 +14,7 @@
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-list-tile-action-text>
-                  <v-chip v-for="(role, j) in user.roles" :key="`${i}-${j}`">
-                    <role :id="role"/>
-                  </v-chip>
+                  <role v-for="(role, j) in user.roles" :key="`${i}-${j}`" :id="role"/>
                 </v-list-tile-action-text>
               </v-list-tile-action>
             </v-list-tile>

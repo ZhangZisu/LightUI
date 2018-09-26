@@ -1,4 +1,5 @@
 {
+  "access_control": "Access Control",
   "add": "Add",
   "add_file": "Add file",
   "can_modify": "Roles can modify this resource",
@@ -72,6 +73,7 @@
   "upload_file": "Upload file",
   "upload_finished": "Upload finished",
   "user": "User",
+  "userID": "User ID",
   "user_info": "{0}, {1}",
   "username": "Username",
   "users": "Users"

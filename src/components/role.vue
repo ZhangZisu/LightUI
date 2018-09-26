@@ -1,5 +1,8 @@
 <template>
-    <span v-text="role.rolename"/>
+  <v-chip>
+    <v-icon left>supervised_user_circle</v-icon>
+    {{ role.rolename }}
+  </v-chip>
 </template>
 
 <script>

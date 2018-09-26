@@ -18,24 +18,16 @@
             <json-editor v-model="solution.result" :readonly="true"/>
           </template>
           <div class="subheading" v-text="$t('can_read')"/>
-          <v-chip label v-for="ace in solution.allowedRead" :key="`ar_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in solution.allowedRead" :key="`ar_${ace}`" :id="ace"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_read_result')"/>
-          <v-chip label v-for="ace in solution.allowedReadResult" :key="`ars_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in solution.allowedReadResult" :key="`ars_${ace}`" :id="ace"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_modify')"/>
-          <v-chip label v-for="ace in solution.allowedModify" :key="`am_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in solution.allowedModify" :key="`am_${ace}`" :id="ace"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_rejudge')"/>
-          <v-chip label v-for="ace in solution.allowedRejudge" :key="`arj_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in solution.allowedRejudge" :key="`arj_${ace}`" :id="ace"/>
         </v-card-text>
         <v-card-actions v-if="loaded">
           <v-spacer/>

@@ -1,5 +1,8 @@
 <template>
-    <span v-text="problem.title"/>
+  <v-chip>
+    <v-icon left>notes</v-icon>
+    {{ problem.title }}
+  </v-chip>
 </template>
 
 <script>

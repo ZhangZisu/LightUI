@@ -1,8 +1,8 @@
 <template>
   <v-chip>
-    <v-icon v-if="ace.type === 'role'">supervised_user_circle</v-icon>
-    <v-icon v-else-if="ace.type === 'user'">account_circle</v-icon>
-    <v-icon v-else>error</v-icon>
+    <v-icon left v-if="ace.type === 'role'">supervised_user_circle</v-icon>
+    <v-icon left v-else-if="ace.type === 'user'">account_circle</v-icon>
+    <v-icon left v-else>error</v-icon>
     {{ ace.name }}
   </v-chip>
 </template>

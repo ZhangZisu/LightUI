@@ -98,7 +98,8 @@ export default new Router({
       path: "/user/show/:id",
       name: "showUser",
       component: () =>
-        import(/* webpackChunkName: "admin" */ "./views/userDetails.vue")
+        import(/* webpackChunkName: "admin" */ "./views/userDetails.vue"),
+      props: route => ({ userID: route.params.id })
     },
     {
       path: "/logout",

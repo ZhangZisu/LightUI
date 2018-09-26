@@ -1,5 +1,8 @@
 <template>
-    <span v-text="user.username"/>
+  <v-chip>
+    <v-icon left>account_circle</v-icon>
+    {{ user.username }}
+  </v-chip>
 </template>
 
 <script>

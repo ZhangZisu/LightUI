@@ -1,5 +1,8 @@
 <template>
-    <span v-text="file.filename"/>
+  <v-chip>
+    <v-icon left>folder</v-icon>
+    {{ file.filename }}
+  </v-chip>
 </template>
 
 <script>

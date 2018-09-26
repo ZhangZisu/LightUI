@@ -46,14 +46,10 @@
             <v-text-field v-model="selectedFile.size" readonly :label="$t('size')"/>
             <v-text-field v-model="selectedFile.created" readonly :label="$t('created')"/>
             <div class="subheading" v-text="$t('can_read')"/>
-            <v-chip label v-for="ace in selectedFile.allowedRead" :key="`ar_${ace}`">
-              <ace :id="ace"/>
-            </v-chip>
+            <ace label v-for="ace in selectedFile.allowedRead" :key="`ar_${ace}`" :id="ace"/>
             <v-divider/>
             <div class="subheading" v-text="$t('can_modify')"/>
-            <v-chip label v-for="ace in selectedFile.allowedModify" :key="`am_${ace}`">
-              <ace :id="ace"/>
-            </v-chip>
+            <ace label v-for="ace in selectedFile.allowedModify" :key="`am_${ace}`" :id="ace"/>
           </v-card-text>
           <v-card-actions>
             <user :id="selectedFile.owner" v-if="selectedFile._id" :key="selectedFile._id"/>

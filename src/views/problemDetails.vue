@@ -36,19 +36,13 @@
           <v-chip label v-for="tag in problem.tags" :key="tag" v-text="tag"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_read')"/>
-          <v-chip label v-for="ace in problem.allowedRead" :key="`ar_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in problem.allowedRead" :id="ace" :key="`ar_${ace}`"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_modify')"/>
-          <v-chip label v-for="ace in problem.allowedModify" :key="`am_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in problem.allowedModify" :id="ace" :key="`am_${ace}`"/>
           <v-divider/>
           <div class="subheading" v-text="$t('can_submit')"/>
-          <v-chip label v-for="ace in problem.allowedSubmit" :key="`as_${ace}`">
-            <ace :id="ace"/>
-          </v-chip>
+          <ace label v-for="ace in problem.allowedSubmit" :id="ace" :key="`as_${ace}`"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
