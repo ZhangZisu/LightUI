@@ -27,18 +27,18 @@
 </template>
 
 <script>
-import { getURL, getPURL, get, post } from "../httphelper";
+import { getURL, get, post } from "../httphelper";
 import zAccessControlEditor from "../components/zAccessControlEditor.vue";
 
 export default {
   name: "fileEditView",
-  components:{
+  components: {
     zAccessControlEditor
   },
-  props:{
+  props: {
     fileID: String
   },
-  data(){
+  data() {
     return {
       file: {
         _id: "",
@@ -52,24 +52,24 @@ export default {
         allowedModify: []
       },
       loading: true
-    }
+    };
   },
-  async mounted(){
+  async mounted() {
     const url = getURL(`/api/file/${this.fileID}`, {});
     this.file = await get(url);
     this.loading = false;
   },
-  methods:{
-    async save(){
+  methods: {
+    async save() {
       this.loading = true;
       const url = getURL(`/api/file/${this.fileID}`, {});
-      try{
+      try {
         await post(url, this.file);
-      }catch(e){
+      } catch (e) {
         //
       }
       this.loading = false;
     }
   }
-}
+};
 </script>

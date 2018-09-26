@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import { getURL, get } from '../httphelper';
+import { getURL, get } from "../httphelper";
 import role from "../components/role.vue";
 import jsonEditor from "../components/jsonEditor.vue";
 
 export default {
   name: "userDetailsView",
-  components:{
+  components: {
     role,
     jsonEditor
   },
@@ -72,7 +72,7 @@ export default {
       loading: true
     };
   },
-  async mounted(){
+  async mounted() {
     const url = getURL(`/api/user/${this.userID}`);
     this.user = await get(url);
     this.loading = false;

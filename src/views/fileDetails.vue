@@ -35,20 +35,20 @@
 
 <script>
 import axios from "axios";
-import { getURL, getPURL, get } from "../httphelper";
+import { getURL, get } from "../httphelper";
 import ace from "../components/ace.vue";
 import user from "../components/user.vue";
 
 export default {
   name: "fileDetailsView",
-  components:{
+  components: {
     ace,
     user
   },
-  props:{
+  props: {
     fileID: String
   },
-  data(){
+  data() {
     return {
       file: {
         _id: "",
@@ -62,13 +62,13 @@ export default {
         allowedModify: []
       },
       loading: true
-    }
+    };
   },
-  async mounted(){
+  async mounted() {
     const url = getURL(`/api/file/${this.fileID}`, {});
     this.file = await get(url);
   },
-  methods:{
+  methods: {
     downloadFile() {
       const downloadURL = getURL(`/api/file/${this.fileID}/raw`, {});
       axios.get(downloadURL, { responseType: "blob" }).then(response => {
@@ -81,5 +81,5 @@ export default {
       });
     }
   }
-}
+};
 </script>

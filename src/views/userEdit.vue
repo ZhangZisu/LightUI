@@ -30,23 +30,23 @@
 </template>
 
 <script>
-import { getURL, get, post } from '../httphelper';
+import { getURL, get, post } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
 import role from "../components/role.vue";
 import zArrayEditor from "../components/zArrayEditor.vue";
 
 export default {
   name: "userEditView",
-  components:{
+  components: {
     jsonEditor,
     role,
     zArrayEditor
   },
-  props:{
+  props: {
     userID: String
   },
-  data(){
-    return{
+  data() {
+    return {
       user: {
         _id: "",
         username: "",
@@ -58,24 +58,24 @@ export default {
       },
       loading: true,
       valid: true
-    }
+    };
   },
-  async mounted(){
+  async mounted() {
     const url = getURL(`/api/user/${this.userID}`);
     this.user = await get(url);
     this.loading = false;
   },
-  methods:{
-    async save(){
+  methods: {
+    async save() {
       this.loading = true;
       const url = getURL(`/api/user/${this.userID}`);
-      try{
+      try {
         await post(url, this.user);
-      }catch(e){
+      } catch (e) {
         //
       }
       this.loading = false;
     }
   }
-}
+};
 </script>

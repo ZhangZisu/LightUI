@@ -19,18 +19,18 @@
 
 <script>
 import jsonEditor from "../components/jsonEditor.vue";
-import { getURL, get, post } from '../httphelper';
+import { getURL, get, post } from "../httphelper";
 
 export default {
   name: "roleDetails",
-  components:{
+  components: {
     jsonEditor
   },
-  props:{
-    roleID:String
+  props: {
+    roleID: String
   },
-  data(){
-    return{
+  data() {
+    return {
       role: {
         _id: "",
         rolename: "",
@@ -39,24 +39,24 @@ export default {
       },
       loading: true,
       valid: true
-    }
+    };
   },
-  async mounted(){
+  async mounted() {
     const url = getURL(`/api/role/${this.roleID}`);
     this.role = await get(url);
     this.loading = false;
   },
-  methods:{
-    async save(){
+  methods: {
+    async save() {
       this.loading = true;
       const url = getURL(`/api/role/${this.roleID}`);
-      try{
+      try {
         await post(url, this.role);
-      }catch(e){
+      } catch (e) {
         //
       }
       this.loading = false;
     }
   }
-}
+};
 </script>
