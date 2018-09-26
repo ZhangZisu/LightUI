@@ -12,7 +12,7 @@
           </div>
         </v-card-title>
         <v-card-text>
-          {{ problem.content }}
+          <article class="markdown-body" v-html="render(problem.content)"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -58,6 +58,7 @@ import user from "../components/user.vue";
 import ace from "../components/ace.vue";
 import jsonEditor from "../components/jsonEditor.vue";
 import { getURL, get } from "../httphelper";
+import render from "../markdown";
 
 export default {
   name: "problemDetailsView",
@@ -100,7 +101,8 @@ export default {
   methods: {
     async submit() {
       this.dialog = false;
-    }
+    },
+    render: render
   }
 };
 </script>

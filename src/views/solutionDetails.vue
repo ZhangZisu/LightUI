@@ -13,6 +13,8 @@
           <div class="subheading" v-text="$t('status')"/>
           <pre>{{ solution.status }}</pre>
           <v-divider/>
+          <div class="subheading" v-text="$t('files')"/>
+          <file v-for="(file, i) in solution.files" :key="i" :id="file"/>
           <template v-if="loadedResult">
             <h4 style="color: grey" v-text="$t('result')"/>
             <json-editor v-model="solution.result" :readonly="true"/>
@@ -46,12 +48,14 @@
 import { getURL, get, post } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
 import ace from "../components/ace";
+import file from "../components/file";
 
 export default {
   name: "solutionDetailsView",
   components: {
     jsonEditor,
-    ace
+    ace,
+    file
   },
   props: {
     id: {

@@ -2,10 +2,13 @@
   <v-container>
     <v-flex>
       <v-card>
+        <v-progress-linear indeterminate query v-if="loading"/>
         <v-card-title>
           <div>
-            <div class="headline" v-text="$t('file_details')"/>
-            <div class="subheading" v-text="file.filename"/>
+            <div class="headline" v-text="file.filename"/>
+            <div class="subheading" v-if="!loading">
+              {{$t('createdat', [file.created])}} by <user :id="file.owner"/>
+            </div>
           </div>
         </v-card-title>
         <v-card-text>
@@ -21,8 +24,6 @@
           <ace label v-for="ace in file.allowedModify" :key="`am_${ace}`" :id="ace"/>
         </v-card-text>
         <v-card-actions>
-          {{ $t('created_by') }}
-          <user :id="file.owner" v-if="file._id" :key="file._id"/>
           <v-spacer/>
           <v-btn depressed v-text="$t('download')" @click="downloadFile"/>
           <v-btn depressed v-text="$t('cancel')" @click="$router.go(-1)"/>
@@ -67,6 +68,7 @@ export default {
   async mounted() {
     const url = getURL(`/api/file/${this.fileID}`, {});
     this.file = await get(url);
+    this.loading = false;
   },
   methods: {
     downloadFile() {

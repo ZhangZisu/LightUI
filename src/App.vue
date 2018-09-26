@@ -112,7 +112,7 @@ export default {
           name: "en",
           display_name: "English"
         }
-      ],
+      ]
     };
   },
   computed: {
@@ -129,7 +129,7 @@ export default {
       this.snackbarText = val;
     }
   },
-  created(){
+  created() {
     for (let language of navigator.languages) {
       if (this.languages.filter(x => x.name === language).length) {
         this.$i18n.locale = language;

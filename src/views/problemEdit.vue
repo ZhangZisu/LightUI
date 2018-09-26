@@ -27,6 +27,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
+          <v-btn flat v-text="$t('return')" @click="$router.push(`/problem/show/${problem._id}`)" v-if="id"/>
           <v-btn flat color="primary" v-text="$t('save')" @click="save"/>
         </v-card-actions>
       </v-card>
@@ -108,6 +109,10 @@ export default {
       } else {
         this.showSnackbar = true;
         this.snackbarText = this.$t("problem_updated");
+        this.loaded = false;
+        const fetchURL = getURL(`/api/problem/${this.id}`, {});
+        this.problem = await get(fetchURL);
+        this.loaded = true;
       }
     }
   }
