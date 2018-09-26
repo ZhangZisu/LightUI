@@ -8,7 +8,7 @@ import "./registerServiceWorker";
 import i18n from "./i18n";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://10.49.27.45:3000";
+axios.defaults.baseURL = "http://127.0.0.1:3000";
 Vue.config.productionTip = false;
 
 new Vue({

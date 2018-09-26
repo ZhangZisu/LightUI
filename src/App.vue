@@ -73,9 +73,19 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
+      <v-toolbar-title v-text="title"/>
+      <v-spacer/>
+			<v-menu offset-y>
+				<v-btn slot="activator" icon flat>
+					<v-icon>language</v-icon>
+				</v-btn>
+				<v-list>
+					<v-list-tile v-for="(lang, i) in languages" :key="`lang${i}`" ripple @click="$i18n.locale = lang.name">
+						<v-list-tile-title v-text="lang.display_name"/>
+					</v-list-tile>
+				</v-list>
+			</v-menu>
     </v-toolbar>
     <v-content>
       <router-view :key="$router.fullPath"/>
@@ -96,7 +106,13 @@ export default {
     return {
       drawer: true,
       snackbar: false,
-      snackbarText: ""
+      snackbarText: "",
+      languages: [
+        {
+          name: "en",
+          display_name: "English"
+        }
+      ],
     };
   },
   computed: {
@@ -111,6 +127,14 @@ export default {
     "$store.state.error": function(val) {
       this.snackbar = true;
       this.snackbarText = val;
+    }
+  },
+  created(){
+    for (let language of navigator.languages) {
+      if (this.languages.filter(x => x.name === language).length) {
+        this.$i18n.locale = language;
+        break;
+      }
     }
   }
 };
