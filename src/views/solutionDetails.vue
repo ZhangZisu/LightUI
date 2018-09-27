@@ -1,24 +1,42 @@
 <template>
   <v-container>
     <v-flex>
-      <v-card flat :key="reversion">
-        <v-progress-linear v-if="showProgressBar" indeterminate/>
-        <v-card-title v-if="loaded">
-          <div>
-            <div class="headline" v-text="$t('solution_details')"/>
-            <div class="subheading" v-text="solution._id"/>
-          </div>
+      <v-card>
+        <v-progress-linear v-if="!loaded" indeterminate/>
+        <v-card-title> 
+          <div class="headline" v-text="$t('solution_details')"/>
+          <v-spacer/>
+          <v-btn v-text="$t('rejudge')" @click="rejudge"/>
+          <v-btn color="primary" v-text="$t('refresh')" @click="fetch"/>
         </v-card-title>
         <v-card-text v-if="loaded">
-          <div class="subheading" v-text="$t('status')"/>
-          <pre>{{ solution.status }}</pre>
+          <v-list>
+            <v-list-tile>
+              <v-list-tile-content v-text="$t('id')"/>
+              <v-list-tile-content class="align-end" v-text="solution._id"/>
+            </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-content v-text="$t('status')"/>
+              <v-list-tile-content class="align-end" v-text="solution.status"/>
+            </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-content v-text="$t('owner')"/>
+              <v-list-tile-content class="align-end">
+                <user :id="solution.owner"/>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-content v-text="$t('problem')"/>
+              <v-list-tile-content class="align-end">
+                <problem :id="solution.problemID"/>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+          <z-json-viewer :value="solution.result" :key="`rv_${resultVersion}`"/>
           <v-divider/>
           <div class="subheading" v-text="$t('files')"/>
           <file v-for="(file, i) in solution.files" :key="i" :id="file"/>
-          <template v-if="loadedResult">
-            <h4 style="color: grey" v-text="$t('result')"/>
-            <json-editor v-model="solution.result" :readonly="true"/>
-          </template>
+          <v-divider/>
           <div class="subheading" v-text="$t('can_read')"/>
           <ace label v-for="ace in solution.allowedRead" :key="`ar_${ace}`" :id="ace"/>
           <v-divider/>
@@ -31,11 +49,6 @@
           <div class="subheading" v-text="$t('can_rejudge')"/>
           <ace label v-for="ace in solution.allowedRejudge" :key="`arj_${ace}`" :id="ace"/>
         </v-card-text>
-        <v-card-actions v-if="loaded">
-          <v-spacer/>
-          <v-btn depressed v-text="$t('rejudge')" @click="rejudge"/>
-          <v-btn depressed color="primary" v-text="$t('refresh')" @click="fetch"/>
-        </v-card-actions>
       </v-card>
     </v-flex>
     <v-snackbar v-model="showSnackbar">
@@ -49,13 +62,19 @@ import { getURL, get, post } from "../httphelper";
 import jsonEditor from "../components/jsonEditor.vue";
 import ace from "../components/ace";
 import file from "../components/file";
+import user from "../components/user";
+import problem from "../components/problem";
+import zJsonViewer from "../components/zJsonViewer";
 
 export default {
   name: "solutionDetailsView",
   components: {
     jsonEditor,
     ace,
-    file
+    file,
+    user,
+    problem,
+    zJsonViewer
   },
   props: {
     id: {
@@ -70,7 +89,7 @@ export default {
         problemID: "",
         files: [],
         status: "",
-        result: {},
+        result: null,
         meta: {},
         created: "",
         allowedRead: [],
@@ -78,42 +97,50 @@ export default {
         allowedRejudge: [],
         allowedModify: []
       },
-      showProgressBar: true,
       showSnackbar: false,
       snackbarText: "",
       loaded: false,
-      loadedResult: false,
-      reversion: 0
+      parsedResult: [],
+      resultVersion: 0
     };
   },
   async created() {
     const fetchURL = getURL(`/api/solution/${this.id}`);
     this.solution = await get(fetchURL);
     this.loaded = true;
-    const resultURL = getURL(`/api/solution/${this.id}/result`);
-    this.solution.result = await get(resultURL);
-    this.loadedResult = true;
-    this.showProgressBar = false;
+    this.loadResult();
   },
   methods: {
     async fetch() {
-      this.showProgressBar = true;
+      this.loaded = false;
       this.showSnackbar = true;
       this.snackbarText = this.$t("fetching");
       const fetchURL = getURL(`/api/solution/${this.id}`);
       this.solution = await get(fetchURL);
-      const resultURL = getURL(`/api/solution/${this.id}/result`);
-      this.solution.result = await get(resultURL);
       this.showSnackbar = true;
       this.snackbarText = this.$t("fetched");
-      this.showProgressBar = false;
-      this.reversion++;
+      this.loaded = true;
+      this.loadResult();
     },
     async rejudge() {
-      this.showProgressBar = true;
       const rejudgeURL = getURL(`/api/solution/${this.id}/rejudge`);
-      await post(rejudgeURL);
-      this.showProgressBar = false;
+      try {
+        await post(rejudgeURL);
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("rejudged");
+      } catch (e) {
+        //
+      }
+    },
+    async loadResult() {
+      this.solution.result = null;
+      const resultURL = getURL(`/api/solution/${this.id}/result`);
+      try {
+        this.solution.result = await get(resultURL);
+        this.resultVersion++;
+      } catch (e) {
+        //
+      }
     }
   }
 };
