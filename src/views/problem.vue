@@ -25,7 +25,22 @@
         <v-card-actions>
           <v-pagination v-model="page" :length="allPages"></v-pagination>
           <v-spacer/>
-          <v-btn flat v-text="$t('new')" to="/problem/new"/>
+          <v-dialog width="500">
+            <v-btn slot="activator" v-text="$t('filter')"/>
+            <v-card>
+              <v-card-title class="headline" primary-title v-text="$t('filter')"/>
+              <v-card-text>
+                <v-text-field v-model="filter.search" :label="$t('search')"/>
+                <z-auto-complete v-model="filter.owner" text-prop="username" :hint="$t('input_username')" query-url="/api/user/list"/>
+                <v-combobox v-model="filter.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" flat v-text="$t('apply')" :to="'/problem?' + generateQuery(filter)"/>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-btn color="primary" v-text="$t('new')" to="/problem/new"/>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -34,29 +49,36 @@
 
 <script>
 import user from "../components/user";
-import { getURL, get, getPURL } from "../httphelper";
+import { getURL, get, getPURL, generateQuery } from "../httphelper";
+import zAutoComplete from "../components/zAutoComplete";
 const itemsPerPage = 25;
 
 export default {
   name: "problemView",
   components: {
-    user
+    user,
+    zAutoComplete
   },
   props: {
     owner: String,
     search: String,
-    type: String
+    tags: String || Array
   },
   data() {
     return {
       page: 1,
       allPages: 1,
       problems: [],
-      showProgressBar: true
+      showProgressBar: true,
+      filter: {
+        owner: null,
+        search: null,
+        tags: []
+      }
     };
   },
   async created() {
-    const query = { owner: this.owner, search: this.search, type: this.type };
+    const query = { owner: this.owner, search: this.search, tags: this.tags };
     const countURL = getURL("/api/problem/count", query);
     const count = await get(countURL);
     const allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
@@ -67,11 +89,11 @@ export default {
     this.showProgressBar = false;
   },
   methods: {
-    //
+    generateQuery: generateQuery
   },
   watch: {
     page: async function(page) {
-      const query = { owner: this.owner, search: this.search, type: this.type };
+      const query = { owner: this.owner, search: this.search, tags: this.tags };
       const fetchURL = getPURL("/api/problem/list", query, itemsPerPage, page);
       const problems = await get(fetchURL);
       this.problems = problems;

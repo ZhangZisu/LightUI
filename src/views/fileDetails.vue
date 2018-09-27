@@ -37,8 +37,8 @@
 <script>
 import axios from "axios";
 import { getURL, get } from "../httphelper";
-import ace from "../components/ace.vue";
-import user from "../components/user.vue";
+import ace from "../components/ace";
+import user from "../components/user";
 
 export default {
   name: "fileDetailsView",

@@ -37,7 +37,7 @@
 
 <script>
 import { getPURL, get } from "../httphelper";
-import ace from "./ace.vue";
+import ace from "./ace";
 
 export default {
   name: "zArrayEditor",

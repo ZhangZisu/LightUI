@@ -54,9 +54,9 @@
 </template>
 
 <script>
-import user from "../components/user.vue";
-import ace from "../components/ace.vue";
-import jsonEditor from "../components/jsonEditor.vue";
+import user from "../components/user";
+import ace from "../components/ace";
+import jsonEditor from "../components/jsonEditor";
 import { getURL, get } from "../httphelper";
 import render from "../markdown";
 

@@ -31,9 +31,9 @@
 
 <script>
 import { getURL, get, post } from "../httphelper";
-import jsonEditor from "../components/jsonEditor.vue";
-import role from "../components/role.vue";
-import zArrayEditor from "../components/zArrayEditor.vue";
+import jsonEditor from "../components/jsonEditor";
+import role from "../components/role";
+import zArrayEditor from "../components/zArrayEditor";
 
 export default {
   name: "userEditView",

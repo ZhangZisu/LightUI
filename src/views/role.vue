@@ -18,7 +18,21 @@
         <v-card-actions>
           <v-pagination v-model="page" :length="allPages"/>
           <v-spacer/>
-          <v-btn color="primary" depressed v-text="$t('new')"/>
+          <v-dialog width="500">
+            <v-btn slot="activator" v-text="$t('filter')"/>
+            <v-card>
+              <v-card-title class="headline" primary-title v-text="$t('filter')"/>
+              <v-card-text>
+                <v-text-field v-model="filter.search" :label="$t('search')"/>
+                <v-text-field v-model="filter.rolename" :label="$t('rolename')"/>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" flat v-text="$t('apply')" :to="'/role?' + generateQuery(filter)"/>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-btn color="primary" depressed v-text="$t('new')" to="/role/new"/>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -26,21 +40,29 @@
 </template>
 
 <script>
-import { getURL, get, getPURL } from "../httphelper";
+import { getURL, get, getPURL, generateQuery } from "../httphelper";
 const itemsPerPage = 25;
 
 export default {
   name: "roleView",
+  props: {
+    rolename: String,
+    search: String
+  },
   data() {
     return {
       page: 1,
       allPages: 1,
       roles: [],
-      showProgressBar: true
+      showProgressBar: true,
+      filter: {
+        rolename: null,
+        search: null
+      }
     };
   },
   async mounted() {
-    const query = {};
+    const query = { rolename: this.rolename, search: this.search };
     const countURL = getURL("/api/role/count", query);
     const count = await get(countURL);
     this.allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
@@ -51,11 +73,14 @@ export default {
   watch: {
     async page(val) {
       this.showProgressBar = true;
-      const query = {};
+      const query = { rolename: this.rolename, search: this.search };
       const fetchURL = getPURL("/api/role/list", query, itemsPerPage, val);
       this.roles = await get(fetchURL);
       this.showProgressBar = false;
     }
+  },
+  methods: {
+    generateQuery: generateQuery
   }
 };
 </script>

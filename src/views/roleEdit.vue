@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import jsonEditor from "../components/jsonEditor.vue";
+import jsonEditor from "../components/jsonEditor";
 import { getURL, get, post } from "../httphelper";
 
 export default {

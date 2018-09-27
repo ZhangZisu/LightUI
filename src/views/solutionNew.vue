@@ -26,8 +26,8 @@
 
 <script>
 import { getURL, post } from "../httphelper";
-import file from "../components/file.vue";
-import zArrayEditor from "../components/zArrayEditor.vue";
+import file from "../components/file";
+import zArrayEditor from "../components/zArrayEditor";
 
 export default {
   name: "solutionNewView",

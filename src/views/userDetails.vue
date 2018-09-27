@@ -46,8 +46,8 @@
 
 <script>
 import { getURL, get } from "../httphelper";
-import role from "../components/role.vue";
-import jsonEditor from "../components/jsonEditor.vue";
+import role from "../components/role";
+import jsonEditor from "../components/jsonEditor";
 
 export default {
   name: "userDetailsView",

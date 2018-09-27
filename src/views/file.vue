@@ -28,7 +28,7 @@
                 <v-card-title class="headline" primary-title v-text="$t('filter')"/>
                 <v-card-text>
                   <v-text-field v-model="filter.search" :label="$t('search')"/>
-                  <v-text-field v-model="filter.owner" :label="$t('owner')"/>
+                  <z-auto-complete v-model="filter.owner" text-prop="username" :hint="$t('input_username')" query-url="/api/user/list"/>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -48,13 +48,15 @@
 import { getURL, getPURL, get, generateQuery } from "../httphelper";
 import user from "../components/user";
 import ace from "../components/ace";
+import zAutoComplete from "../components/zAutoComplete";
 const itemsPerPage = 5;
 
 export default {
   name: "fileView",
   components: {
     user,
-    ace
+    ace,
+    zAutoComplete
   },
   props: {
     owner: String,

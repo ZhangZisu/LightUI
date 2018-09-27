@@ -40,8 +40,8 @@
 
 <script>
 import { getURL, post, get } from "../httphelper";
-import jsonEditor from "../components/jsonEditor.vue";
-import zAccessControlEditor from "../components/zAccessControlEditor.vue";
+import jsonEditor from "../components/jsonEditor";
+import zAccessControlEditor from "../components/zAccessControlEditor";
 
 export default {
   name: "problemEditView",

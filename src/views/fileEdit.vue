@@ -28,7 +28,7 @@
 
 <script>
 import { getURL, get, post } from "../httphelper";
-import zAccessControlEditor from "../components/zAccessControlEditor.vue";
+import zAccessControlEditor from "../components/zAccessControlEditor";
 
 export default {
   name: "fileEditView",

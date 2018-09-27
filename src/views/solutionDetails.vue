@@ -59,7 +59,7 @@
 
 <script>
 import { getURL, get, post } from "../httphelper";
-import jsonEditor from "../components/jsonEditor.vue";
+import jsonEditor from "../components/jsonEditor";
 import ace from "../components/ace";
 import file from "../components/file";
 import user from "../components/user";

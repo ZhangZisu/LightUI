@@ -27,6 +27,21 @@
         <v-card-actions>
           <v-pagination v-model="page" :length="allPages"/>
           <v-spacer/>
+          <v-dialog width="500">
+            <v-btn slot="activator" v-text="$t('filter')"/>
+            <v-card>
+              <v-card-title class="headline" primary-title v-text="$t('filter')"/>
+              <v-card-text>
+                <z-auto-complete v-model="filter.owner" text-prop="username" :hint="$t('input_username')" query-url="/api/user/list"/>
+                <z-auto-complete v-model="filter.problemID" text-prop="title" :hint="$t('input_problem_title')" query-url="/api/problem/list"/>
+                <v-text-field v-model="filter.status" :label="$t('status')"/>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" flat v-text="$t('apply')" :to="'/solution?' + generateQuery(filter)"/>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -36,14 +51,16 @@
 <script>
 import user from "../components/user";
 import problem from "../components/problem";
-import { getURL, get, getPURL } from "../httphelper";
-const itemsPerPage = 25;
+import zAutoComplete from "../components/zAutoComplete";
+import { getURL, get, getPURL, generateQuery } from "../httphelper";
+const itemsPerPage = 5;
 
 export default {
   name: "solutionView",
   components: {
     user,
-    problem
+    problem,
+    zAutoComplete
   },
   props: {
     owner: String,
@@ -55,7 +72,12 @@ export default {
       page: 1,
       allPages: 1,
       solutions: [],
-      showProgressBar: true
+      showProgressBar: true,
+      filter: {
+        owner: null,
+        problemID: null,
+        status: null
+      }
     };
   },
   async created() {
@@ -81,6 +103,9 @@ export default {
       const fetchURL = getPURL("/api/solution/list", query, itemsPerPage, page);
       this.solutions = await get(fetchURL);
     }
+  },
+  methods: {
+    generateQuery: generateQuery
   }
 };
 </script>
