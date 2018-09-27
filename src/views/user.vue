@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-flex>
-      <v-card flat>
+      <v-card>
         <v-progress-linear v-if="showProgressBar" indeterminate/>
         <v-card-title class="headline" v-text="$t('users')"/>
         <v-card-text>

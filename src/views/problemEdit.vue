@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-flex>
-      <v-card flat>
+      <v-card>
         <v-progress-linear indeterminate query v-if="showProgressBar"/>
         <v-card-title class="headline" v-text="$t('edit_problem')"/>
         <v-card-text v-if="loaded">

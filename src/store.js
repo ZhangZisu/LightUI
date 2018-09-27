@@ -30,7 +30,7 @@ export default new Vuex.Store({
     updateError(store, error) {
       store.error = error;
     },
-    updateTitle(store, title){
+    updateTitle(store, title) {
       store.title = title;
     }
   },
