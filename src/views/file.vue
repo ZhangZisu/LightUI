@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-flex>
-      <v-card flat>
+      <v-card>
         <v-progress-linear v-if="showProgressBar" indeterminate/>
         <v-card-title class="headline" v-text="$t('files')"/>
         <v-card-text>
@@ -22,7 +22,21 @@
           <v-card-actions>
             <v-pagination v-model="page" :length="allPages"></v-pagination>
             <v-spacer/>
-            <v-btn flat to="/file/upload" v-text="$t('upload')"/>
+            <v-dialog width="500">
+              <v-btn slot="activator" v-text="$t('filter')"/>
+              <v-card>
+                <v-card-title class="headline" primary-title v-text="$t('filter')"/>
+                <v-card-text>
+                  <v-text-field v-model="filter.search" :label="$t('search')"/>
+                  <v-text-field v-model="filter.owner" :label="$t('owner')"/>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" flat v-text="$t('apply')" :to="'/file?' + generateQuery(filter)"/>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-btn color="primary" to="/file/upload" v-text="$t('upload')"/>
           </v-card-actions>
         </v-card-text>
       </v-card>
@@ -31,10 +45,10 @@
 </template>
 
 <script>
-import { getURL, getPURL, get } from "../httphelper";
+import { getURL, getPURL, get, generateQuery } from "../httphelper";
 import user from "../components/user";
 import ace from "../components/ace";
-const itemsPerPage = 25;
+const itemsPerPage = 5;
 
 export default {
   name: "fileView",
@@ -44,8 +58,7 @@ export default {
   },
   props: {
     owner: String,
-    search: String,
-    type: String
+    search: String
   },
   data() {
     return {
@@ -53,11 +66,15 @@ export default {
       allPages: 1,
       files: [],
       dialog: false,
-      showProgressBar: true
+      showProgressBar: true,
+      filter: {
+        owner: "",
+        search: ""
+      }
     };
   },
   async mounted() {
-    const query = { owner: this.owner, search: this.search, type: this.type };
+    const query = { owner: this.owner, search: this.search };
     const countURL = getURL("/api/file/count", query);
     const count = await get(countURL);
     const allPages = Math.floor((count + itemsPerPage - 1) / itemsPerPage);
@@ -69,11 +86,14 @@ export default {
   },
   watch: {
     page: async function(page) {
-      const query = { owner: this.owner, search: this.search, type: this.type };
+      const query = { owner: this.owner, search: this.search };
       const fetchURL = getPURL("/api/file/list", query, itemsPerPage, page);
       const files = await get(fetchURL);
       this.files = files;
     }
+  },
+  methods: {
+    generateQuery: generateQuery
   }
 };
 </script>

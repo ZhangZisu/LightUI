@@ -28,7 +28,9 @@ export default new Router({
     {
       path: "/file",
       name: "file",
-      component: () => import(/* webpackChunkName: "file" */ "./views/file.vue")
+      component: () =>
+        import(/* webpackChunkName: "file" */ "./views/file.vue"),
+      props: route => route.query
     },
     {
       path: "/file/upload",
@@ -94,7 +96,10 @@ export default new Router({
       name: "newSolution",
       component: () =>
         import(/* webpackChunkName: "solution" */ "./views/solutionNew.vue"),
-      props: route => ({ problemID: route.query.id })
+      props: route => ({
+        problemID: route.query.id,
+        viewType: route.query.type
+      })
     },
     {
       path: "/role",

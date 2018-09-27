@@ -88,7 +88,7 @@
 			</v-menu>
     </v-toolbar>
     <v-content>
-      <router-view :key="$router.fullPath"/>
+      <router-view :key="$route.fullPath"/>
     </v-content>
     <v-footer app fixed>
       <span>&copy;ZhangZisu 2018</span>

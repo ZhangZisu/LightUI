@@ -2,8 +2,15 @@ import store from "./store";
 import { stringify } from "querystring";
 import axios from "axios";
 
+export const generateQuery = query => {
+  if (typeof query !== "object") query = {};
+  for (let name in query)
+    if (query[name] === null || query[name] === "") delete query[name];
+  return stringify(query);
+};
+
 export const getURL = (base, query) => {
-  if (!(query instanceof Object)) query = {};
+  if (typeof query !== "object") query = {};
   for (let name in query) if (query[name] === null) delete query[name];
   if (store.state.accessToken) {
     query.c = store.state.clientID;
