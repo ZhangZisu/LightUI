@@ -34,7 +34,7 @@
         <v-card-actions v-if="loaded">
           <v-spacer/>
           <v-btn depressed v-text="$t('rejudge')" @click="rejudge"/>
-          <v-btn depressed color="primary" v-text="$t('refesh')" @click="fetch"/>
+          <v-btn depressed color="primary" v-text="$t('refresh')" @click="fetch"/>
         </v-card-actions>
       </v-card>
     </v-flex>
