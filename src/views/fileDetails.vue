@@ -7,7 +7,7 @@
           <div>
             <div class="headline" v-text="file.filename"/>
             <div class="subheading" v-if="!loading">
-              {{$t('createdat', [file.created])}} by <user :id="file.owner"/>
+              {{$t('createdat', [file.created])}} {{$t('by')}} <user :id="file.owner"/>
             </div>
           </div>
         </v-card-title>

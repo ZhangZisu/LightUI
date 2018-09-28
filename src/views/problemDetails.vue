@@ -7,7 +7,7 @@
           <div>
             <div class="headline" v-text="problem.title"/>
             <div class="subheading">
-              {{$t('createdat', [problem.created])}} by <user :id="problem.owner"/>
+              {{$t('createdat', [problem.created])}} {{$t('by')}} <user :id="problem.owner"/>
             </div>
           </div>
         </v-card-title>

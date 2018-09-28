@@ -6,6 +6,7 @@
   "apply": "Apply",
   "basic": "Basic",
   "bio": "Bio",
+  "by": "By",
   "can_modify": "Roles can modify this resource",
   "can_read": "Roles can read this resource",
   "can_read_result": "Roles can read solution result",

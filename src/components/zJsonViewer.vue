@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel>
+  <v-expansion-panel popout expand v-model="expand">
     <v-expansion-panel-content v-for="(obj, i) in parsed" :key="i">
       <div slot="header" v-text="obj.key"/>
       <v-card>
@@ -24,13 +24,15 @@ export default {
   },
   data() {
     return {
-      parsed: []
+      parsed: [],
+      expand: []
     };
   },
   created() {
     for (let key in this.value) {
       this.parsed.push({ key: key, value: this.value[key] });
     }
+    this.expand = [...Array(this.parsed.length).keys()].map(() => true);
   }
 };
 </script>
