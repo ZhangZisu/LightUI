@@ -25,6 +25,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
+          <v-btn depressed v-text="$t('preview')" @click="openPreview"/>
           <v-btn depressed v-text="$t('download')" @click="downloadFile"/>
           <v-btn depressed v-text="$t('cancel')" @click="$router.go(-1)"/>
           <v-btn depressed color="primary" v-text="$t('edit')" :to="'/file/edit/' + fileID"/>
@@ -81,6 +82,12 @@ export default {
         this.$el.appendChild(link);
         link.click();
       });
+    },
+    openPreview() {
+      const link =
+        axios.defaults.baseURL +
+        getURL("/api/file/" + this.fileID + "/raw", {});
+      window.open(link);
     }
   }
 };

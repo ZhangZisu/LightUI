@@ -40,12 +40,19 @@ export default {
       const form = document.getElementById("uploader");
       const formData = new FormData(form);
       const url = getURL("/api/file/upload", {});
-      await axios.post(url, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
-      this.showProgressBar = false;
-      this.showSnackbar = true;
-      this.snackbarText = this.$t("upload_finished");
+      try {
+        const id = await axios.post(url, formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+        this.showProgressBar = false;
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("upload_finished");
+        this.$router.push("/file/show/" + id);
+      } catch (e) {
+        this.showProgressBar = false;
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("upload_failed");
+      }
     }
   }
 };

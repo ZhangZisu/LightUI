@@ -36,7 +36,17 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-            <v-btn color="primary" to="/file/upload" v-text="$t('upload')"/>
+            <v-menu offset-y>
+              <v-btn slot="activator" color="primary" v-text="$t('new')"/>
+              <v-list>
+                <v-list-tile to="/file/new">
+                  <v-list-tile-title v-text="$t('editor')"/>
+                </v-list-tile>
+                <v-list-tile to="/file/upload">
+                  <v-list-tile-title v-text="$t('upload')"/>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
           </v-card-actions>
         </v-card-text>
       </v-card>
