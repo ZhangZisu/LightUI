@@ -12,8 +12,6 @@
     "highlight.js": "^9.12.0",
     "jsoneditor": "^5.24.6",
     "katex": "^0.10.0-rc.1",
-    "marked": "^0.5.1",
-    "mermaid": "^8.0.0-rc.8",
     "query-string": "^6.1.0",
     "randomstring": "^1.1.5",
     "register-service-worker": "^1.0.0",
@@ -22,7 +20,8 @@
     "vue-router": "^3.0.1",
     "vue2-ace-editor": "^0.0.11",
     "vuetify": "^1.0.19",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "zmark": "^0.0.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.49",
