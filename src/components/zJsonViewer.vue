@@ -8,7 +8,9 @@
             <z-json-viewer :value="obj.value"/>
           </template>
           <template v-else>
-            <pre v-text="obj.value"/>
+            <article class="markdown-body">
+              <pre><code class="hljs plain" v-text="obj.value"/></pre>
+            </article>
           </template>
         </v-card-text>
       </v-card>
