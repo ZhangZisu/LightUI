@@ -6,7 +6,7 @@
         <v-card-title class="headline" v-text="$t('roles')"/>
         <v-card-text>
           <v-list three-line>
-            <v-list-tile v-for="(role, i) in roles" :key="i" :to="'/role/show/' + role._id">
+            <v-list-tile v-for="role in roles" :key="role._id" :to="'/role/show/' + role._id">
               <v-list-tile-content>
                 <v-list-tile-title v-text="role.rolename"/>
                 <v-list-tile-sub-title v-text="role._id"/>

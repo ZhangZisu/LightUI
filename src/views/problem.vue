@@ -6,7 +6,7 @@
         <v-card-text class="headline" v-text="$t('problems')"/>
         <v-card-text>
           <v-list three-line>
-            <v-list-tile v-for="(problem, i) in problems" :key="i" :to="'/problem/show/' + problem._id">
+            <v-list-tile v-for="problem in problems" :key="problem._id" :to="'/problem/show/' + problem._id">
               <v-list-tile-content>
                 <v-list-tile-title v-text="problem.title"/>
                 <v-list-tile-sub-title v-text="problem._id"/>

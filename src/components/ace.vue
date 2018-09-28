@@ -1,9 +1,10 @@
 <template>
-  <v-chip>
+  <v-chip @click="open('#' + link)">
     <v-icon left v-if="ace.type === 'role'">supervised_user_circle</v-icon>
     <v-icon left v-else-if="ace.type === 'user'">account_circle</v-icon>
     <v-icon left v-else>error</v-icon>
     {{ ace.name }}
+    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 
@@ -36,6 +37,16 @@ export default {
     } else {
       this.ace.name = this.$t("error");
       this.$emit("update:valid", false);
+    }
+  },
+  computed: {
+    link() {
+      return "/" + this.ace.type + "/show/" + this.id;
+    }
+  },
+  methods: {
+    open(url) {
+      window.open(url);
     }
   }
 };

@@ -6,7 +6,7 @@
         <v-card-title class="headline" v-text="$t('users')"/>
         <v-card-text>
           <v-list three-line>
-            <v-list-tile v-for="(user, i) in users" :key="i" :to="`/user/show/${user._id}`">
+            <v-list-tile v-for="user in users" :key="user._id" :to="`/user/show/${user._id}`">
               <v-list-tile-content>
                 <v-list-tile-title v-text="user.username"/>
                 <v-list-tile-sub-title v-text="user._id"/>

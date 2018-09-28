@@ -1,7 +1,8 @@
 <template>
-  <v-chip>
+  <v-chip @click="open('#/role/show/' + id)">
     <v-icon left>supervised_user_circle</v-icon>
     {{ role.rolename }}
+    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 
@@ -34,6 +35,11 @@ export default {
     } else {
       this.role.rolename = this.$t("error");
       this.$emit("update:valid", false);
+    }
+  },
+  methods: {
+    open(url) {
+      window.open(url);
     }
   }
 };

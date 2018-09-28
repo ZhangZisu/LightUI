@@ -19,9 +19,7 @@
 <script>
 export default {
   name: "zJsonViewer",
-  props: {
-    value: Object
-  },
+  props: ["value"],
   data() {
     return {
       parsed: [],
@@ -30,7 +28,8 @@ export default {
   },
   created() {
     for (let key in this.value) {
-      this.parsed.push({ key: key, value: this.value[key] });
+      if (this.value[key] !== null && this.value[key] !== "")
+        this.parsed.push({ key: key, value: this.value[key] });
     }
     this.expand = [...Array(this.parsed.length).keys()].map(() => true);
   }

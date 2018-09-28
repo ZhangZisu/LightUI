@@ -1,7 +1,8 @@
 <template>
-  <v-chip>
+  <v-chip @click="open('#/problem/show/' + id)">
     <v-icon left>notes</v-icon>
     {{ problem.title }}
+    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 
@@ -34,6 +35,11 @@ export default {
     } else {
       this.problem.title = this.$t("error");
       this.$emit("update:valid", false);
+    }
+  },
+  methods: {
+    open(url) {
+      window.open(url);
     }
   }
 };

@@ -6,7 +6,7 @@
         <v-card-title class="headline" v-text="$t('files')"/>
         <v-card-text>
           <v-list three-line>
-            <v-list-tile v-for="(file, i) in files" :key="i" avatar :to="'/file/show/' + file._id">
+            <v-list-tile v-for="file in files" :key="file._id" avatar :to="'/file/show/' + file._id">
               <v-list-tile-avatar>
                 <v-icon>folder</v-icon>
               </v-list-tile-avatar>

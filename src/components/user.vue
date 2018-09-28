@@ -1,7 +1,8 @@
 <template>
-  <v-chip>
+  <v-chip @click="open('#/user/show/' + id)">
     <v-icon left>account_circle</v-icon>
     {{ user.username }}
+    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 
@@ -34,6 +35,11 @@ export default {
     } else {
       this.user.username = this.$t("error");
       this.$emit("update:valid", false);
+    }
+  },
+  methods: {
+    open(url) {
+      window.open(url);
     }
   }
 };

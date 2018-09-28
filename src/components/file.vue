@@ -1,7 +1,8 @@
 <template>
-  <v-chip>
+  <v-chip @click="open('#/file/show/' + this.id)">
     <v-icon left>folder</v-icon>
     {{ file.filename }}
+    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 
@@ -34,6 +35,11 @@ export default {
     } else {
       this.file.filename = this.$t("error");
       this.$emit("update:valid", false);
+    }
+  },
+  methods: {
+    open(url) {
+      window.open(url);
     }
   }
 };
