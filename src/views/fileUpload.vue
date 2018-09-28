@@ -6,7 +6,7 @@
         <v-card-text class="headline" v-text="$t('upload_file')"/>
         <v-card-text>
           <form id="uploader" enctype="multipart/form-data">
-            <input type="file" id="files" name="files" multiple>
+            <input type="file" id="file" name="file">
           </form>
         </v-card-text>
         <v-card-actions>
