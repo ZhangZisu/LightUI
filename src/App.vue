@@ -115,6 +115,10 @@ export default {
         {
           name: "zh-Hans",
           display_name: "简体中文"
+        },
+        {
+          name: "zh-Hant",
+          display_name: "正體中文"
         }
       ]
     };
