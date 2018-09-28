@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel popout expand v-model="expand">
+  <v-expansion-panel expand v-model="expand">
     <v-expansion-panel-content v-for="(obj, i) in parsed" :key="i">
       <div slot="header" v-text="obj.key"/>
       <v-card>
