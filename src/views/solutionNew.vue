@@ -14,6 +14,17 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
+          <v-menu offset-y>
+            <v-btn flat slot="activator" v-text="$t('new')"/>
+            <v-list>
+              <v-list-tile to="/file/new">
+                <v-list-tile-title v-text="$t('editor')"/>
+              </v-list-tile>
+              <v-list-tile to="/file/upload">
+                <v-list-tile-title v-text="$t('upload')"/>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
           <v-btn depressed color="primary" v-text="$t('submit')" @click="submit"/>
         </v-card-actions>
       </v-card>
