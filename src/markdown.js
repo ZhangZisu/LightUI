@@ -12,7 +12,10 @@ renderer.code = (code, language) => {
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
 
-zmark.setOptions({ renderer: renderer, math: (text, display) => katex.renderToString(text, { displayMode: display }) });
+zmark.setOptions({
+  renderer: renderer,
+  math: (text, display) => katex.renderToString(text, { displayMode: display })
+});
 
 export default function render(markdown) {
   try {

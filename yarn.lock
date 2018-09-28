@@ -7628,6 +7628,6 @@ yorkie@^2.0.0:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-zmark@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/zmark/-/zmark-0.0.1.tgz#f9629d7ff993c3ef52a12a15c8f21bc101166858"
+zmark@^0.0.2:
+  version "0.0.2"
+  resolved "http://registry.npm.taobao.org/zmark/download/zmark-0.0.2.tgz#4636c4825a1f71536349b984ad884673e8bc25e1"
