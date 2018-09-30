@@ -32,6 +32,8 @@
         <v-card-text>
           <div class="subheading" v-text="$t('data_config')"/>
           <json-editor v-model="problem.data" :readonly="true"/>
+          <div class="subheading" v-text="$t('files')"/>
+          <file v-for="(file, i) in problem.files" :key="i" :id="file"/>
           <div class="subheading" v-text="$t('tags')"/>
           <v-chip label v-for="tag in problem.tags" :key="tag" v-text="tag"/>
           <v-divider/>
@@ -56,6 +58,7 @@
 <script>
 import user from "../components/user";
 import ace from "../components/ace";
+import file from "../components/file";
 import jsonEditor from "../components/jsonEditor";
 import { getURL, get } from "../httphelper";
 import render from "../markdown";
@@ -65,6 +68,7 @@ export default {
   components: {
     user,
     ace,
+    file,
     jsonEditor
   },
   props: {
