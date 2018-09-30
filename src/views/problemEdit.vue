@@ -10,11 +10,7 @@
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
           <div class="headline" v-text="$t('files')"/>
-          <z-array-editor v-model="problem.files" textProp="filename" :hint="$t('input_filename')" queryURL="/api/file/list">
-            <template slot="items" slot-scope="data">
-              <file :id="data.value"/>
-            </template>
-          </z-array-editor>
+          <z-file-editor v-model="problem.files"/>
           <div class="headline" v-text="$t('data_config')"/>
           <json-editor v-model="problem.data" :valid.sync="dataValid"/>
           <v-divider/>
@@ -48,7 +44,7 @@
 import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor";
 import zAccessControlEditor from "../components/zAccessControlEditor";
-import zArrayEditor from "../components/zArrayEditor";
+import zFileEditor from "../components/zFileEditor";
 import file from "../components/file";
 
 export default {
@@ -56,7 +52,7 @@ export default {
   components: {
     jsonEditor,
     zAccessControlEditor,
-    zArrayEditor,
+    zFileEditor,
     file
   },
   props: {

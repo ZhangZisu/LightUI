@@ -47,6 +47,7 @@
   "home_welcome_subtitle": "Online Judge with the latest web tech",
   "home_welcome_title": "Welcome to LightOnlineJudge",
   "id": "ID",
+  "index_and_id": "Index {0} ObjectID {1}",
   "input_filename": "Input filename",
   "input_problem_title": "Input problem title",
   "input_rolename": "Input rolename",

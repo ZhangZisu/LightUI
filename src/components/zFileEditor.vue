@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(value, i) in values">
-      <v-input append-icon="delete" @click:append="values.splice(i, 1)" :messages="[value]" :key="value">
+      <v-input append-icon="delete" @click:append="values.splice(i, 1)" :messages="[$t('index_and_id', [i, value])]" :key="value">
         <file :id="value"/>
       </v-input>
     </template>
@@ -20,18 +20,21 @@
     </template>
     <template v-else>
       <v-btn flat color="primary" @click="showAddForm = true" v-text="$t('add')"/>
+      <input type="file" id="file_upload" name="file_upload" multiple>
+      <v-btn flat @click="uploadFile" v-text="$t('upload')"/>
     </template>
   </div>
 </template>
 
 <script>
-import { getPURL, get } from "../httphelper";
+import { getURL, getPURL, get } from "../httphelper";
 import file from "./file";
+import axios from "axios";
 
 export default {
   name: "zArrayEditor",
   props: ["values"],
-  components:{
+  components: {
     file
   },
   model: {
@@ -58,7 +61,7 @@ export default {
   methods: {
     async querySelections(val) {
       this.loading = true;
-      const searchURL = getPURL('/api/file/list', { search: val }, 10, 1);
+      const searchURL = getPURL("/api/file/list", { search: val }, 10, 1);
       const result = await get(searchURL);
       if (result instanceof Array) {
         this.items = result;
@@ -66,6 +69,23 @@ export default {
         this.items = [];
       }
       this.loading = false;
+    },
+    async uploadFile() {
+      const files = document.getElementById("file_upload").files;
+      const url = getURL("/api/file/upload", {});
+      for (let file of files) {
+        let formData = new FormData();
+        formData.append("file", file);
+        const result = await axios.post(url, formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+        if (result.data.status === "success") {
+          this.values.push(result.data.payload);
+        } else {
+          //
+        }
+      }
+      document.getElementById("file_upload").value = null;
     }
   }
 };
