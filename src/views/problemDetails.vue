@@ -108,13 +108,13 @@ export default {
       this.dialog = false;
     },
     render: render,
-    async deleteProblem(){
-      if(confirm(this.$t('delete_problem_confirm', [this.problem.title]))){
+    async deleteProblem() {
+      if (confirm(this.$t("delete_problem_confirm", [this.problem.title]))) {
         const url = getURL(`/api/problem/${this.id}/`);
-        try{
+        try {
           await del(url);
           this.$router.push("/problem");
-        }catch(e){
+        } catch (e) {
           //
         }
       }

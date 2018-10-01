@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { getURL, get, post } from "../httphelper";
+import { getURL, get, post, del } from "../httphelper";
 import jsonEditor from "../components/jsonEditor";
 import ace from "../components/ace";
 import file from "../components/file";
@@ -146,13 +146,13 @@ export default {
         //
       }
     },
-    async deleteSolution(){
-      if(confirm(this.$t('delete_solution_confirm', [this.solution._id]))){
+    async deleteSolution() {
+      if (confirm(this.$t("delete_solution_confirm", [this.solution._id]))) {
         const url = getURL(`/api/solution/${this.id}/`);
-        try{
+        try {
           await del(url);
           this.$router.push("/solution");
-        }catch(e){
+        } catch (e) {
           //
         }
       }

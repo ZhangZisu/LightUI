@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { getURL, get } from "../httphelper";
+import { getURL, get, del } from "../httphelper";
 import role from "../components/role";
 import jsonEditor from "../components/jsonEditor";
 
@@ -78,14 +78,14 @@ export default {
     this.user = await get(url);
     this.loading = false;
   },
-  methods:{
-    async deleteUser(){
-      if(confirm(this.$t('delete_user_confirm', [this.user.username]))){
+  methods: {
+    async deleteUser() {
+      if (confirm(this.$t("delete_user_confirm", [this.user.username]))) {
         const url = getURL(`/api/user/${this.userID}/`);
-        try{
+        try {
           await del(url);
           this.$router.push("/user");
-        }catch(e){
+        } catch (e) {
           //
         }
       }

@@ -22,7 +22,7 @@
 
 <script>
 import jsonEditor from "../components/jsonEditor";
-import { getURL, get } from "../httphelper";
+import { getURL, get, del } from "../httphelper";
 
 export default {
   name: "roleDetails",
@@ -49,13 +49,13 @@ export default {
     this.loading = false;
   },
   methods: {
-    async deleteRole(){
-      if(confirm(this.$t('delete_role_confirm', [this.role.rolename]))){
+    async deleteRole() {
+      if (confirm(this.$t("delete_role_confirm", [this.role.rolename]))) {
         const url = getURL(`/api/role/${this.roleID}/`);
-        try{
+        try {
           await del(url);
           this.$router.push("/role");
-        }catch(e){
+        } catch (e) {
           //
         }
       }
