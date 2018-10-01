@@ -16,8 +16,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn flat v-text="$t('more_info')" @click="dialog = true"/>
-          <v-btn v-if="problem.data.type" flat color="primary" v-text="$t('submit')" :to="'/solution/new?id=' + problem._id + '&type=' + problem.data.type"/>
+          <v-btn color="info" v-text="$t('more_info')" @click="dialog = true"/>
+          <v-btn color="error" v-if="problem.data.type" v-text="$t('submit')" :to="'/solution/new?id=' + problem._id + '&type=' + problem.data.type"/>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -48,6 +48,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
+          <v-btn color="error" v-text="$t('delete')" @click="deleteProblem"/>
           <v-btn :to="'/problem/edit/' + problem._id" v-text="$t('edit')"/>
         </v-card-actions>
       </v-card>
@@ -60,7 +61,7 @@ import user from "../components/user";
 import ace from "../components/ace";
 import file from "../components/file";
 import jsonEditor from "../components/jsonEditor";
-import { getURL, get } from "../httphelper";
+import { getURL, get, del } from "../httphelper";
 import render from "../markdown";
 
 export default {
@@ -106,7 +107,18 @@ export default {
     async submit() {
       this.dialog = false;
     },
-    render: render
+    render: render,
+    async deleteProblem(){
+      if(confirm(this.$t('delete_problem_confirm', [this.problem.title]))){
+        const url = getURL(`/api/problem/${this.id}/`);
+        try{
+          await del(url);
+          this.$router.push("/problem");
+        }catch(e){
+          //
+        }
+      }
+    }
   }
 };
 </script>

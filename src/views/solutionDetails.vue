@@ -49,6 +49,10 @@
           <div class="subheading" v-text="$t('can_rejudge')"/>
           <ace label v-for="ace in solution.allowedRejudge" :key="`arj_${ace}`" :id="ace"/>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn color="error" v-text="$t('delete')" @click="deleteSolution"/>
+        </v-card-actions>
       </v-card>
     </v-flex>
     <v-snackbar v-model="showSnackbar">
@@ -140,6 +144,17 @@ export default {
         this.resultVersion++;
       } catch (e) {
         //
+      }
+    },
+    async deleteSolution(){
+      if(confirm(this.$t('delete_solution_confirm', [this.solution._id]))){
+        const url = getURL(`/api/solution/${this.id}/`);
+        try{
+          await del(url);
+          this.$router.push("/solution");
+        }catch(e){
+          //
+        }
       }
     }
   }

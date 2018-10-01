@@ -13,7 +13,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer/>
-        <v-btn depressed color="primary" v-text="$t('edit')" :to="'/role/edit/' + roleID"/>
+        <v-btn color="error" v-text="$t('delete')" @click="deleteRole"/>
+        <v-btn color="info" v-text="$t('edit')" :to="'/role/edit/' + roleID"/>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -46,6 +47,19 @@ export default {
     const url = getURL(`/api/role/${this.roleID}`);
     this.role = await get(url);
     this.loading = false;
+  },
+  methods: {
+    async deleteRole(){
+      if(confirm(this.$t('delete_role_confirm', [this.role.rolename]))){
+        const url = getURL(`/api/role/${this.roleID}/`);
+        try{
+          await del(url);
+          this.$router.push("/role");
+        }catch(e){
+          //
+        }
+      }
+    }
   }
 };
 </script>

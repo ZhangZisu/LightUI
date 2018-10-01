@@ -27,9 +27,9 @@
           <v-spacer/>
           <v-btn depressed v-text="$t('preview')" @click="openPreview"/>
           <v-btn depressed v-text="$t('download')" @click="downloadFile"/>
-          <v-btn depressed v-text="$t('delete')" @click="deleteFile"/>
-          <v-btn depressed v-text="$t('cancel')" @click="$router.go(-1)"/>
-          <v-btn depressed color="primary" v-text="$t('edit')" :to="'/file/edit/' + fileID"/>
+          <v-btn depressed color="error" v-text="$t('delete')" @click="deleteFile"/>
+          <v-btn depressed color="warning" v-text="$t('cancel')" @click="$router.go(-1)"/>
+          <v-btn depressed color="info" v-text="$t('edit')" :to="'/file/edit/' + fileID"/>
         </v-card-actions>
       </v-card>
     </v-flex>

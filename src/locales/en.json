@@ -25,6 +25,7 @@
   "data_config": "Data config",
   "delete": "Delete",
   "delete_file_confirm": "Do you really want to delete file {0}?",
+  "delete_problem_confirm": "Do you really want to delete problem {0}?",
   "description": "Description",
   "direct": "Direct",
   "download": "Download",
