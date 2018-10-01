@@ -12,6 +12,20 @@
           <div class="headline" v-text="$t('files')"/>
           <z-file-editor v-model="problem.files"/>
           <div class="headline" v-text="$t('data_config')"/>
+          <v-menu offset-y>
+            <v-btn slot="activator" color="primary" flat v-text="$t('auto_generate')" />
+            <v-list>
+              <v-list-tile @click="generateTraditional">
+                <v-list-tile-title v-text="$t('traditional')" />
+              </v-list-tile>
+              <v-list-tile @click="generateDirect">
+                <v-list-tile-title v-text="$t('direct')" />
+              </v-list-tile>
+              <v-list-tile @click="generateVirtual">
+                <v-list-tile-title v-text="$t('virtual')" />
+              </v-list-tile>
+            </v-list>
+          </v-menu>
           <json-editor v-model="problem.data" :valid.sync="dataValid"/>
           <v-divider/>
           <div class="headline" v-text="$t('meta')"/>
@@ -47,6 +61,9 @@ import zAccessControlEditor from "../components/zAccessControlEditor";
 import zFileEditor from "../components/zFileEditor";
 import zMarkdownEditor from "../components/zMarkdownEditor";
 import file from "../components/file";
+
+const programExts = ["c", "cpp", "java", "js"];
+const testcaseExts = ["in", "out", "ans"];
 
 export default {
   name: "problemEditView",
@@ -122,6 +139,86 @@ export default {
         const fetchURL = getURL(`/api/problem/${this.id}`, {});
         this.problem = await get(fetchURL);
         this.loaded = true;
+      }
+    },
+    async generateDirect() {
+      this.problem.data = {
+        version: "1.0",
+        type: "direct",
+        judgerFile: 0,
+        testcases: []
+      };
+    },
+    async generateTraditional() {
+      try {
+        this.showSnackbar = true;
+        this.snackbarText = this.$t("fetching_file_info");
+        let esmated = {};
+        let judgerFile = 0;
+        for (let i in this.problem.files) {
+          const file = this.problem.files[i];
+          const url = getURL(`/api/file/${file}/summary`, {});
+          const result = await get(url);
+          const filename = result.filename;
+          const fullname = filename.substring(0, filename.lastIndexOf("."));
+          const extname = filename.substring(
+            filename.lastIndexOf(".") + 1,
+            filename.length
+          );
+          if (testcaseExts.includes(extname)) {
+            if (!esmated[fullname]) esmated[fullname] = {};
+            esmated[fullname][extname] = i;
+          }
+          if (programExts.includes(extname)) {
+            judgerFile = i;
+          }
+        }
+        const subtaskmap = {};
+        let count = 0;
+        for (let name in esmated) {
+          const pos = name.indexOf("_");
+          const subtaskname = ~pos ? name.substring(0, pos) : "_default_";
+          if (!subtaskmap[subtaskname]) {
+            subtaskmap[subtaskname] = [];
+            count++;
+          }
+          subtaskmap[subtaskname].push({
+            input: esmated[name]["in"],
+            output: esmated[name]["out"] || esmated[name]["ans"]
+          });
+        }
+        const subtasks = [];
+        for (let name in subtaskmap) {
+          subtasks.push({
+            name,
+            score: 100 / count,
+            testcases: subtaskmap[name],
+            autoSkip: true,
+            timeLimit: 1000,
+            memoryLimit: 512 * 1024 * 1024
+          });
+        }
+        this.problem.data = {
+          version: "1.0",
+          type: "traditional",
+          judgerFile,
+          subtasks
+        };
+      } catch (e) {
+        this.showSnackbar = true;
+        this.snackbarText = e.message;
+      }
+    },
+    async generateVirtual() {
+      if (confirm(this.$t("this_operation_will_rewrite_data"))) {
+        const origin = prompt(this.$t("remote_oj"));
+        const problemID = prompt(this.$t("remote_problem_id"));
+        this.problem.data = {
+          version: "1.0",
+          type: "virtual",
+          origin,
+          problemID
+        };
       }
     }
   }

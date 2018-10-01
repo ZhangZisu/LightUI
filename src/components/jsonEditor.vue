@@ -17,6 +17,11 @@ export default {
     prop: "value",
     event: "updateValue"
   },
+  watch: {
+    value(val) {
+      this.editor.set(val);
+    }
+  },
   mounted() {
     let options = {
       modes: this.readonly ? ["view"] : ["tree", "code", "text"],
