@@ -41,13 +41,19 @@ export default {
       const formData = new FormData(form);
       const url = getURL("/api/file/upload", {});
       try {
-        const id = await axios.post(url, formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        });
-        this.showProgressBar = false;
-        this.showSnackbar = true;
-        this.snackbarText = this.$t("upload_finished");
-        this.$router.push("/file/show/" + id);
+        try {
+          const id = (await axios.post(url, formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+          })).data.payload;
+          this.showProgressBar = false;
+          this.showSnackbar = true;
+          this.snackbarText = this.$t("upload_finished");
+          this.$router.push("/file/show/" + id);
+        } catch (e) {
+          this.showProgressBar = false;
+          this.showSnackbar = true;
+          this.snackbarText = this.$t("upload_failed");
+        }
       } catch (e) {
         this.showProgressBar = false;
         this.showSnackbar = true;

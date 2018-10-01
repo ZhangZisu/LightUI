@@ -16,7 +16,7 @@
           </v-list>
         </v-card-text>
         <v-card-actions>
-          <v-pagination v-model="page" :length="allPages"/>
+          <v-pagination v-model="page" :length="allPages" :total-visible="7"/>
           <v-spacer/>
           <v-dialog width="500">
             <v-btn slot="activator" v-text="$t('filter')"/>

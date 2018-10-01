@@ -59,3 +59,17 @@ export const post = async (url, data) => {
     throw e;
   }
 };
+
+export const del = async url => {
+  try {
+    const res = await axios.delete(url);
+    if (res.data.status === "success") {
+      return res.data.payload;
+    } else {
+      throw new Error(res.data.payload);
+    }
+  } catch (e) {
+    store.commit("updateError", e.message);
+    throw e;
+  }
+};

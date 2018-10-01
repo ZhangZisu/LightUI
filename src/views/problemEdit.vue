@@ -6,7 +6,7 @@
         <v-card-title class="headline" v-text="$t('edit_problem')"/>
         <v-card-text v-if="loaded">
           <v-text-field :label="$t('title')" v-model="problem.title"/>
-          <v-textarea :label="$t('content')" v-model="problem.content"/>
+          <z-markdown-editor v-model="problem.content"/>
           <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
           <v-divider/>
           <div class="headline" v-text="$t('files')"/>
@@ -45,6 +45,7 @@ import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor";
 import zAccessControlEditor from "../components/zAccessControlEditor";
 import zFileEditor from "../components/zFileEditor";
+import zMarkdownEditor from "../components/zMarkdownEditor";
 import file from "../components/file";
 
 export default {
@@ -53,6 +54,7 @@ export default {
     jsonEditor,
     zAccessControlEditor,
     zFileEditor,
+    zMarkdownEditor,
     file
   },
   props: {

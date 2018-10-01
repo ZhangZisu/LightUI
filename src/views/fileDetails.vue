@@ -27,6 +27,7 @@
           <v-spacer/>
           <v-btn depressed v-text="$t('preview')" @click="openPreview"/>
           <v-btn depressed v-text="$t('download')" @click="downloadFile"/>
+          <v-btn depressed v-text="$t('delete')" @click="deleteFile"/>
           <v-btn depressed v-text="$t('cancel')" @click="$router.go(-1)"/>
           <v-btn depressed color="primary" v-text="$t('edit')" :to="'/file/edit/' + fileID"/>
         </v-card-actions>
@@ -37,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import { getURL, get } from "../httphelper";
+import { getURL, get, del } from "../httphelper";
 import ace from "../components/ace";
 import user from "../components/user";
 
@@ -88,6 +89,17 @@ export default {
         axios.defaults.baseURL +
         getURL("/api/file/" + this.fileID + "/raw", {});
       window.open(link);
+    },
+    async deleteFile() {
+      if (confirm(this.$t("delete_file_confirm", [this.file.filename]))) {
+        const url = getURL(`/api/file/${this.fileID}`);
+        try {
+          await del(url);
+          this.$router.push("/file");
+        } catch (e) {
+          //
+        }
+      }
     }
   }
 };
