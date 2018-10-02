@@ -14,7 +14,7 @@
   "can_rejudge": "允许重测提交对象",
   "can_submit": "允许提交对象",
   "cancel": "取消",
-  "cannot_be_empty": "",
+  "cannot_be_empty": "不能为空",
   "chooseRole": "选择角色",
   "choose_user_or_role": "选择角色或用户",
   "content": "内容",
