@@ -16,12 +16,12 @@
           </v-list-tile-content>
         </template>
       </v-autocomplete>
-      <v-btn flat color="primary" @click="values.push(newItem), showAddForm = false" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
-      <v-btn flat @click="showAddForm = false" v-text="$t('cancel')"/>
+      <v-btn color="info" @click="values.push(newItem), showAddForm = false" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
+      <v-btn @click="showAddForm = false" v-text="$t('cancel')"/>
       {{ $t('selected', [newItem]) }}
     </template>
     <template v-else>
-      <v-btn flat color="primary" @click="showAddForm = true" v-text="$t('add')"/>
+      <v-btn color="info" @click="showAddForm = true" v-text="$t('add')"/>
     </template>
   </div>
 </template>

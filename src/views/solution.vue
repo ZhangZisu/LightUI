@@ -38,7 +38,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" flat v-text="$t('apply')" :to="'/solution?' + generateQuery(filter)"/>
+                <v-btn color="info" v-text="$t('apply')" :to="'/solution?' + generateQuery(filter)"/>
               </v-card-actions>
             </v-card>
           </v-dialog>

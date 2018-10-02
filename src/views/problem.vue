@@ -36,11 +36,11 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" flat v-text="$t('apply')" :to="'/problem?' + generateQuery(filter)"/>
+                <v-btn color="info" v-text="$t('apply')" :to="'/problem?' + generateQuery(filter)"/>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn color="primary" v-text="$t('new')" to="/problem/new"/>
+          <v-btn color="info" v-text="$t('new')" to="/problem/new"/>
         </v-card-actions>
       </v-card>
     </v-flex>

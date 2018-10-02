@@ -11,7 +11,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="primary" @click.stop="register" v-text="$t('register')"/>
+          <v-btn color="info" @click.stop="register" v-text="$t('register')"/>
         </v-card-actions>
       </v-card>
     </v-flex>

@@ -6,16 +6,12 @@
         <v-card-title class="headline" v-text="$t('new_solution')"/>
         <v-card-text>
           <v-text-field :label="$t('problem_id')" v-model="problemID" readonly/>
-          <z-array-editor v-model="files" textProp="filename" :hint="$t('input_filename')" queryURL="/api/file/list">
-            <template slot="items" slot-scope="data">
-              <file :id="data.value"/>
-            </template>
-          </z-array-editor>
+          <z-file-editor v-model="files"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
           <v-menu offset-y>
-            <v-btn flat slot="activator" v-text="$t('new')"/>
+            <v-btn slot="activator" v-text="$t('new')"/>
             <v-list>
               <v-list-tile to="/file/new">
                 <v-list-tile-title v-text="$t('editor')"/>
@@ -25,7 +21,7 @@
               </v-list-tile>
             </v-list>
           </v-menu>
-          <v-btn depressed color="primary" v-text="$t('submit')" @click="submit"/>
+          <v-btn depressed color="info" v-text="$t('submit')" @click="submit"/>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -38,13 +34,13 @@
 <script>
 import { getURL, post } from "../httphelper";
 import file from "../components/file";
-import zArrayEditor from "../components/zArrayEditor";
+import zFileEditor from "../components/zFileEditor";
 
 export default {
   name: "solutionNewView",
   components: {
     file,
-    zArrayEditor
+    zFileEditor
   },
   props: {
     problemID: {

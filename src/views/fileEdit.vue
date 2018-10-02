@@ -18,8 +18,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn flat v-text="$t('cancel')" @click="$router.go(-1)"/>
-          <v-btn color="primary" v-text="$t('save')" @click="save"/>
+          <v-btn v-text="$t('cancel')" @click="$router.go(-1)"/>
+          <v-btn color="info" v-text="$t('save')" @click="save"/>
         </v-card-actions>
       </v-card>
     </v-flex>

@@ -28,11 +28,11 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" flat v-text="$t('apply')" :to="'/role?' + generateQuery(filter)"/>
+                <v-btn color="info" v-text="$t('apply')" :to="'/role?' + generateQuery(filter)"/>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn color="primary" depressed v-text="$t('new')" to="/role/new"/>
+          <v-btn color="info" depressed v-text="$t('new')" to="/role/new"/>
         </v-card-actions>
       </v-card>
     </v-flex>

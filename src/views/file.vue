@@ -32,12 +32,12 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" flat v-text="$t('apply')" :to="'/file?' + generateQuery(filter)"/>
+                  <v-btn color="info" v-text="$t('apply')" :to="'/file?' + generateQuery(filter)"/>
                 </v-card-actions>
               </v-card>
             </v-dialog>
             <v-menu offset-y>
-              <v-btn slot="activator" color="primary" v-text="$t('new')"/>
+              <v-btn slot="activator" color="info" v-text="$t('new')"/>
               <v-list>
                 <v-list-tile to="/file/new">
                   <v-list-tile-title v-text="$t('editor')"/>

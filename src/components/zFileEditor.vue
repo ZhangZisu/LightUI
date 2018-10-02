@@ -5,7 +5,7 @@
         <file :id="value"/>
       </v-input>
     </template>
-    <template v-if="showAddForm">
+    <template v-if="formKind === 1">
       <v-autocomplete :loading="loading" :items="items" :search-input.sync="search" v-model="newItem" cache-items flat hide-no-data hide-details item-text="filename" item-value="_id" :label="$t('input_filename')">
         <template slot="item" slot-scope="data">
           <v-list-tile-content>
@@ -14,28 +14,53 @@
           </v-list-tile-content>
         </template>
       </v-autocomplete>
-      <v-btn flat color="primary" @click="values.push(newItem), showAddForm = false" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
-      <v-btn flat @click="showAddForm = false" v-text="$t('cancel')"/>
+      <v-btn color="info" @click="values.push(newItem), formKind = 0" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
+      <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
       {{ $t('selected', [newItem]) }}
     </template>
-    <template v-else>
-      <v-btn flat color="primary" @click="showAddForm = true" v-text="$t('add')"/>
+    <template v-else-if="formKind === 2">
+      <v-text-field v-model="file.filename" :label="$t('filename')"/>
+      <v-text-field v-model="file.description" :label="$t('description')"/>
+      <editor v-model="file.content" :lang="lang" height="500" @init="editorInit"/>
+      <v-btn color="info" v-text="$t('submit')" @click="createFile"/>
+      <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
+    </template>
+    <template v-else-if="formKind === 3">
       <input type="file" id="file_upload" name="file_upload" multiple>
-      <v-btn flat @click="uploadFile" v-text="$t('upload')"/>
+      <v-btn color="info" @click="uploadFile" v-text="$t('upload')"/>
+      <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
+    </template>
+    <template v-else>
+      <v-menu offset-y>
+        <v-btn slot="activator" color="info" v-text="$t('new')"/>
+        <v-list>
+          <v-list-tile @click="formKind = 1">
+            <v-list-tile-title v-text="$t('select')"/>
+          </v-list-tile>
+          <v-list-tile @click="formKind = 2">
+            <v-list-tile-title v-text="$t('editor')"/>
+          </v-list-tile>
+          <v-list-tile @click="formKind = 3">
+            <v-list-tile-title v-text="$t('upload')"/>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </template>
   </div>
 </template>
 
 <script>
-import { getURL, getPURL, get } from "../httphelper";
+import { getURL, getPURL, get, post } from "../httphelper";
 import file from "./file";
 import axios from "axios";
+import Editor from "vue2-ace-editor";
 
 export default {
   name: "zArrayEditor",
   props: ["values"],
   components: {
-    file
+    file,
+    editor: Editor
   },
   model: {
     prop: "values",
@@ -47,7 +72,12 @@ export default {
       items: [],
       search: "",
       newItem: null,
-      showAddForm: false
+      formKind: 0,
+      file: {
+        content: "",
+        filename: "",
+        description: "No description"
+      }
     };
   },
   watch: {
@@ -86,6 +116,28 @@ export default {
         }
       }
       document.getElementById("file_upload").value = null;
+    },
+    async createFile() {
+      const url = getURL("/api/file/create", {});
+      try {
+        const id = await post(url, this.file);
+        this.values.push(id);
+      } catch (e) {
+        //
+      }
+      this.file.filename = "";
+      this.file.content = "";
+      this.file.description = "No description";
+    },
+    editorInit() {
+      require("brace/ext/language_tools");
+      require("brace/ext/beautify");
+      require("brace/ext/searchbox");
+      require("brace/mode/html");
+      require("brace/mode/javascript");
+      require("brace/mode/markdown");
+      require("brace/theme/chrome");
+      require("brace/snippets/javascript");
     }
   }
 };
