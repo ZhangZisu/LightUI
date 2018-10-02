@@ -18,8 +18,10 @@
               </template>
             </z-array-editor>
           </v-form>
-          <div class="subheading" v-text="$t('access_config')"/>
-          <json-editor v-model="user.config" :valid.sync="valid" v-if="!loading && userID"/>
+          <template v-if="!loading && userID">
+            <div class="subheading" v-text="$t('access_config')"/>
+            <json-editor v-model="user.config" :valid.sync="valid"/>
+          </template>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>

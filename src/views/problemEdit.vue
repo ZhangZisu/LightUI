@@ -31,15 +31,17 @@
           <div class="headline" v-text="$t('meta')"/>
           <json-editor v-model="problem.meta" :valid.sync="metaValid"/>
           <!-- Access Control -->
-          <div class="headline" v-text="$t('can_read')"/>
-          <v-divider/>
-          <z-access-control-editor v-model="problem.allowedRead"/>
-          <div class="headline" v-text="$t('can_modify')"/>
-          <v-divider/>
-          <z-access-control-editor v-model="problem.allowedModify"/>
-          <div class="headline" v-text="$t('can_submit')"/>
-          <v-divider/>
-          <z-access-control-editor v-model="problem.allowedSubmit"/>
+          <template v-if="id">
+            <div class="headline" v-text="$t('can_read')"/>
+            <v-divider/>
+            <z-access-control-editor v-model="problem.allowedRead"/>
+            <div class="headline" v-text="$t('can_modify')"/>
+            <v-divider/>
+            <z-access-control-editor v-model="problem.allowedModify"/>
+            <div class="headline" v-text="$t('can_submit')"/>
+            <v-divider/>
+            <z-access-control-editor v-model="problem.allowedSubmit"/>
+          </template>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
