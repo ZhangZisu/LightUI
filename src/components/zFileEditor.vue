@@ -21,7 +21,7 @@
     <template v-else-if="formKind === 2">
       <v-text-field v-model="file.filename" :label="$t('filename')"/>
       <v-text-field v-model="file.description" :label="$t('description')"/>
-      <editor v-model="file.content" :lang="lang" height="500" @init="editorInit"/>
+      <editor v-model="file.content" height="500" @init="editorInit"/>
       <v-btn color="info" v-text="$t('submit')" @click="createFile"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
     </template>
