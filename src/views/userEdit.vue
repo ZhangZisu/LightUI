@@ -63,7 +63,7 @@ export default {
     };
   },
   async mounted() {
-    if(this.userID){
+    if (this.userID) {
       const url = getURL(`/api/user/${this.userID}`);
       this.user = await get(url);
     }
@@ -72,22 +72,24 @@ export default {
   methods: {
     async save() {
       this.loading = true;
-      try{
-        if(this.userID){
+      try {
+        if (this.userID) {
           const url = getURL(`/api/user/${this.userID}`);
           await post(url, this.user);
-        }else{
+        } else {
           const url = getURL(`/api/user/new`);
           const id = await post(url, this.user);
           this.$router.push(`/user/show/${id}`);
         }
-      }catch(e){
+      } catch (e) {
         //
       }
       this.loading = false;
     },
-    notEmpty(val){
-      return ((typeof val === "string") && val.length) || this.$t('cannot_be_empty');
+    notEmpty(val) {
+      return (
+        (typeof val === "string" && val.length) || this.$t("cannot_be_empty")
+      );
     }
   }
 };

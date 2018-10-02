@@ -45,7 +45,7 @@ export default {
     };
   },
   async mounted() {
-    if(this.roleID){
+    if (this.roleID) {
       const url = getURL(`/api/role/${this.roleID}`);
       this.role = await get(url);
     }
@@ -54,22 +54,24 @@ export default {
   methods: {
     async save() {
       this.loading = true;
-      try{
-        if(this.roleID){
+      try {
+        if (this.roleID) {
           const url = getURL(`/api/role/${this.roleID}`);
           await post(url, this.role);
-        }else{
+        } else {
           const url = getURL(`/api/role/new`);
           const id = await post(url, this.role);
           this.$router.push(`/role/show/${id}`);
         }
-      }catch(e){
+      } catch (e) {
         //
       }
       this.loading = false;
     },
-    notEmpty(val){
-      return ((typeof val === "string") && val.length) || this.$t('cannot_be_empty');
+    notEmpty(val) {
+      return (
+        (typeof val === "string" && val.length) || this.$t("cannot_be_empty")
+      );
     }
   }
 };
