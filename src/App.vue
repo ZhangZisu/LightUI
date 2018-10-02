@@ -93,7 +93,7 @@
     <v-footer app fixed dark color="primary">
       <span class="pa-2">&copy;ZhangZisu 2018</span>
       <v-spacer/>
-      <span class="pa-2">version 0.0.2</span>
+      <span class="pa-2">version 0.0.3</span>
     </v-footer>
     <v-snackbar v-model="snackbar">
       {{ snackbarText }}
