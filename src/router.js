@@ -128,6 +128,12 @@ const router = new Router({
       props: route => ({ roleID: route.params.id })
     },
     {
+      path: "/role/new",
+      name: "newRole",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/roleEdit")
+    },
+    {
       path: "/user",
       name: "user",
       component: () => import(/* webpackChunkName: "admin" */ "./views/user"),
@@ -146,6 +152,12 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "admin" */ "./views/userEdit"),
       props: route => ({ userID: route.params.id })
+    },
+    {
+      path: "/user/new",
+      name: "newUser",
+      component: () =>
+        import(/* webpackChunkName: "admin" */ "./views/userEdit")
     },
     {
       path: "/logout",

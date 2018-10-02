@@ -10,18 +10,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-menu offset-y>
-            <v-btn slot="activator" v-text="$t('new')"/>
-            <v-list>
-              <v-list-tile to="/file/new">
-                <v-list-tile-title v-text="$t('editor')"/>
-              </v-list-tile>
-              <v-list-tile to="/file/upload">
-                <v-list-tile-title v-text="$t('upload')"/>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-          <v-btn depressed color="info" v-text="$t('submit')" @click="submit"/>
+          <v-btn depressed color="info" v-text="$t('submit')" @click="submit" :disabled="!files.length"/>
         </v-card-actions>
       </v-card>
     </v-flex>

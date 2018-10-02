@@ -14,6 +14,7 @@
   "can_rejudge": "允許重測提交對象",
   "can_submit": "允許提交對象",
   "cancel": "取消",
+  "cannot_be_empty": "",
   "chooseRole": "選擇角色",
   "choose_user_or_role": "選擇角色或用戶",
   "content": "內容",

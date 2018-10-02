@@ -72,7 +72,7 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app>
+    <v-toolbar app dark color="primary">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
       <v-toolbar-title v-text="title"/>
       <v-spacer/>
@@ -90,8 +90,10 @@
     <v-content>
       <router-view :key="$route.fullPath"/>
     </v-content>
-    <v-footer app fixed>
-      <span>&copy;ZhangZisu 2018</span>
+    <v-footer app fixed dark color="primary">
+      <span class="pa-2">&copy;ZhangZisu 2018</span>
+      <v-spacer/>
+      <span class="pa-2">version 0.0.2</span>
     </v-footer>
     <v-snackbar v-model="snackbar">
       {{ snackbarText }}

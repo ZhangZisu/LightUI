@@ -40,7 +40,7 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn color="info" v-text="$t('new')"/>
+          <v-btn color="info" to="/user/new" v-text="$t('new')"/>
         </v-card-actions>
       </v-card>
     </v-flex>
