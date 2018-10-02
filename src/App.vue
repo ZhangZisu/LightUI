@@ -81,7 +81,7 @@
 					<v-icon>language</v-icon>
 				</v-btn>
 				<v-list>
-					<v-list-tile v-for="(lang, i) in languages" :key="`lang${i}`" ripple @click="$i18n.locale = lang.name">
+					<v-list-tile v-for="(lang, i) in languages" :key="`lang${i}`" ripple @click="setLang(lang.name)">
 						<v-list-tile-title v-text="lang.display_name"/>
 					</v-list-tile>
 				</v-list>
@@ -138,11 +138,22 @@ export default {
     }
   },
   created() {
-    for (let language of navigator.languages) {
-      if (this.languages.filter(x => x.name === language).length) {
-        this.$i18n.locale = language;
-        break;
+    let language = localStorage.getItem("language");
+    if (language) {
+      this.$i18n.locale = language;
+    } else {
+      for (let language of navigator.languages) {
+        if (this.languages.filter(x => x.name === language).length) {
+          this.$i18n.locale = language;
+          break;
+        }
       }
+    }
+  },
+  methods: {
+    setLang(language) {
+      this.$i18n.locale = language;
+      localStorage.setItem("language", language);
     }
   }
 };
