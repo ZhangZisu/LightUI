@@ -100,7 +100,10 @@ export default {
     const url = getURL(`/api/problem/${this.id}`);
     const problem = await get(url);
     this.problem = problem;
-    this.$store.commit("updateTitle", this.$t('title_problem', [problem.title]));
+    this.$store.commit(
+      "updateTitle",
+      this.$t("title_problem", [problem.title])
+    );
     this.loaded = true;
     this.showProgressBar = false;
   },

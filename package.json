@@ -10,7 +10,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "highlight.js": "^9.12.0",
+    "html2canvas": "^1.0.0-alpha.12",
     "jsoneditor": "^5.24.6",
+    "jspdf": "^1.4.1",
     "katex": "^0.10.0-rc.1",
     "query-string": "^6.1.0",
     "randomstring": "^1.1.5",

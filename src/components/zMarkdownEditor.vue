@@ -1,23 +1,38 @@
 <template>
   <div>
-    <div class="z-markdown-editor-main" v-if="showPreview">
+    <div class="z-markdown-editor-main" v-if="view === 1">
       <div class="z-markdown-editor-left">
         <editor v-model="content" lang="markdown" height="500" @init="editorInit"/>
       </div>
       <div class="z-markdown-editor-right">
-        <article class="markdown-body" v-html="rendered"/>
+        <article id="rendered" class="markdown-body" v-html="rendered"/>
       </div>
     </div>
-    <div v-else>
+    <div v-else-if="view === 0">
       <editor v-model="content" lang="markdown" height="500" @init="editorInit"/>
     </div>
-    <v-switch v-model="showPreview" :label="$t('preview')"/>
+    <div v-else>
+      <div class="z-markdown-editor-preview">
+        <article id="rendered" class="markdown-body" v-html="rendered"/>
+      </div>
+    </div>
+    <v-menu :close-on-content-click="false" offset-x>
+      <v-btn slot="activator" color="info" v-text="$t('operations')"/>
+      <v-card>
+        <v-card-text>
+          <v-slider v-model="view" :tick-labels="ticksLabels" :max="2" step="1" ticks="always"/>
+          <v-btn color="info" v-text="$t('export_to_pdf')" @click="pdf" :disabled="view === 0"/>
+        </v-card-text>
+      </v-card>
+    </v-menu>
   </div>
 </template>
 
 <script>
 import Editor from "vue2-ace-editor";
 import render from "../markdown";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export default {
   name: "zMarkdownEditor",
@@ -38,7 +53,12 @@ export default {
     return {
       content: "",
       rendered: "",
-      showPreview: true
+      view: 1,
+      ticksLabels: [
+        this.$t('editor'),
+        this.$t('both'),
+        this.$t('preview')
+      ]
     };
   },
   created() {
@@ -58,6 +78,39 @@ export default {
       require("brace/ext/searchbox");
       require("brace/mode/markdown");
       require("brace/theme/chrome");
+    },
+    pdf() {
+      html2canvas(document.getElementById("rendered"), {
+        background: "#fff",
+        allowTaint: true
+      }).then(canvas => {
+        let imgData = canvas.toDataURL("image/jpeg");
+        let img = new Image();
+        img.src = imgData;
+        img.onload = function() {
+          let doc = null;
+          if (this.width > this.height) {
+            doc = new jsPDF("l", "mm", [
+              this.width * 0.225,
+              this.height * 0.225
+            ]);
+          } else {
+            doc = new jsPDF("p", "mm", [
+              this.width * 0.225,
+              this.height * 0.225
+            ]);
+          }
+          doc.addImage(
+            imgData,
+            "jpeg",
+            0,
+            0,
+            this.width * 0.225,
+            this.height * 0.225
+          );
+          doc.save("export.pdf");
+        };
+      });
     }
   }
 };
@@ -79,4 +132,8 @@ export default {
   height 500px
   overflow scroll
   border-left 1px solid #c1c1c1
+
+.z-markdown-editor-preview
+  height 500px
+  overflow scroll
 </style>
