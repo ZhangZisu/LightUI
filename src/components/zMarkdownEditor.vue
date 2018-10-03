@@ -65,16 +65,18 @@ export default {
 
 <style lang="stylus" scoped>
 .z-markdown-editor-main
-    height 500px
+  height 500px
 
 .z-markdown-editor-left
-    width 50%
-    float left
-    height 500px
+  width 50%
+  float left
+  height 500px
+  border-right 1px solid #c1c1c1
 
 .z-markdown-editor-right
-    width 50%
-    float left
-    height 500px
-    overflow scroll
+  width 50%
+  float left
+  height 500px
+  overflow scroll
+  border-left 1px solid #c1c1c1
 </style>

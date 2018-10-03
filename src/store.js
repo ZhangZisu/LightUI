@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     updateTitle(store, title) {
       store.title = title;
+      document.title = title;
     }
   },
   actions: {}

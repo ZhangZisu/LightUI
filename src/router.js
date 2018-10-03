@@ -5,6 +5,7 @@ import errorView from "./views/error";
 import loginView from "./views/login";
 import registerView from "./views/register";
 import store from "./store";
+import i18n from "./i18n";
 
 Vue.use(Router);
 
@@ -176,8 +177,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = "Online Judge";
-  store.commit("updateTitle", "Online Judge");
+  store.commit("updateTitle", i18n.t("online_judge"));
   next();
 });
 

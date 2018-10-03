@@ -43,7 +43,7 @@ export default {
       loading: true
     };
   },
-  async mounted() {
+  async created() {
     const url = getURL(`/api/role/${this.roleID}`);
     this.role = await get(url);
     this.loading = false;

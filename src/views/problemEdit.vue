@@ -108,6 +108,9 @@ export default {
     if (this.id) {
       const fetchURL = getURL(`/api/problem/${this.id}`, {});
       this.problem = await get(fetchURL);
+      this.$store.commit("updateTitle", this.$t('title_problem_edit', [this.problem.title]));
+    }else{
+      this.$store.commit("updateTitle", this.$t('new_problem'));
     }
     this.loaded = true;
   },
