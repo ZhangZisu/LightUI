@@ -1,3 +1,5 @@
+const MonocoEditorPlugin = require("monaco-editor-webpack-plugin");
+
 module.exports = {
   pluginOptions: {
     i18n: {
@@ -7,7 +9,9 @@ module.exports = {
       enableInSFC: false
     }
   },
-
+  configureWebpack: {
+    plugins: [new MonocoEditorPlugin()]
+  },
   baseUrl: undefined,
   outputDir: undefined,
   assetsDir: "static",

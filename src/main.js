@@ -7,7 +7,6 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 import i18n from "./i18n";
-import axios from "axios";
 import "./assets/lightui.styl";
 
 Vue.config.productionTip = false;

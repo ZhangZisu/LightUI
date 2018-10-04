@@ -1636,7 +1636,7 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
-brace@0.11.1, brace@^0.11.0:
+brace@0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/brace/-/brace-0.11.1.tgz#4896fcc9d544eef45f4bb7660db320d3b379fe58"
   integrity sha1-SJb8ydVE7vRfS7dmDbMg07N5/lg=
@@ -5513,6 +5513,21 @@ mobius1-selectr@2.4.2:
   resolved "https://registry.yarnpkg.com/mobius1-selectr/-/mobius1-selectr-2.4.2.tgz#b8a619c8a0ed6234590e5e5a9e979e15d9b4b89a"
   integrity sha1-uKYZyKDtYjRZDl5anpeeFdm0uJo=
 
+monaco-editor-webpack-plugin@^1.5.4:
+  version "1.5.4"
+  resolved "http://registry.npm.taobao.org/monaco-editor-webpack-plugin/download/monaco-editor-webpack-plugin-1.5.4.tgz#6781a130e3e1379bb8f4cd190132f4af6dcd2c16"
+  integrity sha1-Z4GhMOPhN5u49M0ZATL0r23NLBY=
+
+monaco-editor@^0.13.1:
+  version "0.13.1"
+  resolved "http://registry.npm.taobao.org/monaco-editor/download/monaco-editor-0.13.1.tgz#6b9ce20e4d1c945042d256825eb133cb23315a52"
+  integrity sha1-a5ziDk0clFBC0laCXrEzyyMxWlI=
+
+monaco-editor@^0.14.3:
+  version "0.14.3"
+  resolved "http://registry.npm.taobao.org/monaco-editor/download/monaco-editor-0.14.3.tgz#7cc4a4096a3821f52fea9b10489b527ef3034e22"
+  integrity sha1-fMSkCWo4IfUv6psQSJtSfvMDTiI=
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/move-concurrently/download/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -5557,6 +5572,11 @@ nan@^2.10.0, nan@^2.9.2:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.0.tgz#574e360e4d954ab16966ec102c0c049fd961a099"
   integrity sha1-V042Dk2VSrFpZuwQLAwEn9lhoJk=
+
+nano-assign@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/nano-assign/download/nano-assign-1.0.0.tgz#499f4f8a1ae801f2405863e6946ca8568d666e4e"
+  integrity sha1-SZ9PihroAfJAWGPmlGyoVo1mbk4=
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -8487,6 +8507,14 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-monaco@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/vue-monaco/download/vue-monaco-0.2.0.tgz#508e90b8c9c3c90b6e89a68c6602a5a76f2b3d55"
+  integrity sha1-UI6QuMnDyQtuiaaMZgKlp28rPVU=
+  dependencies:
+    monaco-editor "^0.13.1"
+    nano-assign "^1.0.0"
+
 vue-router@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"
@@ -8512,13 +8540,6 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
   integrity sha1-3EJpcTMwLOMBdSQ1amxht7abShg=
-
-vue2-ace-editor@^0.0.11:
-  version "0.0.11"
-  resolved "http://registry.npm.taobao.org/vue2-ace-editor/download/vue2-ace-editor-0.0.11.tgz#8094a8928f2124fa85a79c2ef2c9c7146c3f7891"
-  integrity sha1-gJSoko8hJPqFp5wu8snHFGw/eJE=
-  dependencies:
-    brace "^0.11.0"
 
 vue@^2.5.16, vue@^2.5.17:
   version "2.5.17"

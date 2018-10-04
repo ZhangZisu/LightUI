@@ -85,9 +85,7 @@ export default {
       });
     },
     openPreview() {
-      const link =
-        axios.defaults.baseURL +
-        getURL("/api/file/" + this.fileID + "/raw", {});
+      const link = getURL("/api/file/" + this.fileID + "/raw", {});
       window.open(link);
     },
     async deleteFile() {

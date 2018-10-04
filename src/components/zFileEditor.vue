@@ -21,7 +21,7 @@
     <template v-else-if="formKind === 2">
       <v-text-field v-model="file.filename" :label="$t('filename')"/>
       <v-text-field v-model="file.description" :label="$t('description')"/>
-      <editor v-model="file.content" height="500" @init="editorInit"/>
+      <monaco-editor v-model="file.content" class="editor"/>
       <v-btn color="info" v-text="$t('submit')" @click="createFile"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
     </template>
@@ -53,14 +53,14 @@
 import { getURL, getPURL, get, post } from "../httphelper";
 import file from "./file";
 import axios from "axios";
-import Editor from "vue2-ace-editor";
+import MonacoEditor from "vue-monaco";
 
 export default {
   name: "zArrayEditor",
   props: ["values"],
   components: {
     file,
-    editor: Editor
+    MonacoEditor
   },
   model: {
     prop: "values",
@@ -130,17 +130,12 @@ export default {
       this.file.content = "";
       this.file.description = "No description";
       this.formKind = 0;
-    },
-    editorInit() {
-      require("brace/ext/language_tools");
-      require("brace/ext/beautify");
-      require("brace/ext/searchbox");
-      require("brace/mode/html");
-      require("brace/mode/javascript");
-      require("brace/mode/markdown");
-      require("brace/theme/chrome");
-      require("brace/snippets/javascript");
     }
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.editor
+  height 500px
+</style>

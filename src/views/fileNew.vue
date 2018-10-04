@@ -7,7 +7,7 @@
         <v-card-text>
           <v-text-field v-model="file.filename" :label="$t('filename')"/>
           <v-text-field v-model="file.description" :label="$t('description')"/>
-          <editor v-model="file.content" :lang="lang" height="500" @init="editorInit"/>
+          <monaco-editor class="editor" v-model="file.content"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
@@ -19,15 +19,15 @@
 </template>
 
 <script>
-import Editor from "vue2-ace-editor";
+import MonacoEditor from "vue-monaco";
 import { getURL, post } from "../httphelper";
 
 export default {
   name: "fileNewView",
   components: {
-    editor: Editor
+    MonacoEditor
   },
-  props: ["filename", "description", "lang"],
+  props: ["filename", "description"],
   data() {
     return {
       file: {
@@ -52,17 +52,12 @@ export default {
       } catch (e) {
         //
       }
-    },
-    editorInit() {
-      require("brace/ext/language_tools");
-      require("brace/ext/beautify");
-      require("brace/ext/searchbox");
-      require("brace/mode/html");
-      require("brace/mode/javascript");
-      require("brace/mode/markdown");
-      require("brace/theme/chrome");
-      require("brace/snippets/javascript");
     }
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.editor
+  height 500px
+</style>

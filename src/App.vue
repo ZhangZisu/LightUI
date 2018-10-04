@@ -86,6 +86,19 @@
 					</v-list-tile>
 				</v-list>
 			</v-menu>
+      <v-btn icon flat>
+        <v-icon>format_color_fill</v-icon>
+      </v-btn>
+      <v-menu :close-on-content-click="false" offset-y>
+        <v-btn slot="activator" icon flat>
+          <v-icon>refresh</v-icon>
+        </v-btn>
+        <v-card>
+          <v-card-text>
+            <v-text-field v-model="baseURL" :label="$t('base_url')"/>
+          </v-card-text>
+        </v-card>
+      </v-menu>
     </v-toolbar>
     <v-content>
       <router-view :key="$route.fullPath"/>
@@ -102,6 +115,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
   data() {
@@ -131,6 +146,14 @@ export default {
     },
     loggedin: function() {
       return !!this.$store.state.accessToken;
+    },
+    baseURL: {
+      set(v) {
+        axios.defaults.baseURL = v;
+      },
+      get() {
+        return axios.defaults.baseURL;
+      }
     }
   },
   watch: {

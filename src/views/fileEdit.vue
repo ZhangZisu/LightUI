@@ -17,7 +17,7 @@
           <z-access-control-editor v-model="file.allowedModify"/>
           <!-- Editor -->
           <template v-if="loadedEditor">
-            <editor v-model="fileContent" :lang="fileLanguage" height="500" @init="editorInit"/>
+            <monaco-editor v-model="fileContent" :language="fileLanguage" class="editor"/>
             <v-btn v-text="$t('update')" color="info" @click="updateContent"/>
           </template>
           <template v-else>
@@ -37,13 +37,23 @@
 <script>
 import { getURL, get, post } from "../httphelper";
 import zAccessControlEditor from "../components/zAccessControlEditor";
-import Editor from "vue2-ace-editor";
+import MonacoEditor from "vue-monaco";
 import axios from "axios";
+
+const modes = {
+  c: "c",
+  cpp: "cpp",
+  cc: "cpp",
+  js: "javascript",
+  java: "java",
+  md: "markdown"
+};
+
 const esmateFileType = filename => {
   let p = null;
   if ((p = filename.lastIndexOf(".")) !== -1) {
     let ext = filename.substring(p + 1, filename.length);
-    return ext.toLowerCase();
+    return modes[ext.toLowerCase()] || "plain";
   } else {
     return "plain";
   }
@@ -53,7 +63,7 @@ export default {
   name: "fileEditView",
   components: {
     zAccessControlEditor,
-    editor: Editor
+    MonacoEditor
   },
   props: {
     fileID: String
@@ -83,16 +93,6 @@ export default {
     this.loading = false;
   },
   methods: {
-    editorInit() {
-      require("brace/ext/language_tools");
-      require("brace/ext/beautify");
-      require("brace/ext/searchbox");
-      require("brace/mode/markdown");
-      require("brace/mode/c_cpp");
-      require("brace/mode/javascript");
-      require("brace/mode/json");
-      require("brace/theme/chrome");
-    },
     async save() {
       this.loading = true;
       const url = getURL(`/api/file/${this.fileID}`, {});
@@ -129,3 +129,8 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.editor
+  height 500px
+</style>

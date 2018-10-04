@@ -10,6 +10,7 @@ import i18n from "./i18n";
 Vue.use(Router);
 
 const router = new Router({
+  mode: "history",
   routes: [
     {
       path: "/",

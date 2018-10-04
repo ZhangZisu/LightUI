@@ -1,16 +1,12 @@
 <template>
   <div>
     <div class="z-markdown-editor-main" v-if="view === 1">
-      <div class="z-markdown-editor-left">
-        <editor v-model="content" lang="markdown" height="500" @init="editorInit"/>
-      </div>
+      <monaco-editor class="z-markdown-editor-left" v-model="content" language="markdown"/>
       <div class="z-markdown-editor-right">
         <article id="rendered" class="markdown-body" v-html="rendered"/>
       </div>
     </div>
-    <div v-else-if="view === 0">
-      <editor v-model="content" lang="markdown" height="500" @init="editorInit"/>
-    </div>
+    <monaco-editor class="z-markdown-editor-editor" v-model="content" language="markdown" v-else-if="view === 0"/>
     <div v-else>
       <div class="z-markdown-editor-preview">
         <article id="rendered" class="markdown-body" v-html="rendered"/>
@@ -29,7 +25,7 @@
 </template>
 
 <script>
-import Editor from "vue2-ace-editor";
+import MonacoEditor from "vue-monaco";
 import render from "../markdown";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -37,7 +33,7 @@ import jsPDF from "jspdf";
 export default {
   name: "zMarkdownEditor",
   components: {
-    editor: Editor
+    MonacoEditor
   },
   props: {
     value: {
@@ -68,13 +64,6 @@ export default {
     }
   },
   methods: {
-    editorInit() {
-      require("brace/ext/language_tools");
-      require("brace/ext/beautify");
-      require("brace/ext/searchbox");
-      require("brace/mode/markdown");
-      require("brace/theme/chrome");
-    },
     pdf() {
       html2canvas(document.getElementById("rendered"), {
         background: "#fff",
@@ -128,6 +117,9 @@ export default {
   height 500px
   overflow scroll
   border-left 1px solid #c1c1c1
+
+.z-markdown-editor-editor
+  height 500px
 
 .z-markdown-editor-preview
   height 500px
