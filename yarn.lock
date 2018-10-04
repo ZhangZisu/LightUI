@@ -2695,9 +2695,9 @@ deepmerge@^1.5.2:
   integrity sha1-EEmdhohEza1P7ghC34x/bwyVp1M=
 
 deepmerge@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.1.1.tgz#e862b4e45ea0555072bf51e7fd0d9845170ae768"
-  integrity sha1-6GK05F6gVVByv1Hn/Q2YRRcK52g=
+  version "2.2.1"
+  resolved "http://registry.npm.taobao.org/deepmerge/download/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+  integrity sha1-XT/yKgHAD2RUBaL7wX0HeKGAEXA=
 
 default-gateway@^2.6.0:
   version "2.7.2"
@@ -2924,7 +2924,7 @@ dot-prop@^4.1.1:
 
 dotenv@^6.0.0:
   version "6.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+  resolved "http://registry.npm.taobao.org/dotenv/download/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
   integrity sha1-JON8BBdBxfSyUySVjrvDS8qWWTU=
 
 drag-tracker@^1.0.0:
@@ -3599,7 +3599,7 @@ flat-cache@^1.2.1:
 
 flat@^4.0.0:
   version "4.1.0"
-  resolved "https://registry.yarnpkg.com/flat/-/flat-4.1.0.tgz#090bec8b05e39cba309747f1d588f04dbaf98db2"
+  resolved "http://registry.npm.taobao.org/flat/download/flat-4.1.0.tgz#090bec8b05e39cba309747f1d588f04dbaf98db2"
   integrity sha1-CQvsiwXjnLowl0fx1YjwTbr5jbI=
   dependencies:
     is-buffer "~2.0.3"
@@ -4464,7 +4464,7 @@ is-buffer@^1.1.5:
 
 is-buffer@~2.0.3:
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.3.tgz#4ecf3fcf749cbd1e472689e109ac66261a25e725"
+  resolved "http://registry.npm.taobao.org/is-buffer/download/is-buffer-2.0.3.tgz#4ecf3fcf749cbd1e472689e109ac66261a25e725"
   integrity sha1-Ts8/z3ScvR5HJonhCaxmJhol5yU=
 
 is-builtin-module@^1.0.0:
@@ -6795,9 +6795,9 @@ qs@~6.5.1, qs@~6.5.2:
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
 query-string@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.1.0.tgz#01e7d69f6a0940dac67a937d6c6325647aa4532a"
-  integrity sha1-AefWn2oJQNrGepN9bGMlZHqkUyo=
+  version "6.2.0"
+  resolved "http://registry.npm.taobao.org/query-string/download/query-string-6.2.0.tgz#468edeb542b7e0538f9f9b1aeb26f034f19c86e1"
+  integrity sha1-Ro7etUK34FOPn5sa6ybwNPGchuE=
   dependencies:
     decode-uri-component "^0.2.0"
     strict-uri-encode "^2.0.0"
@@ -7801,7 +7801,7 @@ stream-shift@^1.0.0:
 
 strict-uri-encode@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  resolved "http://registry.npm.taobao.org/strict-uri-encode/download/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
   integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
 
 string-width@^1.0.1, string-width@^1.0.2:
@@ -8458,9 +8458,9 @@ vm-browserify@0.0.4:
     indexof "0.0.1"
 
 vue-cli-plugin-i18n@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-i18n/-/vue-cli-plugin-i18n-0.5.0.tgz#1714a035626d893643141b7b14db60bb4d78ab53"
-  integrity sha1-FxSgNWJtiTZDFBt7FNtgu014q1M=
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/vue-cli-plugin-i18n/download/vue-cli-plugin-i18n-0.5.1.tgz#83be05be88d174a42b0abbaf83faa24fa92439cf"
+  integrity sha1-g74FvojRdKQrCruvg/qiT6kkOc8=
   dependencies:
     debug "^3.1.0"
     deepmerge "^2.1.1"
@@ -8470,9 +8470,9 @@ vue-cli-plugin-i18n@^0.5.0:
     vue-i18n "^8.0.0"
 
 vue-cli-plugin-vuetify@^0.2.0:
-  version "0.2.0"
-  resolved "http://registry.npm.taobao.org/vue-cli-plugin-vuetify/download/vue-cli-plugin-vuetify-0.2.0.tgz#f66aa544264ad0a17f70c056359151bcd4dc2e73"
-  integrity sha1-9mqlRCZK0KF/cMBWNZFRvNTcLnM=
+  version "0.2.1"
+  resolved "http://registry.npm.taobao.org/vue-cli-plugin-vuetify/download/vue-cli-plugin-vuetify-0.2.1.tgz#fea624e5e4cf3cc2e655d469d441ec151fbb2c23"
+  integrity sha1-/qYk5eTPPMLmVdRp1EHsFR+7LCM=
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
@@ -8547,9 +8547,9 @@ vue@^2.5.16, vue@^2.5.17:
   integrity sha1-D4eJrXGL5oyhhyYpgy7VM1icato=
 
 vuetify@^1.0.19:
-  version "1.2.5"
-  resolved "http://registry.npm.taobao.org/vuetify/download/vuetify-1.2.5.tgz#91578367709b20e406f2cdc7a164dfd70df954d9"
-  integrity sha1-kVeDZ3CbIOQG8s3HoWTf1w35VNk=
+  version "1.2.6"
+  resolved "http://registry.npm.taobao.org/vuetify/download/vuetify-1.2.6.tgz#e94e4b169544b326eabf08636006968c37e98f28"
+  integrity sha1-6U5LFpVEsybqvwhjYAaWjDfpjyg=
 
 vuex@^3.0.1:
   version "3.0.1"

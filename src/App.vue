@@ -136,6 +136,10 @@ export default {
         {
           name: "zh-Hant",
           display_name: "正體中文"
+        },
+        {
+          name: "ja",
+          display_name: "日本語"
         }
       ]
     };
