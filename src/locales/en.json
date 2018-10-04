@@ -64,6 +64,7 @@
   "input_rolename": "Input rolename",
   "input_username": "Input username",
   "invalid": "Invalid {0}",
+  "language": "Language",
   "load_editor": "Load editor",
   "load_file_editor_confirm": "Do you really want to load editor? May cause errors!",
   "log": "Log",
@@ -85,6 +86,7 @@
   "problem_information": "Problem Information",
   "problem_updated": "Problem updated",
   "problems": "Problems",
+  "raw": "Raw",
   "realname": "Realname",
   "refresh": "Refresh",
   "register": "Register",
@@ -126,5 +128,6 @@
   "user_info": "{0}, {1}",
   "username": "Username",
   "users": "Users",
-  "virtual": "Virtual"
+  "virtual": "Virtual",
+  "visualization": "Visualization"
 }

@@ -1,39 +1,44 @@
 <template>
-  <v-expansion-panel expand v-model="expand">
-    <v-expansion-panel-content v-for="(obj, i) in parsed" :key="i">
-      <div slot="header" v-text="obj.key"/>
-      <v-card>
-        <v-card-text>
-          <template v-if="typeof obj.value === 'object'">
-            <z-json-viewer :value="obj.value"/>
-          </template>
-          <template v-else>
-            <article class="markdown-body">
-              <pre><code class="hljs plain" v-text="obj.value"/></pre>
-            </article>
-          </template>
-        </v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
+    <v-tabs color="info" dark v-model="tabs">
+        <v-tab v-for="i in 2" :key="i">
+            <template v-if="i == 1">{{ $t('visualization') }}</template>
+            <template v-else-if="i == 2">{{ $t('raw') }}</template>
+        </v-tab>
+        <v-tab-item v-for="i in 2" :key="i">
+            <template v-if="i == 1">
+                <z-json-node :value="value"/>
+            </template>
+            <template v-else-if="i == 2">
+                <z-monaco-editor v-model="content" :readonly="true" class="editor" language="json"/>
+            </template>
+        </v-tab-item>
+    </v-tabs>
 </template>
 
 <script>
+import zJsonNode from "./zJsonNode";
+import zMonacoEditor from "./zMonacoEditor";
+
 export default {
   name: "zJsonViewer",
+  components: {
+    zJsonNode,
+    zMonacoEditor
+  },
   props: ["value"],
   data() {
     return {
-      parsed: [],
-      expand: []
+      content: "",
+      tabs: 0
     };
   },
   created() {
-    for (let key in this.value) {
-      if (this.value[key] !== null && this.value[key] !== "")
-        this.parsed.push({ key: key, value: this.value[key] });
-    }
-    this.expand = [...Array(this.parsed.length).keys()].map(() => true);
+    this.content = JSON.stringify(this.value, null, "\t");
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.editor
+  height 500px
+</style>

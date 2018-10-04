@@ -21,7 +21,8 @@
     <template v-else-if="formKind === 2">
       <v-text-field v-model="file.filename" :label="$t('filename')"/>
       <v-text-field v-model="file.description" :label="$t('description')"/>
-      <monaco-editor v-model="file.content" class="editor"/>
+      <z-monaco-editor v-model="file.content" class="editor" :language="language"/>
+      <v-select :items="languages" v-model="language" :label="$t('language')"></v-select>
       <v-btn color="info" v-text="$t('submit')" @click="createFile"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
     </template>
@@ -53,14 +54,15 @@
 import { getURL, getPURL, get, post } from "../httphelper";
 import file from "./file";
 import axios from "axios";
-import MonacoEditor from "vue-monaco";
+import zMonacoEditor from "./zMonacoEditor";
+import { languages } from "../editor";
 
 export default {
   name: "zArrayEditor",
   props: ["values"],
   components: {
     file,
-    MonacoEditor
+    zMonacoEditor
   },
   model: {
     prop: "values",
@@ -77,7 +79,9 @@ export default {
         content: "",
         filename: "",
         description: "No description"
-      }
+      },
+      language: "plain",
+      languages: languages
     };
   },
   watch: {

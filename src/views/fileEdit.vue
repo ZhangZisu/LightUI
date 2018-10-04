@@ -17,7 +17,7 @@
           <z-access-control-editor v-model="file.allowedModify"/>
           <!-- Editor -->
           <template v-if="loadedEditor">
-            <monaco-editor v-model="fileContent" :language="fileLanguage" class="editor"/>
+            <z-monaco-editor v-model="fileContent" :language="fileLanguage" class="editor"/>
             <v-btn v-text="$t('update')" color="info" @click="updateContent"/>
           </template>
           <template v-else>
@@ -37,7 +37,7 @@
 <script>
 import { getURL, get, post } from "../httphelper";
 import zAccessControlEditor from "../components/zAccessControlEditor";
-import MonacoEditor from "vue-monaco";
+import zMonacoEditor from "../components/zMonacoEditor";
 import axios from "axios";
 
 const modes = {
@@ -63,7 +63,7 @@ export default {
   name: "fileEditView",
   components: {
     zAccessControlEditor,
-    MonacoEditor
+    zMonacoEditor
   },
   props: {
     fileID: String

@@ -154,6 +154,7 @@ export default {
     baseURL: {
       set(v) {
         axios.defaults.baseURL = v;
+        localStorage.setItem("baseURL", v);
       },
       get() {
         return axios.defaults.baseURL;
@@ -168,6 +169,7 @@ export default {
   },
   created() {
     let language = localStorage.getItem("language");
+    axios.defaults.baseURL = localStorage.getItem("baseURL") || "";
     if (language) {
       this.$i18n.locale = language;
     } else {

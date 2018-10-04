@@ -1,5 +1,5 @@
 <template>
-  <v-chip @click="open('#/file/show/' + id)">
+  <v-chip @click="open('/file/show/' + id)">
     <v-icon left>folder</v-icon>
     {{ file.filename }}
     <v-icon>open_in_new</v-icon>

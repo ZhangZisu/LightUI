@@ -64,6 +64,7 @@
   "input_rolename": "輸入角色名",
   "input_username": "輸入用戶名",
   "invalid": "{0} 無效",
+  "language": "",
   "load_editor": "加載編輯器",
   "load_file_editor_confirm": "是否加載編輯器？如果文件過大或為二進制文件可能引發錯誤！",
   "log": "日誌",
@@ -85,6 +86,7 @@
   "problem_information": "題目信息",
   "problem_updated": "題目更新成功",
   "problems": "題目",
+  "raw": "",
   "realname": "真實姓名",
   "refresh": "刷新",
   "register": "註冊",
@@ -126,5 +128,6 @@
   "user_info": "{0}, {1}",
   "username": "用戶名",
   "users": "用戶",
-  "virtual": "虛擬"
+  "virtual": "虛擬",
+  "visualization": ""
 }

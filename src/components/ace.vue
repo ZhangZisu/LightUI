@@ -1,5 +1,5 @@
 <template>
-  <v-chip @click="open('#' + link)">
+  <v-chip @click="open(link)">
     <v-icon left v-if="ace.type === 'role'">supervised_user_circle</v-icon>
     <v-icon left v-else-if="ace.type === 'user'">account_circle</v-icon>
     <v-icon left v-else>error</v-icon>

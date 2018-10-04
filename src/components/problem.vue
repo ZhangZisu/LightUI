@@ -1,5 +1,5 @@
 <template>
-  <v-chip @click="open('#/problem/show/' + id)">
+  <v-chip @click="open('/problem/show/' + id)">
     <v-icon left>notes</v-icon>
     {{ problem.title }}
     <v-icon>open_in_new</v-icon>

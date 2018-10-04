@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="z-markdown-editor-main" v-if="view === 1">
-      <monaco-editor class="z-markdown-editor-left" v-model="content" language="markdown"/>
+      <z-monaco-editor class="z-markdown-editor-left" v-model="content" language="markdown"/>
       <div class="z-markdown-editor-right">
         <article id="rendered" class="markdown-body" v-html="rendered"/>
       </div>
     </div>
-    <monaco-editor class="z-markdown-editor-editor" v-model="content" language="markdown" v-else-if="view === 0"/>
+    <z-monaco-editor class="z-markdown-editor-editor" v-model="content" language="markdown" v-else-if="view === 0"/>
     <div v-else>
       <div class="z-markdown-editor-preview">
         <article id="rendered" class="markdown-body" v-html="rendered"/>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import MonacoEditor from "vue-monaco";
+import zMonacoEditor from "./zMonacoEditor";
 import render from "../markdown";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -33,7 +33,7 @@ import jsPDF from "jspdf";
 export default {
   name: "zMarkdownEditor",
   components: {
-    MonacoEditor
+    zMonacoEditor
   },
   props: {
     value: {

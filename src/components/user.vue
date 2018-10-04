@@ -1,5 +1,5 @@
 <template>
-  <v-chip @click="open('#/user/show/' + id)">
+  <v-chip @click="open('/user/show/' + id)">
     <v-icon left>account_circle</v-icon>
     {{ user.username }}
     <v-icon>open_in_new</v-icon>

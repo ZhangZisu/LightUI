@@ -7,9 +7,10 @@
         <v-card-text>
           <v-text-field v-model="file.filename" :label="$t('filename')"/>
           <v-text-field v-model="file.description" :label="$t('description')"/>
-          <monaco-editor class="editor" v-model="file.content"/>
+          <z-monaco-editor class="editor" v-model="file.content" :language="language"/>
         </v-card-text>
         <v-card-actions>
+          <v-select :items="languages" v-model="language" :label="$t('language')"></v-select>
           <v-spacer/>
           <v-btn color="info" v-text="$t('submit')" @click="submit"/>
         </v-card-actions>
@@ -19,13 +20,14 @@
 </template>
 
 <script>
-import MonacoEditor from "vue-monaco";
 import { getURL, post } from "../httphelper";
+import zMonacoEditor from "../components/zMonacoEditor";
+import { languages } from "../editor";
 
 export default {
   name: "fileNewView",
   components: {
-    MonacoEditor
+    zMonacoEditor
   },
   props: ["filename", "description"],
   data() {
@@ -35,7 +37,9 @@ export default {
         filename: "",
         description: ""
       },
-      loading: false
+      loading: false,
+      language: "plain",
+      languages: languages
     };
   },
   created() {
