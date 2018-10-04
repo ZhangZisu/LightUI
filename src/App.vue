@@ -61,7 +61,7 @@
           </v-list-tile>
         </template>
         <template v-else>
-          <v-list-tile to="/login">
+          <v-list-tile to="/signin">
             <v-list-tile-action>
               <v-icon>account_circle</v-icon>
             </v-list-tile-action>

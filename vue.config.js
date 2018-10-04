@@ -6,5 +6,13 @@ module.exports = {
       localeDir: "locales",
       enableInSFC: false
     }
-  }
+  },
+
+  baseUrl: undefined,
+  outputDir: undefined,
+  assetsDir: 'static',
+  runtimeCompiler: undefined,
+  productionSourceMap: undefined,
+  parallel: undefined,
+  css: undefined
 };

@@ -40,7 +40,7 @@ export default {
           realname: this.realname,
           email: this.email
         });
-        this.$router.push(`/login?welcome=${result}`);
+        this.$router.push(`/signin?welcome=${result}`);
       } catch (e) {
         //
       }
