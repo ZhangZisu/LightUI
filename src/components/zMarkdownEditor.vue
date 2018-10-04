@@ -54,11 +54,7 @@ export default {
       content: "",
       rendered: "",
       view: 1,
-      ticksLabels: [
-        this.$t('editor'),
-        this.$t('both'),
-        this.$t('preview')
-      ]
+      ticksLabels: [this.$t("editor"), this.$t("both"), this.$t("preview")]
     };
   },
   created() {

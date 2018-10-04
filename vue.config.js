@@ -10,7 +10,7 @@ module.exports = {
 
   baseUrl: undefined,
   outputDir: undefined,
-  assetsDir: 'static',
+  assetsDir: "static",
   runtimeCompiler: undefined,
   productionSourceMap: undefined,
   parallel: undefined,

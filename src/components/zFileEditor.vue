@@ -116,6 +116,7 @@ export default {
         }
       }
       document.getElementById("file_upload").value = null;
+      this.formKind = 0;
     },
     async createFile() {
       const url = getURL("/api/file/create", {});
@@ -128,6 +129,7 @@ export default {
       this.file.filename = "";
       this.file.content = "";
       this.file.description = "No description";
+      this.formKind = 0;
     },
     editorInit() {
       require("brace/ext/language_tools");
