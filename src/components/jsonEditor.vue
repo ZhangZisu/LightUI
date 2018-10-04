@@ -46,5 +46,6 @@ export default {
 
 <style lang="stylus" scoped>
 .editor
-    height 640px
+  height 640px
+  width 100%
 </style>
