@@ -2,5 +2,10 @@
 
 Frontend for `LightOnlineJudge`
 
-todos:
-1. Problem Data Editor
+Install dependencies: `yarn`
+
+Start development server: `yarn serve`
+
+Build for production: `yarn build`
+
+This project is integrated into LightOnlineJudge
