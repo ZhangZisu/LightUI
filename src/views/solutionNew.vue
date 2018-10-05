@@ -10,7 +10,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn depressed color="info" v-text="$t('submit')" @click="submit" :disabled="!files.length"/>
+          <v-btn depressed color="primary" v-text="$t('submit')" @click="submit" :disabled="!files.length"/>
         </v-card-actions>
       </v-card>
     </v-flex>

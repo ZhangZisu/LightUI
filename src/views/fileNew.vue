@@ -12,7 +12,7 @@
         <v-card-actions>
           <v-select :items="languages" v-model="language" :label="$t('language')"></v-select>
           <v-spacer/>
-          <v-btn color="info" v-text="$t('submit')" @click="submit"/>
+          <v-btn color="primary" v-text="$t('submit')" @click="submit"/>
         </v-card-actions>
       </v-card>
     </v-flex>

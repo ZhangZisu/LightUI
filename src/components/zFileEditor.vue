@@ -14,7 +14,7 @@
           </v-list-tile-content>
         </template>
       </v-autocomplete>
-      <v-btn color="info" @click="values.push(newItem), formKind = 0" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
+      <v-btn color="primary" @click="values.push(newItem), formKind = 0" :disabled="!newItem || values.includes(newItem)" v-text="$t('ok')"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
       {{ $t('selected', [newItem]) }}
     </template>
@@ -23,17 +23,17 @@
       <v-text-field v-model="file.description" :label="$t('description')"/>
       <z-monaco-editor v-model="file.content" class="editor" :language="language"/>
       <v-select :items="languages" v-model="language" :label="$t('language')"></v-select>
-      <v-btn color="info" v-text="$t('submit')" @click="createFile"/>
+      <v-btn color="primary" v-text="$t('submit')" @click="createFile"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
     </template>
     <template v-else-if="formKind === 3">
       <input type="file" id="file_upload" name="file_upload" multiple>
-      <v-btn color="info" @click="uploadFile" v-text="$t('upload')"/>
+      <v-btn color="primary" @click="uploadFile" v-text="$t('upload')"/>
       <v-btn @click="formKind = 0" v-text="$t('cancel')"/>
     </template>
     <template v-else>
       <v-menu offset-y>
-        <v-btn slot="activator" color="info" v-text="$t('new')"/>
+        <v-btn slot="activator" color="primary" v-text="$t('new')"/>
         <v-list>
           <v-list-tile @click="formKind = 1">
             <v-list-tile-title v-text="$t('select')"/>

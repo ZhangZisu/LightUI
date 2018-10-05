@@ -11,7 +11,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="info" v-text="$t('submit')" @click="submit"/>
+          <v-btn color="primary" v-text="$t('submit')" @click="submit"/>
         </v-card-actions>
       </v-card>
     </v-flex>

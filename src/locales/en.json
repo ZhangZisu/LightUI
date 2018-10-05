@@ -1,4 +1,5 @@
 {
+  "accent": "Accent",
   "access_config": "Access Config",
   "access_control": "Access Control",
   "add": "Add",
@@ -59,6 +60,7 @@
   "home_welcome_title": "Welcome to LightOnlineJudge",
   "id": "ID",
   "index_and_id": "Index {0} ObjectID {1}",
+  "info": "Info",
   "input_filename": "Input filename",
   "input_problem_title": "Input problem title",
   "input_rolename": "Input rolename",
@@ -81,6 +83,7 @@
   "owner": "Owner",
   "password": "Password",
   "preview": "Preview",
+  "primary": "Primary",
   "problem": "Problem",
   "problem_id": "Problem ID",
   "problem_information": "Problem Information",
@@ -101,6 +104,7 @@
   "roles": "Roles",
   "save": "Save",
   "search": "Search",
+  "secondary": "Secondary",
   "select": "Select",
   "select_a_role": "Select a role",
   "selected": "Selected {0}",
@@ -112,7 +116,9 @@
   "status": "Status",
   "submit": "Submit",
   "submit_problem": "Submit problem",
+  "success": "Success",
   "tags": "Tags",
+  "theme": "Theme",
   "this_operation_will_rewrite_data": "This operation will rewrite data! Continue?",
   "title": "Title",
   "title_problem": "Problem: {0}",
@@ -129,5 +135,6 @@
   "username": "Username",
   "users": "Users",
   "virtual": "Virtual",
-  "visualization": "Visualization"
+  "visualization": "Visualization",
+  "warning": "Warning"
 }

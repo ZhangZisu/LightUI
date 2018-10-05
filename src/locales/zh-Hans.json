@@ -1,4 +1,5 @@
 {
+  "accent": "强调",
   "access_config": "访问配置",
   "access_control": "访问控制",
   "add": "增加",
@@ -59,6 +60,7 @@
   "home_welcome_title": "越颓废，越快乐",
   "id": "ID",
   "index_and_id": "下标{0} 对象编号{1}",
+  "info": "信息",
   "input_filename": "输入文件名",
   "input_problem_title": "输入题目标题",
   "input_rolename": "输入角色名",
@@ -81,6 +83,7 @@
   "owner": "拥有者",
   "password": "密码",
   "preview": "预览",
+  "primary": "首要",
   "problem": "问题",
   "problem_id": "题目 ID",
   "problem_information": "题目信息",
@@ -101,6 +104,7 @@
   "roles": "角色",
   "save": "保存",
   "search": "搜索",
+  "secondary": "次要",
   "select": "选择",
   "select_a_role": "选择一个角色",
   "selected": "选中 {0}",
@@ -112,7 +116,9 @@
   "status": "状态",
   "submit": "提交",
   "submit_problem": "提交题目",
+  "success": "成功",
   "tags": "标签",
+  "theme": "主题",
   "this_operation_will_rewrite_data": "该操作将覆盖数据配置文件。继续？",
   "title": "标题",
   "title_problem": "题目-{0}",
@@ -129,5 +135,6 @@
   "username": "用户名",
   "users": "用户",
   "virtual": "虚拟",
-  "visualization": "可视化"
+  "visualization": "可视化",
+  "warning": "警告"
 }

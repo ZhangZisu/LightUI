@@ -28,7 +28,7 @@
           <v-pagination v-model="page" :length="allPages" :total-visible="7"/>
           <v-spacer/>
           <v-dialog width="500">
-            <v-btn slot="activator" v-text="$t('filter')"/>
+            <v-btn slot="activator" color="secondary" v-text="$t('filter')"/>
             <v-card>
               <v-card-title class="headline" primary-title v-text="$t('filter')"/>
               <v-card-text>
@@ -38,7 +38,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="info" v-text="$t('apply')" :to="'/solution?' + generateQuery(filter)"/>
+                <v-btn color="primary" v-text="$t('apply')" :to="'/solution?' + generateQuery(filter)"/>
               </v-card-actions>
             </v-card>
           </v-dialog>

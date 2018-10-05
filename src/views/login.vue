@@ -11,7 +11,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="info" @click="submit" v-text="$t('submit')"/>
+          <v-btn color="primary" @click="submit" v-text="$t('submit')"/>
           <v-btn to="/signup" v-text="$t('register')"/>
         </v-card-actions>
       </v-card>

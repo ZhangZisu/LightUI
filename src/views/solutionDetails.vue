@@ -7,7 +7,7 @@
           <div class="headline" v-text="$t('solution_details')"/>
           <v-spacer/>
           <v-btn v-text="$t('rejudge')" @click="rejudge"/>
-          <v-btn color="info" v-text="$t('refresh')" @click="fetch"/>
+          <v-btn color="primary" v-text="$t('refresh')" @click="fetch"/>
         </v-card-title>
         <v-card-text v-if="loaded">
           <v-list>
@@ -51,7 +51,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="error" v-text="$t('delete')" @click="deleteSolution"/>
+          <v-btn color="accent" v-text="$t('delete')" @click="deleteSolution"/>
         </v-card-actions>
       </v-card>
     </v-flex>

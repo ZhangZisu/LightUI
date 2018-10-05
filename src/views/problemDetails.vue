@@ -16,8 +16,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="info" v-text="$t('more_info')" @click="dialog = true"/>
-          <v-btn color="error" v-if="problem.data.type" v-text="$t('submit')" :to="'/solution/new?id=' + problem._id + '&type=' + problem.data.type"/>
+          <v-btn color="primary" v-text="$t('more_info')" @click="dialog = true"/>
+          <v-btn color="accent" v-if="problem.data.type" v-text="$t('submit')" :to="'/solution/new?id=' + problem._id + '&type=' + problem.data.type"/>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -48,7 +48,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="error" v-text="$t('delete')" @click="deleteProblem"/>
+          <v-btn color="accent" v-text="$t('delete')" @click="deleteProblem"/>
           <v-btn :to="'/problem/edit/' + problem._id" v-text="$t('edit')"/>
         </v-card-actions>
       </v-card>

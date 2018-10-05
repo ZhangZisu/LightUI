@@ -13,7 +13,7 @@
       <v-card-actions>
         <v-spacer/>
         <v-btn v-text="$t('cancel')" @click="$router.push(-1)"/>
-          <v-btn color="info" v-text="$t('save')" @click="save" :disabled="loading || !valid || !form"/>
+          <v-btn color="primary" v-text="$t('save')" @click="save" :disabled="loading || !valid || !form"/>
       </v-card-actions>
     </v-card>
   </v-container>

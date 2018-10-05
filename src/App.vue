@@ -86,7 +86,7 @@
 					</v-list-tile>
 				</v-list>
 			</v-menu>
-      <v-btn icon flat>
+      <v-btn icon flat @click="showThemeDialog = !showThemeDialog">
         <v-icon>format_color_fill</v-icon>
       </v-btn>
       <v-menu :close-on-content-click="false" offset-y>
@@ -108,22 +108,49 @@
       <v-spacer/>
       <span class="pa-2">version 0.0.4</span>
     </v-footer>
-    <v-snackbar v-model="snackbar">
+    <v-snackbar v-model="snackbar" color="error">
       {{ snackbarText }}
     </v-snackbar>
+    <v-dialog v-model="showThemeDialog" max-width="1100px">
+      <v-card>
+        <v-card-title class="headline" v-text="$t('theme')"/>
+        <v-card-text>
+          <div class="subheading" v-text="$t('primary')"/>
+          <swatches v-model="$vuetify.theme.primary" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('secondary')"/>
+          <swatches v-model="$vuetify.theme.secondary" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('accent')"/>
+          <swatches v-model="$vuetify.theme.accent" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('error')"/>
+          <swatches v-model="$vuetify.theme.error" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('info')"/>
+          <swatches v-model="$vuetify.theme.info" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('success')"/>
+          <swatches v-model="$vuetify.theme.success" inline colors="material-basic" show-fallback/>
+          <div class="subheading" v-text="$t('warning')"/>
+          <swatches v-model="$vuetify.theme.warning" inline colors="material-basic" show-fallback/>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
+import Swatches from "vue-swatches";
+import "vue-swatches/dist/vue-swatches.min.css";
 
 export default {
   name: "App",
+  components: {
+    Swatches
+  },
   data() {
     return {
       drawer: true,
       snackbar: false,
       snackbarText: "",
+      showThemeDialog: false,
       languages: [
         {
           name: "en",
@@ -165,11 +192,19 @@ export default {
     "$store.state.error": function(val) {
       this.snackbar = true;
       this.snackbarText = val;
+    },
+    "$vuetify.theme": {
+      handler: function(val) {
+        localStorage.setItem("theme", JSON.stringify(val));
+      },
+      deep: true
     }
   },
   created() {
-    let language = localStorage.getItem("language");
+    // Load base-url
     axios.defaults.baseURL = localStorage.getItem("baseURL") || "";
+    // Load language
+    let language = localStorage.getItem("language");
     if (language) {
       this.$i18n.locale = language;
     } else {
@@ -179,6 +214,12 @@ export default {
           break;
         }
       }
+    }
+    // Load theme
+    if (localStorage.getItem("theme")) {
+      this.$vuetify.theme = JSON.parse(localStorage.getItem("theme"));
+    } else {
+      localStorage.setItem("theme", JSON.stringify(this.$vuetify.theme));
     }
   },
   methods: {

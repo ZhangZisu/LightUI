@@ -13,11 +13,11 @@
       </div>
     </div>
     <v-menu :close-on-content-click="false" offset-x>
-      <v-btn slot="activator" color="info" v-text="$t('operations')"/>
+      <v-btn slot="activator" color="primary" v-text="$t('operations')"/>
       <v-card>
         <v-card-text>
           <v-slider v-model="view" :tick-labels="ticksLabels" :max="2" step="1" ticks="always"/>
-          <v-btn color="info" v-text="$t('export_to_pdf')" @click="pdf" :disabled="view === 0"/>
+          <v-btn color="primary" v-text="$t('export_to_pdf')" @click="pdf" :disabled="view === 0"/>
         </v-card-text>
       </v-card>
     </v-menu>

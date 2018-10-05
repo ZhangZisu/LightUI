@@ -18,16 +18,16 @@
           <!-- Editor -->
           <template v-if="loadedEditor">
             <z-monaco-editor v-model="fileContent" :language="fileLanguage" class="editor"/>
-            <v-btn v-text="$t('update')" color="info" @click="updateContent"/>
+            <v-btn v-text="$t('update')" color="primary" @click="updateContent"/>
           </template>
           <template v-else>
-            <v-btn v-text="$t('load_editor')" color="info" @click="loadEditor"/>
+            <v-btn v-text="$t('load_editor')" color="primary" @click="loadEditor"/>
           </template>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
           <v-btn v-text="$t('cancel')" @click="$router.go(-1)"/>
-          <v-btn color="info" v-text="$t('save')" @click="save"/>
+          <v-btn color="primary" v-text="$t('save')" @click="save"/>
         </v-card-actions>
       </v-card>
     </v-flex>

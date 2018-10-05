@@ -13,7 +13,7 @@
           <z-file-editor v-model="problem.files"/>
           <div class="headline" v-text="$t('data_config')"/>
           <v-menu offset-y>
-            <v-btn slot="activator" color="info" v-text="$t('auto_generate')" />
+            <v-btn slot="activator" color="primary" v-text="$t('auto_generate')" />
             <v-list>
               <v-list-tile @click="generateTraditional">
                 <v-list-tile-title v-text="$t('traditional')" />
@@ -46,7 +46,7 @@
         <v-card-actions>
           <v-spacer/>
           <v-btn v-text="$t('return')" @click="$router.push(`/problem/show/${problem._id}`)" v-if="id"/>
-          <v-btn color="info" v-text="$t('save')" @click="save"/>
+          <v-btn color="primary" v-text="$t('save')" @click="save"/>
         </v-card-actions>
       </v-card>
     </v-flex>

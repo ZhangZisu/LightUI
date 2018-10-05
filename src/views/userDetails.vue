@@ -37,8 +37,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="error" v-text="$t('delete')" @click="deleteUser"/>
-          <v-btn color="info" v-text="$t('edit')" :to="'/user/edit/' + userID"/>
+          <v-btn color="accent" v-text="$t('delete')" @click="deleteUser"/>
+          <v-btn color="primary" v-text="$t('edit')" :to="'/user/edit/' + userID"/>
         </v-card-actions>
       </v-card>
     </v-flex>

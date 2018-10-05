@@ -1,5 +1,5 @@
 <template>
-    <v-tabs color="info" dark v-model="tabs">
+    <v-tabs color="primary" dark v-model="tabs">
         <v-tab v-for="i in 2" :key="i">
             <template v-if="i == 1">{{ $t('visualization') }}</template>
             <template v-else-if="i == 2">{{ $t('raw') }}</template>
