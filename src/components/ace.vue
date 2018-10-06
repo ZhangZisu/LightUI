@@ -4,7 +4,6 @@
     <v-icon left v-else-if="ace.type === 'user'">account_circle</v-icon>
     <v-icon left v-else>error</v-icon>
     {{ ace.name }}
-    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 

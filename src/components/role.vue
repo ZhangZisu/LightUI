@@ -2,7 +2,6 @@
   <v-chip @click="open('/role/show/' + id)">
     <v-icon left>supervised_user_circle</v-icon>
     {{ role.rolename }}
-    <v-icon>open_in_new</v-icon>
   </v-chip>
 </template>
 

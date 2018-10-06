@@ -14,7 +14,7 @@
                 <v-list-tile-title v-text="file.filename"/>
                 <v-list-tile-sub-title v-text="file._id"/>
                 <v-list-tile-sub-title>
-                  {{$t('createdat', [file.created])}} {{$t('by')}} <user :id="file.owner"/>
+                  {{$t('createdat', [(new Date(file.created)).toLocaleString()])}} {{$t('by')}} <user :id="file.owner"/>
                 </v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>

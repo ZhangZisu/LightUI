@@ -7,7 +7,7 @@
           <div>
             <div class="headline" v-text="problem.title"/>
             <div class="subheading">
-              {{$t('createdat', [problem.created])}} {{$t('by')}} <user :id="problem.owner"/>
+              {{$t('createdat', [(new Date(problem.created)).toLocaleString()])}} {{$t('by')}} <user :id="problem.owner"/>
             </div>
           </div>
         </v-card-title>

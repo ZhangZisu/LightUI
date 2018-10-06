@@ -13,7 +13,7 @@
                 {{$t('status')}}: {{solution.status}}
               </v-list-tile-sub-title>
               <v-list-tile-sub-title>
-                {{$t('createdat', [solution.created])}} {{$t('by')}} <user :id="solution.owner"/>
+                {{$t('createdat', [(new Date(solution.created)).toLocaleString()])}} {{$t('by')}} <user :id="solution.owner"/>
               </v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>

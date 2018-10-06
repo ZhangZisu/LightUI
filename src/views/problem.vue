@@ -11,7 +11,7 @@
                 <v-list-tile-title v-text="problem.title"/>
                 <v-list-tile-sub-title v-text="problem._id"/>
                 <v-list-tile-sub-title>
-                  {{$t('createdat', [problem.created])}} {{$t('by')}} <user :id="problem.owner"/>
+                  {{$t('createdat', [(new Date(problem.created)).toLocaleString()])}} {{$t('by')}} <user :id="problem.owner"/>
                 </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
