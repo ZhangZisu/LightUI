@@ -19,7 +19,11 @@ export default {
   },
   watch: {
     value(val) {
-      this.editor.set(val);
+      try {
+        if (val !== this.editor.get()) this.editor.set(val);
+      } catch (e) {
+        // Eat any error
+      }
     }
   },
   mounted() {
