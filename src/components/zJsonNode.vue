@@ -33,7 +33,6 @@ export default {
       if (this.value[key] !== null && this.value[key] !== "")
         this.parsed.push({ key: key, value: this.value[key] });
     }
-    this.expand = [...Array(this.parsed.length).keys()].map(() => true);
   }
 };
 </script>
