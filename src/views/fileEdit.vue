@@ -9,12 +9,6 @@
           <v-text-field v-model="file.filename" :label="$t('filename')"/>
           <v-textarea v-model="file.description" :label="$t('description')"/>
           <!-- Access Control -->
-          <div class="subheading" v-text="$t('can_read')"/>
-          <v-divider/>
-          <z-access-control-editor v-model="file.allowedRead"/>
-          <div class="subheading" v-text="$t('can_modify')"/>
-          <v-divider/>
-          <z-access-control-editor v-model="file.allowedModify"/>
           <!-- Editor -->
           <template v-if="loadedEditor">
             <z-monaco-editor v-model="fileContent" :language="fileLanguage" class="editor"/>
@@ -36,7 +30,6 @@
 
 <script>
 import { getURL, get, post } from "../httphelper";
-import zAccessControlEditor from "../components/zAccessControlEditor";
 import zMonacoEditor from "../components/zMonacoEditor";
 import axios from "axios";
 
@@ -62,7 +55,6 @@ const esmateFileType = filename => {
 export default {
   name: "fileEditView",
   components: {
-    zAccessControlEditor,
     zMonacoEditor
   },
   props: {

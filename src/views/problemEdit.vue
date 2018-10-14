@@ -1,53 +1,60 @@
 <template>
   <v-container>
-    <v-flex>
-      <v-card>
-        <v-progress-linear indeterminate query v-if="showProgressBar"/>
-        <v-card-title class="headline" v-text="$t('edit_problem')"/>
-        <v-card-text v-if="loaded">
-          <v-text-field :label="$t('title')" v-model="problem.title"/>
-          <z-markdown-editor v-model="problem.content"/>
-          <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
-          <v-divider/>
-          <div class="headline" v-text="$t('files')"/>
-          <z-file-editor v-model="problem.files"/>
-          <div class="headline" v-text="$t('data_config')"/>
-          <v-menu offset-y>
-            <v-btn slot="activator" color="primary" v-text="$t('auto_generate')" />
-            <v-list>
-              <v-list-tile @click="generateTraditional">
-                <v-list-tile-title v-text="$t('traditional')" />
-              </v-list-tile>
-              <v-list-tile @click="generateDirect">
-                <v-list-tile-title v-text="$t('direct')" />
-              </v-list-tile>
-              <v-list-tile @click="generateVirtual">
-                <v-list-tile-title v-text="$t('virtual')" />
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-          <json-editor v-model="problem.data" :valid.sync="dataValid"/>
-          <v-divider/>
-          <div class="headline" v-text="$t('meta')"/>
-          <json-editor v-model="problem.meta" :valid.sync="metaValid"/>
-          <!-- Access Control -->
-          <template v-if="id">
-            <div class="headline" v-text="$t('can_read')"/>
-            <v-divider/>
-            <z-access-control-editor v-model="problem.allowedRead"/>
-            <div class="headline" v-text="$t('can_modify')"/>
-            <v-divider/>
-            <z-access-control-editor v-model="problem.allowedModify"/>
-            <div class="headline" v-text="$t('can_submit')"/>
-            <v-divider/>
-            <z-access-control-editor v-model="problem.allowedSubmit"/>
-          </template>
-        </v-card-text>
-        <v-card-actions>
+    <v-flex wrap>
+      <v-card class="fill">
+        <v-toolbar>
+          <v-toolbar-items>
+            <v-btn flat v-text="$t('edit')" :disabled="!loaded || view === 0" @click="view = 0"/>
+            <v-btn flat v-text="$t('data')" :disabled="!loaded || view === 1" @click="view = 1"/>
+            <v-btn flat v-text="$t('access')" :disabled="!loaded || view === 2" @click="view = 2"/>
+          </v-toolbar-items>
           <v-spacer/>
-          <v-btn v-text="$t('return')" @click="$router.push(`/problem/show/${problem._id}`)" v-if="id"/>
-          <v-btn color="primary" v-text="$t('save')" @click="save"/>
-        </v-card-actions>
+          <v-toolbar-items>
+            <v-menu offset-y>
+              <v-btn flat slot="activator" v-text="$t('auto_generate')" />
+              <v-list>
+                <v-list-tile @click="generateTraditional">
+                  <v-list-tile-title v-text="$t('traditional')" />
+                </v-list-tile>
+                <v-list-tile @click="generateDirect">
+                  <v-list-tile-title v-text="$t('direct')" />
+                </v-list-tile>
+                <v-list-tile @click="generateVirtual">
+                  <v-list-tile-title v-text="$t('virtual')" />
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+            <v-btn flat v-text="$t('show')" @click="$router.push(`/problem/show/${problem._id}`)" :disabled="!id"/>
+            <v-btn flat v-text="$t('save')" @click="save"/>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-progress-linear indeterminate query v-if="showProgressBar"/>
+        <template v-if="loaded">
+          <template v-if="view === 0">
+            <v-card-text>
+              <v-text-field :label="$t('title')" v-model="problem.title"/>
+              <z-markdown-editor v-model="problem.content"/>
+              <v-combobox v-model="problem.tags" :label="$t('tags')" hide-selected multiple chips clearable/>
+            </v-card-text>
+          </template>
+          <template v-if="view === 1">
+            <v-container fluid fill-height align-content-start>
+              <v-flex sm3 align-start>
+                <v-card-text style="overflow: scroll">
+                  <z-file-editor v-model="problem.fileIDs"/>
+
+                </v-card-text>
+              </v-flex>
+              <v-flex sm9>
+                <v-card-text>
+                  <json-editor v-model="problem.data" :valid.sync="dataValid"/>
+                </v-card-text>
+              </v-flex>
+            </v-container>
+          </template>
+          <template v-if="view === 3">
+          </template>
+        </template>
       </v-card>
     </v-flex>
     <v-snackbar v-model="showSnackbar">
@@ -59,7 +66,6 @@
 <script>
 import { getURL, post, get } from "../httphelper";
 import jsonEditor from "../components/jsonEditor";
-import zAccessControlEditor from "../components/zAccessControlEditor";
 import zFileEditor from "../components/zFileEditor";
 import zMarkdownEditor from "../components/zMarkdownEditor";
 import file from "../components/file";
@@ -71,7 +77,6 @@ export default {
   name: "problemEditView",
   components: {
     jsonEditor,
-    zAccessControlEditor,
     zFileEditor,
     zMarkdownEditor,
     file
@@ -87,21 +92,20 @@ export default {
         data: {
           version: "1.0"
         },
-        meta: {
-          version: "1.0"
-        },
+        channel: "",
         tags: [],
-        files: [],
-        allowedRead: [],
-        allowedModify: [],
-        allowedSubmit: []
+        fileIDs: [],
+        created: null,
+        ownerID: "",
+        groupID: "",
+        permission: 0
       },
       showProgressBar: false,
       loaded: false,
       showSnackbar: false,
       snackbarText: "",
       dataValid: true,
-      metaValid: true
+      view: 0
     };
   },
   async created() {
@@ -122,11 +126,6 @@ export default {
       if (!this.dataValid) {
         this.showSnackbar = true;
         this.snackbarText = this.$t("invalid", [this.$t("data")]);
-        return;
-      }
-      if (!this.metaValid) {
-        this.showSnackbar = true;
-        this.snackbarText = this.$t("invalid", [this.$t("meta")]);
         return;
       }
       this.showProgressBar = true;
@@ -152,10 +151,10 @@ export default {
     async generateDirect() {
       this.problem.data = {
         version: "1.0",
-        type: "direct",
         judgerFile: 0,
         testcases: []
       };
+      this.problem.channel = "direct";
     },
     async generateTraditional() {
       try {
@@ -163,8 +162,8 @@ export default {
         this.snackbarText = this.$t("fetching_file_info");
         let esmated = {};
         let judgerFile = 0;
-        for (let i in this.problem.files) {
-          const file = this.problem.files[i];
+        for (let i in this.problem.fileIDs) {
+          const file = this.problem.fileIDs[i];
           const url = getURL(`/api/file/${file}/summary`, {});
           const result = await get(url);
           const filename = result.filename;
@@ -208,10 +207,10 @@ export default {
         }
         this.problem.data = {
           version: "1.0",
-          type: "traditional",
           judgerFile,
           subtasks
         };
+        this.problem.channel = "traditional";
       } catch (e) {
         this.showSnackbar = true;
         this.snackbarText = e.message;
@@ -223,12 +222,18 @@ export default {
         const problemID = prompt(this.$t("remote_problem_id"));
         this.problem.data = {
           version: "1.0",
-          type: "virtual",
           origin,
           problemID
         };
+        this.problem.channel = "virtual";
       }
     }
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.fill
+  height 100%
+  overflow hidden
+</style>
